@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   ## Organizations
-  get 'admin/organizations/new', to: 'organizations#new', as: 'new_organization'
+  get 'organizations/new', to: 'organizations#new', as: 'new_organization'
 
   ## Camps
-  get 'org/camps/new', to: 'camps#new', as: 'new_camp'
+  get 'camps/new', to: 'camps#new', as: 'new_camp'
 
   ## Activities
-  get 'org/activities/new', to: 'activities#new', as: 'new_activity'
+  get 'activities/new', to: 'activities#new', as: 'new_activity'
 
 end
