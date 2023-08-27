@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Src</title>
+    <title>Camper</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="<%= mix('/css/app.css') %>">
+    <script src="<%= mix('/js/bootstrap.js') %>"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="main-container">
+      <!--  ナビゲーションバーの追加 -->
+      <nav class="custom-navbar">
+        <div id="menuToggle">
+          <input type="checkbox" />
+          <span></span>
+          <span></span>
+          <span></span>
+          <ul id="menu">
+            <li>
+              <a href="#">Top</a>
+            </li>
+            <li>
+              <a href="#">New organization</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- アラートメッセージの追加 -->
+      <% if notice %>
+        <div class="alert alert-success" role="alert">
+          <%= notice %>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger" role="alert">
+          <%= alert %>
+        </div>
+      <% end %>
+
+      <div class="bg-white text-dark">
+        <%= yield %>
+      </div>
+    </div>
+
+    <!-- Javascript追加 -->
+    <script src="<%= mix('/js/app.js') %>"></script>
   </body>
 </html>
