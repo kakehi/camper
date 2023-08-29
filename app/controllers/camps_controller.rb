@@ -1,10 +1,13 @@
 class CampsController < ApplicationController
+
+    before_action :authenticate_user!
+
     def new
         render :new
     end
 
     def create
-        redirect_to 'camps/new'
+        redirect_to new_camp_path
     end
 
     def edit
@@ -12,6 +15,7 @@ class CampsController < ApplicationController
     end
 
     def update
-        redirect_to 'camps/edit'
+        redirect_to edit_camp_path
     end
+
 end

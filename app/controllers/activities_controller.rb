@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
     end
 
     def create
-        redirect_to 'activities/new'
+        redirect_to new_activity_path
     end
 
     def edit
@@ -12,6 +12,6 @@ class ActivitiesController < ApplicationController
     end
 
     def update
-        redirect_to 'activities/edit'
+        redirect_to edit_activity_path
     end
 end

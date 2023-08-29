@@ -19,17 +19,28 @@
           <span></span>
           <span></span>
           <ul id="menu">
-            <li>
-              <a href="#">Top</a>
-            </li>
-            <li>
-              <a href="#">New organization</a>
-            </li>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </li>
+              <li>
+                <%= link_to "Top", "/", class: "nav-link" %>
+              </li>
+            <% else %>
+              <li>
+                <a href="#">Top</a>
+              </li>
+              <li>
+                <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+              </li>
+              <li>
+                <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </nav>
 
-      <!-- アラートメッセージの追加 -->
       <% if notice %>
         <div class="alert alert-success" role="alert">
           <%= notice %>
