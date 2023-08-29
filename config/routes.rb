@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root "organizations#index"
 
   ## Organizations
+  get 'organizations', to: 'organizations#index', as: 'index_organization'
   get 'organizations/new', to: 'organizations#new', as: 'new_organization'
   post 'organizations/new', to: 'organizations#create', as: 'create_organization'
   get 'organizations/edit/:id', to: 'organizations#edit', as: 'edit_organization'

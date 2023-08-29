@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 mx-auto post-form-container">
+    <div class="col-md-8 mx-auto form-container">
       <h2 class="h2">New activity</h2>
-      <%= form_with(url: create_activity_path, local: true, method: :post, html: { class: 'post-form' } ) do |f| %>
+      <%= form_with(url: create_activity_path, local: true, method: :post, html: { class: 'activity-form' } ) do |f| %>
 
         <div class="form-group">
           <%= f.label "Name", class: 'form-label' %>
