@@ -2,8 +2,7 @@
   <div class="row">
     <div class="col-md-8 mx-auto form-container">
       <h2 class="h2">New camp</h2>
-      <%= form_with(url: create_camp_path, local: true, method: :post, html: { class: 'camp-form' } ) do |f| %>
-
+      <%= form_with(url: create_camp_path, model: @camp, local: true, method: :post, html: { class: 'camp-form' } ) do |f| %>
         <div class="form-group">
           <%= f.label "Name", class: 'form-label' %>
           <%= f.text_field :name, class: 'form-control' %>

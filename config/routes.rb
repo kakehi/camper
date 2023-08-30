@@ -13,12 +13,14 @@ Rails.application.routes.draw do
   post 'organizations/edit/:id', to: 'organizations#edit', as: 'update_organization'
 
   ## Camps
+  get 'camps', to: 'camps#index', as: 'index_camp'
   get 'camps/new', to: 'camps#new', as: 'new_camp'
   post 'camps/new', to: 'camps#create', as: 'create_camp'
   get 'camps/edit/:id', to: 'camps#edit', as: 'edit_camp'
   post 'camps/edit/:id', to: 'camps#edit', as: 'update_camp'
 
   ## Activities
+  get 'activities', to: 'activities#index', as: 'index_activity'
   get 'activities/new', to: 'activities#new', as: 'new_activity'
   post 'activities/new', to: 'activities#create', as: 'create_activity'
   get 'activities/edit/:id', to: 'activities#edit', as: 'edit_activity'
