@@ -5,4 +5,8 @@ class Activity < ApplicationRecord
 
     # ActiveStorage
     has_one_attached :hero_image
+
+    # References
+    belongs_to :camp
+    
 end

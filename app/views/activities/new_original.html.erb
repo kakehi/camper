@@ -1,18 +1,3 @@
-<div class="post-list">
-  <a class="post" href="<%= edit_organization_path(@organization) %>">
-    <div class="header">
-      <h2 class="title"><%= @organization.name %></h2>
-    </div>
-  </a>
-</div>
-<div class="post-list">
-  <a class="post" href="<%= edit_camp_path(@camp) %>">
-    <div class="header">
-      <h2 class="title"><%= @camp.name %></h2>
-    </div>
-  </a>
-</div>
-
 <div class="container">
   <div class="row">
     <div class="col-md-8 mx-auto form-container">
@@ -44,22 +29,4 @@
       <% end %>
     </div>
   </div>
-</div>
-
-
-<div class="post-list">
-  <% @activities.each do |activity| %>
-    <a class="post" href="<%= edit_activity_path(@organization, @camp, activity) %>">
-      <div class="header">
-        <h2 class="title"><%= activity.name %></h2>
-        <p class="timestamp"><%= activity.created_at.strftime("%B %d, %Y") %></p>
-      </div>
-      <div class="body">
-        <p class="content"><%= activity.description %></p>
-      </div>
-      <div class="image">
-        <%= image_tag(activity.hero_image) if activity.hero_image.attached? %>
-      </div>
-    </a>
-  <% end %>
 </div>

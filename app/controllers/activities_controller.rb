@@ -11,11 +11,16 @@ class ActivitiesController < ApplicationController
     end
 
     def new
+        @organization = Organization.find(params[:organization_id])
+        @camp = Camp.find(params[:camp_id])
         @activity = Activity.new
+        @activities = Activity.where(camp_id: params[:camp_id])
         render :new
     end
     
     def create
+        @organization = Organization.find(params[:organization_id])
+
         @activity = Activity.new(activity_params)
 
         if params[:activity][:hero_image]
@@ -23,8 +28,10 @@ class ActivitiesController < ApplicationController
         end
 
         if @activity.save
-            redirect_to index_activity_path, notice: 'Activities are added'
+            redirect_to new_activity_path(@organization, params[:camp_id]), notice: 'Activities are added'
         else
+            @camp = Camp.find(params[:camp_id])
+            @activities = Activity.where(camp_id: params[:camp_id])
             render :new, status: :unprocessable_entity
         end
     end
@@ -39,6 +46,6 @@ class ActivitiesController < ApplicationController
 
     private
         def activity_params
-            params.require(:activity).permit(:name, :description, :hero_image)
+            params.require(:activity).permit(:name, :description, :hero_image).merge(camp_id: params[:camp_id])
         end
 end

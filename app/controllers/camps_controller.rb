@@ -13,7 +13,9 @@ class CampsController < ApplicationController
     before_action :authenticate_user!
 
     def new
+        @organization = Organization.find(params[:organization_id])
         @camp = Camp.new
+        @camps = Camp.where(organization_id: params[:organization_id])
         render :new
     end
 
@@ -26,8 +28,10 @@ class CampsController < ApplicationController
         end
 
         if @camp.save
-            redirect_to index_camp_path, notice: '登録しました'
+            redirect_to new_camp_path(params[:organization_id]), notice: 'Camp was added'
         else
+            @organization = Organization.find(params[:organization_id])
+            @camps = Camp.where(organization_id: params[:organization_id])
             render :new, status: :unprocessable_entity
         end
     end
@@ -57,6 +61,6 @@ class CampsController < ApplicationController
 
     private
         def camp_params
-            params.require(:camp).permit(:name, :description, :hero_image)
+            params.require(:camp).permit(:name, :description, :hero_image).merge(organization_id: params[:organization_id])
         end
 end

@@ -8,6 +8,7 @@ class Camp < ApplicationRecord
     has_one_attached :hero_image
 
     # Reference
-    # belongs_to :organization
+    belongs_to :organization
+    has_many :activities, dependent: :destroy
 
 end

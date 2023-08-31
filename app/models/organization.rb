@@ -7,5 +7,5 @@ class Organization < ApplicationRecord
     has_one_attached :hero_image
 
     # Reference
-    # has_many :camps, dependent: :destroy
+    has_many :camps, dependent: :destroy
 end

@@ -7,7 +7,7 @@
 
 <div class="post-list">
   <% @organization.each do |organization| %>
-    <a class="post" href="<%= edit_organization_path(organization) %>">
+    <a class="post" href="<%= new_camp_path(organization) %>">
       <div class="header">
         <h2 class="title"><%= organization.name %></h2>
         <p class="timestamp"><%= organization.created_at.strftime("%B %d, %Y") %></p>
