@@ -1,7 +1,13 @@
 class CampsController < ApplicationController
 
     def index
-        render 'camps/index'
+        @name = params[:name]
+        if @name.present?
+          @camp = Camp.where('name LIKE ?', "%#{@name}%")
+        else
+          @camp = Camp.all
+        end
+        render :index
     end
 
     before_action :authenticate_user!
@@ -27,11 +33,26 @@ class CampsController < ApplicationController
     end
 
     def edit
+        @camp = Camp.find(params[:id])
         render :edit
     end
-
+    
     def update
-        redirect_to edit_camp_path
+        @camp = Camp.find(params[:id])
+        if params[:camp][:hero_image]
+            @camp.image.attach(params[:camp][:hero_image])
+        end
+        if @camp.update(camp_params)
+            redirect_to index_camp_path, notice: 'Updated'
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @camp = Camp.find(params[:id])
+        @camp.destroy
+        redirect_to index_camp_path, notice: 'Deleted'
     end
 
     private

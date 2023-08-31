@@ -3,7 +3,9 @@
 one:
   name: MyString
   description: MyString
+  organization: one
 
 two:
   name: MyString
   description: MyString
+  organization: two

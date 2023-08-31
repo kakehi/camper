@@ -1,6 +1,13 @@
 class OrganizationsController < ApplicationController
+    
     def index
-        render 'organizations/index'
+        @name = params[:name]
+        if @name.present?
+          @organization = Organization.where('name LIKE ?', "%#{@name}%")
+        else
+          @organization = Organization.all
+        end
+        render :index
     end
 
     before_action :authenticate_user!
@@ -16,7 +23,7 @@ class OrganizationsController < ApplicationController
         if params[:organization][:hero_image]
             @organization.image.attach(params[:organization][:hero_image])
         end
-        
+
         if @organization.save
             redirect_to index_organization_path, notice: 'Created'
         else
@@ -25,11 +32,26 @@ class OrganizationsController < ApplicationController
     end
 
     def edit
+        @organization = Organization.find(params[:id])
         render :edit
     end
-
+    
     def update
-        redirect_to edit_organization_path
+        @organization = Organization.find(params[:id])
+        if params[:organization][:hero_image]
+            @organization.image.attach(params[:organization][:hero_image])
+        end
+        if @organization.update(organization_params)
+            redirect_to index_organization_path, notice: 'Updated'
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @organization = Organization.find(params[:id])
+        @organization.destroy
+        redirect_to index_organization_path, notice: 'Deleted'
     end
 
     private

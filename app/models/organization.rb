@@ -5,4 +5,7 @@ class Organization < ApplicationRecord
 
     # ActiveStorage
     has_one_attached :hero_image
+
+    # Reference
+    # has_many :camps, dependent: :destroy
 end

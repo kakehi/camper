@@ -1,3 +1,23 @@
-<div>
-  <h1>Org list</h1>
+<div class="search-container">
+  <%= form_with url: index_organization_path, class: "form", method: :get, local: true do |form| %>
+    <input class="input" type="text" name="title" placeholder="Search by name" value="<%= params[:title] %>">
+    <%= form.submit "Search", class: "button" %>
+  <% end %>
+</div>
+
+<div class="post-list">
+  <% @organization.each do |organization| %>
+    <a class="post" href="<%= edit_organization_path(organization) %>">
+      <div class="header">
+        <h2 class="title"><%= organization.name %></h2>
+        <p class="timestamp"><%= organization.created_at.strftime("%B %d, %Y") %></p>
+      </div>
+      <div class="body">
+        <p class="content"><%= organization.description %></p>
+      </div>
+      <div class="image">
+        <%= image_tag(organization.hero_image) if organization.hero_image.attached? %>
+      </div>
+    </a>
+  <% end %>
 </div>

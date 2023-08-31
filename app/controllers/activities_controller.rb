@@ -1,7 +1,13 @@
 class ActivitiesController < ApplicationController
 
     def index
-        render 'activities/index'
+        @name = params[:name]
+        if @name.present?
+          @activity = Activity.where('name LIKE ?', "%#{@name}%")
+        else
+          @activity = Activity.all
+        end
+        render :index
     end
 
     def new
