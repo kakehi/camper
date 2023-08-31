@@ -1,13 +1,24 @@
-<div class="search-container">
-  <%= form_with url: index_organization_path, class: "form", method: :get, local: true do |form| %>
-    <input class="input" type="text" name="title" placeholder="Search by name" value="<%= params[:title] %>">
-    <%= form.submit "Search", class: "button" %>
-  <% end %>
-</div>
 
+<%# 
+    PROFILE TOP
+%>
+<% if defined?@organization %>
+    <div class="post-list">
+    <a class="post" href="<%= edit_organization_path(@organization) %>">
+        <div class="header">
+        <h2 class="title"><%= @organization.name %></h2>
+        </div>
+    </a>
+    </div>
+<% end %>
+
+
+<%# 
+    INDEX
+%>
 <div class="post-list">
-  <% @camp.each do |camp| %>
-    <a class="post" href="<%= edit_camp_path(camp) %>">
+  <% @camps.each do |camp| %>
+    <a class="post" href="<%= index_camp_activities_path(@organization, camp) %>">
       <div class="header">
         <h2 class="title"><%= camp.name %></h2>
         <p class="timestamp"><%= camp.created_at.strftime("%B %d, %Y") %></p>
@@ -21,3 +32,4 @@
     </a>
   <% end %>
 </div>
+

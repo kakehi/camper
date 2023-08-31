@@ -1,12 +1,21 @@
 class CampsController < ApplicationController
 
     def index
+
         @name = params[:name]
         if @name.present?
           @camp = Camp.where('name LIKE ?', "%#{@name}%")
         else
           @camp = Camp.all
         end
+
+        if params[:organization_id].present?
+            @organization = Organization.find(params[:organization_id])
+            @camps = Camp.where(organization_id: params[:organization_id])
+        else
+            @camps = Camp.all
+        end
+
         render :index
     end
 

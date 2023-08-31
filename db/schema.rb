@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_094004) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "zip_code"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|

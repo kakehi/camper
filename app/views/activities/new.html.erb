@@ -45,21 +45,3 @@
     </div>
   </div>
 </div>
-
-
-<div class="post-list">
-  <% @activities.each do |activity| %>
-    <a class="post" href="<%= edit_activity_path(@organization, @camp, activity) %>">
-      <div class="header">
-        <h2 class="title"><%= activity.name %></h2>
-        <p class="timestamp"><%= activity.created_at.strftime("%B %d, %Y") %></p>
-      </div>
-      <div class="body">
-        <p class="content"><%= activity.description %></p>
-      </div>
-      <div class="image">
-        <%= image_tag(activity.hero_image) if activity.hero_image.attached? %>
-      </div>
-    </a>
-  <% end %>
-</div>

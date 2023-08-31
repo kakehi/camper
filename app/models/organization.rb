@@ -3,6 +3,11 @@ class Organization < ApplicationRecord
     validates :name, presence: true
     validates :description, presence: true
 
+    validates :zip_code, presence: true
+    validates :country, presence: true
+    validates :state, presence: true
+    validates :city, presence: true
+
     # ActiveStorage
     has_one_attached :hero_image
 
