@@ -1,0 +1,69 @@
+
+
+.grid-card{
+    
+    width: auto;
+
+    .image{
+        position: relative;
+        overflow: hidden;
+        
+        img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+    }
+
+    .content{
+        display: grid;
+        .title{
+
+        }
+        .sub-information{
+            color: #999;
+        }
+    }
+}
+
+
+
+// Size
+.grid-card{
+    
+    width: auto;
+    padding-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    .image{
+        height: 14rem;
+        border-radius: 1rem;
+        img{
+            
+        }
+    }
+
+    .content{
+        padding: 0.5rem 0;
+        gap: 0.5rem;
+        .title{
+
+        }
+        .sub-information{
+        }
+    }
+}
+
+
+// Interactive
+.grid-card{
+    transition: all 0.25s;
+    
+    &:hover{
+        text-decoration: none;
+        box-shadow: 0.5rem 0.5rem 2rem rgba(0,0,0,0.05);
+    }
+
+}

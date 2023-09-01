@@ -1,0 +1,14 @@
+
+
+
+
+<a class="grid-card" href="<%= href %>">
+    <div class="image">
+        <%= image_tag(hero_image) if hero_image.attached? %>
+    </div>
+    <div class="content">
+        <h6 class="title"><%= title %></h6>
+        <div class="sub-information"><%= sub_information %></div>
+        <%= render "uis/grammar/price", price: 120 %>
+    </div>
+</a>

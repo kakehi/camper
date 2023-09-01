@@ -5,19 +5,13 @@
   <% end %>
 </div>
 
-<div class="post-list">
-  <% @organization.each do |organization| %>
-    <a class="post" href="<%= index_organization_camp_path(organization) %>">
-        <div class="image">
-            <%= image_tag(organization.hero_image) if organization.hero_image.attached? %>
-        </div>
-        <div class="header">
-            <h2 class="title"><%= organization.name %></h2>
-        </div>
-        <div><%= organization.city %>, <%= organization.state %>, <%= organization.country %></div>
-        <div class="body">
-            <p class="content"><%= organization.description %></p>
-        </div>
-    </a>
-  <% end %>
+<div class="organizations-index-container">
+    <div class="grid-container">
+        <% @organization.each do |organization| %>
+            <%= render "components/cards/organization-grid-card",
+                organization: organization 
+            %>
+        <% end %>
+    </div>
+
 </div>
