@@ -13,8 +13,8 @@
         </div>
         <div class="header">
             <h2 class="title"><%= organization.name %></h2>
-            <p class="timestamp"><%= organization.created_at.strftime("%B %d, %Y") %></p>
         </div>
+        <div><%= organization.city %>, <%= organization.state %>, <%= organization.country %></div>
         <div class="body">
             <p class="content"><%= organization.description %></p>
         </div>

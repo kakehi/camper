@@ -6,7 +6,11 @@
     <div class="post-list">
     <div class="post">
         <div class="header">
-        <h2 class="title"><%= @organization.name %></h2>
+            <h2 class="title"><%= @organization.name %></h2>
+            <div><%= @organization.city %>, <%= @organization.state %>, <%= @organization.country %></div>
+        </div>
+        <div class="image">
+            <%= image_tag(@organization.hero_image) if @organization.hero_image.attached? %>
         </div>
     </div>
     <a class="button"href="<%= edit_organization_path(@organization) %>">Edit organization</a>
@@ -32,5 +36,6 @@
       </div>
     </a>
   <% end %>
+  <a class="button"href="<%= new_camp_path(@organization) %>">Add camp</a>
 </div>
 

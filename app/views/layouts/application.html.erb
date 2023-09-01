@@ -11,39 +11,28 @@
 
   <body>
     <div class="main-container">
-      <!--  ナビゲーションバーの追加 -->
-      <nav class="custom-navbar">
-        <div id="menuToggle">
-          <input type="checkbox" />
-          <span></span>
-          <span></span>
-          <span></span>
-          <ul id="menu">
+      
+      <%# Top Navigation %>
+      <nav class="top-nav flex-container">
+        <div class="flex-left">
+          <div class="hamburger-menu"><div></div><div></div><div></div></div>
+          <a href="<%= index_organization_path() %>">Top</a>
+        </div>
+        <div class="flex-right">
+          <div class="profile-container">
             <% if user_signed_in? %>
-              <li>
-                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-              </li>
-              <li>
-                <%= link_to "Top", "/", class: "nav-link" %>
-              </li>
-              <li>
+              <div>
                 <%= link_to "Add new organization", new_organization_path, class: "nav-link" %>
-              </li>
+              </div>
+              <div>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </div>
             <% else %>
-              <li>
-                <a href="#">Top</a>
-              </li>
-              <li>
-                <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
-              </li>
-              <li>
-                <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
-              </li>
-              
             <% end %>
-          </ul>
+          </div>
         </div>
       </nav>
+
 
       <% if notice %>
         <div class="alert alert-success" role="alert">
