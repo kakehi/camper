@@ -24,10 +24,19 @@ a{
 
 
 
+// Fundamental Layout
+.view-outer-container{
+    padding: 2rem;
+
+    &.single-column{
+        max-width: 800px;
+        margin: auto;
+    }
+}
 
 
 
-
+// Grid and flex
 .grid-container{
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;

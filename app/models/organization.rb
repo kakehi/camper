@@ -8,6 +8,10 @@ class Organization < ApplicationRecord
     validates :state, presence: true
     validates :city, presence: true
 
+    validates :website, presence: true
+    validates :phone, presence: true
+    validates :email, presence: true
+
     # ActiveStorage
     has_one_attached :hero_image
 

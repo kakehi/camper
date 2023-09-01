@@ -1,7 +1,7 @@
-<div class="container">
+<div class="view-outer-container single-column">
   <div class="row">
     <div class="col-md-8 mx-auto form-container">
-      <h2 class="h2">Edit organization</h2>
+      <h2>Edit organization</h2>
       <%= form_with(url: update_organization_path, model: @organization, local: true, method: :post, html: { class: 'post-form' }) do |f| %>
 
         <% if @organization.errors.any? %>
@@ -42,6 +42,16 @@
             <%= f.text_field :city, class: 'form-control' %>
         </div>
         
+        <div class="form-group">
+            <h4>Contact</h4>
+            <%= f.label "Website", class: 'form-label' %>
+            <%= f.text_field :website, class: 'form-control' %>
+            <%= f.label "Phone number", class: 'form-label' %>
+            <%= f.text_field :phone, class: 'form-control' %>
+            <%= f.label "Email", class: 'form-label' %>
+            <%= f.text_field :email, class: 'form-control' %>
+        </div>
+
         <div class="button-group">
           <%= link_to 'Delete', destroy_organization_path(@organization), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: "btn btn-danger" %>
           <%= f.submit 'Update', class: 'btn btn-primary' %>

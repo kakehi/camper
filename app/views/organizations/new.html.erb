@@ -1,7 +1,7 @@
-<div class="container">
+<div class="view-outer-container single-column">
   <div class="row">
     <div class="col-md-8 mx-auto form-container">
-      <h2 class="h2">New organization</h2>
+      <h2>New organization</h2>
       <%= form_with(url: create_organization_path, model: @organization, local: true, method: :post, html: { class: 'organization-form' }) do |f| %>
         <% if @organization.errors.any? %>
             <ul>
@@ -40,6 +40,16 @@
             <%= f.text_field :state, class: 'form-control' %>
             <%= f.label "City", class: 'form-label' %>
             <%= f.text_field :city, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+            <h4>Contact</h4>
+            <%= f.label "Website", class: 'form-label' %>
+            <%= f.text_field :website, class: 'form-control' %>
+            <%= f.label "Phone number", class: 'form-label' %>
+            <%= f.text_field :phone, class: 'form-control' %>
+            <%= f.label "Email", class: 'form-label' %>
+            <%= f.text_field :email, class: 'form-control' %>
         </div>
 
         <div class="button-group">
