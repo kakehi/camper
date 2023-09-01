@@ -8,16 +8,16 @@
 <div class="post-list">
   <% @organization.each do |organization| %>
     <a class="post" href="<%= index_organization_camp_path(organization) %>">
-      <div class="header">
-        <h2 class="title"><%= organization.name %></h2>
-        <p class="timestamp"><%= organization.created_at.strftime("%B %d, %Y") %></p>
-      </div>
-      <div class="body">
-        <p class="content"><%= organization.description %></p>
-      </div>
-      <div class="image">
-        <%= image_tag(organization.hero_image) if organization.hero_image.attached? %>
-      </div>
+        <div class="image">
+            <%= image_tag(organization.hero_image) if organization.hero_image.attached? %>
+        </div>
+        <div class="header">
+            <h2 class="title"><%= organization.name %></h2>
+            <p class="timestamp"><%= organization.created_at.strftime("%B %d, %Y") %></p>
+        </div>
+        <div class="body">
+            <p class="content"><%= organization.description %></p>
+        </div>
     </a>
   <% end %>
 </div>

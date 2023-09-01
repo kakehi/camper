@@ -21,7 +21,7 @@ class OrganizationsController < ApplicationController
         @organization = Organization.new(organization_params)
 
         if params[:organization][:hero_image]
-            @organization.image.attach(params[:organization][:hero_image])
+            @organization.hero_image.attach(params[:organization][:hero_image])
         end
 
         if @organization.save
@@ -39,10 +39,10 @@ class OrganizationsController < ApplicationController
     def update
         @organization = Organization.find(params[:id])
         if params[:organization][:hero_image]
-            @organization.image.attach(params[:organization][:hero_image])
+            @organization.hero_image.attach(params[:organization][:hero_image])
         end
         if @organization.update(organization_params)
-            redirect_to index_organization_path, notice: 'Updated'
+            redirect_to index_organization_camp_path(@organization), notice: 'Organization information is pdated'
         else
             render :edit, status: :unprocessable_entity
         end
@@ -56,6 +56,6 @@ class OrganizationsController < ApplicationController
 
     private
     def organization_params
-        params.require(:organization).permit(:name, :description, :hero_image)
+        params.require(:organization).permit(:name, :description, :hero_image, :zip_code, :country, :state, :city)
     end
 end

@@ -4,11 +4,12 @@
 %>
 <% if defined?@organization %>
     <div class="post-list">
-    <a class="post" href="<%= edit_organization_path(@organization) %>">
+    <div class="post">
         <div class="header">
         <h2 class="title"><%= @organization.name %></h2>
         </div>
-    </a>
+    </div>
+    <a class="button"href="<%= edit_organization_path(@organization) %>">Edit organization</a>
     </div>
 <% end %>
 
