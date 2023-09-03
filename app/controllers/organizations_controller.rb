@@ -7,7 +7,9 @@ class OrganizationsController < ApplicationController
         else
           @organization = Organization.all
         end
+        
         render :index
+
     end
 
     before_action :authenticate_user!

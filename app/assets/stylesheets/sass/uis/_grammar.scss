@@ -10,3 +10,12 @@
         font-size: 1.25rem;
     }
 }
+
+
+
+.grammar-location{
+    color: #999;
+    &:hover{
+        text-decoration: underline;
+    }
+}

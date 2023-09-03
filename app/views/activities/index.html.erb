@@ -1,48 +1,39 @@
-<%# 
-    PROFILE TOP
-%>
-<% if defined?@organization %>
-  <div class="post-list">
-    <a class="post" href="<%= index_organization_camp_path(@organization) %>">
-        <div class="header">
-        <h2 class="title"><%= @organization.name %></h2>
-        </div>
-    </a>
-  </div>
-  <div class="post-list">
-    <div class="post">
-        <div class="header">
-        <h2 class="title"><%= @camp.name %></h2>
-        </div>
-    </div>
-  </div>
-<% else %>
-  <div class="search-container">
-    <%= form_with url: index_organization_path, class: "form", method: :get, local: true do |form| %>
-      <input class="input" type="text" name="title" placeholder="Search by name" value="<%= params[:title] %>">
-      <%= form.submit "Search", class: "button" %>
-    <% end %>
-  </div>
-<% end %>
+<div class="view-outer-container single-column">
 
 
-
-
-
-<div class="post-list">
-  <% @activity.each do |activity| %>
-    <div class="post">
-      <div class="header">
-        <h2 class="title"><%= activity.name %></h2>
-        <p class="timestamp"><%= activity.created_at.strftime("%B %d, %Y") %></p>
-      </div>
-      <div class="body">
-        <p class="content"><%= activity.description %></p>
-      </div>
-      <div class="image">
-        <%= image_tag(activity.hero_image) if activity.hero_image.attached? %>
-      </div>
+  <%# 
+      PROFILE TOP
+  %>
+  <% if defined?@organization %>
+    <%= render "components/heroes/organization-hero",
+        organization: @organization %>
+  <% else %>
+    <div class="search-container">
+      <%= form_with url: index_organization_path, class: "form", method: :get, local: true do |form| %>
+        <input class="input" type="text" name="title" placeholder="Search by name" value="<%= params[:title] %>">
+        <%= form.submit "Search", class: "button" %>
+      <% end %>
     </div>
   <% end %>
-  <a class="button" href="<%= new_activity_path(@organization, @camp) %>">Add activity</a>
+
+
+
+
+
+  <div class="container camp">
+    <%= render "components/heroes/camp-hero",
+        camp: @camp %>
+    <div class="thread-container">
+      <% @activity.each do |activity| %>
+        <%= render "components/cards/activity-card",
+                  activity: activity %>
+      <% end %>
+      <%= render "uis/buttons/button",
+            type: "empty",
+            text: "Add activity",
+            size: "medium",
+            href: new_activity_path(@organization, @camp) %>
+    </div>
+  </div>
+
 </div>

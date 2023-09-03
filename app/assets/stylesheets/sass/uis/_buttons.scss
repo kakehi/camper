@@ -4,10 +4,47 @@
 
 
 .button{
-    background-color: #15B166;
+    
+    
+    border: 1px solid rgba(0, 0, 0, 0);
+
+    padding: 0.25rem 1rem;
+    border-radius: 0.5rem;
+}
+
+
+// Type
+.button{
+    &.primary{
+        background-color: #15B166;
+        color: white;
+    }
+    &.secondary{
+        background-color: #0c556d;
+        color: white;
+    }
+    &.empty{
+        background-color: rgba(0, 0, 0, 0);
+        border-color: #DDD;
+    }
+}
+
+// Size
+.button{
+
     
     border: 1px solid 2px;
 
     padding: 0.25rem 1rem;
     border-radius: 0.5rem;
+
+    &.medium{
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+    }
+}
+
+
+.text-link{
+    text-decoration: underline;
 }

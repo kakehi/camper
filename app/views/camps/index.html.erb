@@ -1,41 +1,27 @@
+<div class="view-outer-container single-column">
 
-<%# 
-    PROFILE TOP
-%>
-<% if defined?@organization %>
-    <div class="post-list">
-    <div class="post">
-        <div class="header">
-            <h2 class="title"><%= @organization.name %></h2>
-            <div><%= @organization.city %>, <%= @organization.state %>, <%= @organization.country %></div>
-        </div>
-        <div class="image">
-            <%= image_tag(@organization.hero_image) if @organization.hero_image.attached? %>
-        </div>
+    <%# 
+        PROFILE TOP
+    %>
+    <% if defined?@organization %>
+        <%= render "components/heroes/organization-hero",
+            organization: @organization %>
+    <% end %>
+
+
+    <%# 
+        INDEX
+    %>
+    <div class="thread-container">
+        <% @camps.each do |camp| %>
+            <%= render "components/heroes/camp-hero",
+            camp: camp %>
+        <% end %>
+        <%= render "uis/buttons/button",
+            type: "empty",
+            text: "Add camp",
+            size: "medium",
+            href: new_camp_path(@organization) %>
     </div>
-    <a class="button"href="<%= edit_organization_path(@organization) %>">Edit organization</a>
-    </div>
-<% end %>
 
-
-<%# 
-    INDEX
-%>
-<div class="post-list">
-  <% @camps.each do |camp| %>
-    <a class="post" href="<%= index_camp_activities_path(@organization, camp) %>">
-      <div class="header">
-        <h2 class="title"><%= camp.name %></h2>
-        <p class="timestamp"><%= camp.created_at.strftime("%B %d, %Y") %></p>
-      </div>
-      <div class="body">
-        <p class="content"><%= camp.description %></p>
-      </div>
-      <div class="image">
-        <%= image_tag(camp.hero_image) if camp.hero_image.attached? %>
-      </div>
-    </a>
-  <% end %>
-  <a class="button"href="<%= new_camp_path(@organization) %>">Add camp</a>
 </div>
-

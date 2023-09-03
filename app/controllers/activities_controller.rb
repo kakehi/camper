@@ -14,6 +14,7 @@ class ActivitiesController < ApplicationController
     end
 
     def new
+        @activity = Activity.new
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:camp_id])
     end
@@ -46,6 +47,19 @@ class ActivitiesController < ApplicationController
 
     private
         def activity_params
-            params.require(:activity).permit(:name, :description, :hero_image).merge(camp_id: params[:camp_id])
+            params
+                .require(:activity)
+                .permit(
+                    :name,
+                    :description,
+                    :hero_image,
+                    :start_year,
+                    :start_month,
+                    :start_date,
+                    :end_year,
+                    :end_month,
+                    :end_date
+                )
+                .merge(camp_id: params[:camp_id])
         end
 end

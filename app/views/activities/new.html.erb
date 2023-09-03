@@ -13,7 +13,7 @@
   </a>
 </div>
 
-<div class="container">
+<div class="view-outer-container single-column">
   <div class="row">
     <div class="col-md-8 mx-auto form-container">
       <h2 class="h2">New activity</h2>
@@ -36,6 +36,22 @@
             <span class="image-preview__default-text">Image will be displayed here</span>
           </div>
           <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
+        </div>
+
+        <div class="form-group">
+            <h4>Dates</h4>
+            <%= f.label "Start year", class: 'form-label' %>
+            <%= f.text_field :start_year, class: 'form-control' %>
+            <%= f.label "Start month", class: 'form-label' %>
+            <%= f.text_field :start_month, class: 'form-control' %>
+            <%= f.label "Start date", class: 'form-label' %>
+            <%= f.text_field :start_date, class: 'form-control' %>
+            <%= f.label "End year", class: 'form-label' %>
+            <%= f.text_field :end_year, class: 'form-control' %>
+            <%= f.label "End month", class: 'form-label' %>
+            <%= f.text_field :end_month, class: 'form-control' %>
+            <%= f.label "End date", class: 'form-label' %>
+            <%= f.text_field :end_date, class: 'form-control' %>
         </div>
 
         <div class="button-group">

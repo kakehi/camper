@@ -29,7 +29,7 @@ a{
     padding: 2rem;
 
     &.single-column{
-        max-width: 800px;
+        max-width: 1200px;
         margin: auto;
     }
 }
@@ -55,4 +55,10 @@ a{
     .flex-right{
 
     }
+}
+
+// Others
+.thread-container{
+    display: grid;
+    padding: 2rem 0;
 }
