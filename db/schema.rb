@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_034555) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_135327) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,6 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_034555) do
     t.integer "end_year"
     t.integer "end_month"
     t.integer "end_date"
+    t.integer "age_group_min"
+    t.integer "age_group_max"
     t.index ["camp_id"], name: "index_activities_on_camp_id"
   end
 
@@ -60,6 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_034555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "organization_id", null: false
+    t.integer "age_group_min"
+    t.integer "age_group_max"
     t.index ["organization_id"], name: "index_camps_on_organization_id"
   end
 

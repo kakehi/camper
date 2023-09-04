@@ -26,7 +26,9 @@
     <div class="thread-container">
       <% @activity.each do |activity| %>
         <%= render "components/cards/activity-card",
-                  activity: activity %>
+            organization: @organization,
+            activity: activity,
+            camp: @camp %>
       <% end %>
       <%= render "uis/buttons/button",
             type: "empty",

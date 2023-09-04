@@ -34,11 +34,34 @@ class ActivitiesController < ApplicationController
     end
 
     def edit
+        @organization = Organization.find(params[:organization_id])
+        @camp = Camp.find(params[:camp_id])
+        @activity = Activity.find(params[:id])
         render :edit
     end
-
+    
     def update
-        redirect_to edit_activity_path
+        @organization = Organization.find(params[:organization_id])
+        @camp = Camp.find(params[:camp_id])
+        @activity = Activity.find(params[:id])
+
+        if params[:activity][:hero_image]
+            @activity.image.attach(params[:activity][:hero_image])
+        end
+        if @activity.update(activity_params)
+            redirect_to index_organization
+            redirect_to index_organization_camp_path(@organization, @camp), notice: 'Updated'
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @organization = Organization.find(params[:organization_id])
+        @camp = Camp.find(params[:camp_id])
+        @activity = Activity.find(params[:id])
+        @activity.destroy
+        redirect_to index_camp_activities_path(@organization, @camp), notice: 'Deleted'
     end
 
     private
@@ -49,6 +72,8 @@ class ActivitiesController < ApplicationController
                     :name,
                     :description,
                     :hero_image,
+                    :age_group_min,
+                    :age_group_max,
                     :start_year,
                     :start_month,
                     :start_date,

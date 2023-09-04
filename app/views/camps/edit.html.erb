@@ -44,6 +44,14 @@
           <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
         </div>
 
+        <div class="form-group">
+            <h4>Age groups</h4>
+            <%= f.label "Minimum age group (Please select this only, if the target age group is one)", class: 'form-label' %>
+            <%= f.text_field :age_group_min, class: 'form-control' %>
+            <%= f.label "Max age group (optional)", class: 'form-label' %>
+            <%= f.text_field :age_group_max, class: 'form-control' %>
+        </div>
+        
         <div class="button-group">
           <%= link_to 'Delete', destroy_camp_path(@camp), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: "btn btn-danger" %>
           <%= f.submit 'Edit', class: 'btn btn-primary' %>

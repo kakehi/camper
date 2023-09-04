@@ -3,6 +3,8 @@ class Activity < ApplicationRecord
     validates :name, presence: true
     validates :description, presence: true
 
+    validates :age_group_min, presence: true
+
     validates :start_year, presence: true
     validates :start_month, presence: true
     validates :start_date, presence: true

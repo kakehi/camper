@@ -70,6 +70,15 @@ class CampsController < ApplicationController
 
     private
         def camp_params
-            params.require(:camp).permit(:name, :description, :hero_image).merge(organization_id: params[:organization_id])
+            params
+                .require(:camp)
+                .permit(
+                    :name,
+                    :description,
+                    :hero_image,
+                    :age_group_min,
+                    :age_group_max
+                )
+                .merge(organization_id: params[:organization_id])
         end
 end
