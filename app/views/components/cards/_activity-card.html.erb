@@ -4,9 +4,6 @@
             <h6 class="date"><%= activity.start_month %>/<%= activity.start_date %> - <%= activity.end_month %>/<%= activity.end_date %></h6>
             <h6><%= activity.name %></h6>
         </div>
-        <%= organization.id %>
-        <%= camp.id %>
-        <%= activity.id %>
         <a href="<%= edit_activity_path(organization.id, camp.id, activity.id) %>">Edit activity</a>
     </div>
 </div>

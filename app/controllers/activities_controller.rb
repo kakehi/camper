@@ -48,8 +48,8 @@ class ActivitiesController < ApplicationController
         if params[:activity][:hero_image]
             @activity.image.attach(params[:activity][:hero_image])
         end
+
         if @activity.update(activity_params)
-            redirect_to index_organization
             redirect_to index_organization_camp_path(@organization, @camp), notice: 'Updated'
         else
             render :edit, status: :unprocessable_entity

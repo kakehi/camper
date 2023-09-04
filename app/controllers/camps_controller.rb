@@ -46,17 +46,19 @@ class CampsController < ApplicationController
     end
 
     def edit
+        @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:id])
         render :edit
     end
     
     def update
+        @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:id])
         if params[:camp][:hero_image]
             @camp.image.attach(params[:camp][:hero_image])
         end
         if @camp.update(camp_params)
-            redirect_to index_camp_path, notice: 'Updated'
+            redirect_to index_camp_activities_path(@organization, @camp), notice: 'Updated'
         else
             render :edit, status: :unprocessable_entity
         end

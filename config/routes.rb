@@ -15,17 +15,16 @@ Rails.application.routes.draw do
 
   ## Camps
   get 'camps', to: 'camps#index', as: 'index_camp'
-  # get 'camps/new', to: 'camps#new', as: 'new_camp'
-  # post 'camps/new', to: 'camps#create', as: 'create_camp'
-  get 'camps/edit/:id', to: 'camps#edit', as: 'edit_camp'
-  post 'camps/edit/:id', to: 'camps#update', as: 'update_camp'
-  get 'camps/destroy/:id', to: 'camps#destroy'
-  delete 'camps/destroy/:id', to: 'camps#destroy', as: 'destroy_camp'
   
   get 'organizations/:organization_id/camps', to: 'camps#index', as: 'index_organization_camp'
   get 'organizations/:organization_id/camps/new', to: 'camps#new', as: 'new_camp'
   post 'organizations/:organization_id/camps/new', to: 'camps#create', as: 'create_camp'
+  get 'organizations/:organization_id/camps/edit/:id', to: 'camps#edit', as: 'edit_camp'
+  post 'organizations/:organization_id/camps/edit/:id', to: 'camps#update', as: 'update_camp'
 
+  get 'camps/destroy/:id', to: 'camps#destroy'
+  delete 'camps/destroy/:id', to: 'camps#destroy', as: 'destroy_camp'
+  
   ## Activities
   get 'activities', to: 'activities#index', as: 'index_activity'
 
