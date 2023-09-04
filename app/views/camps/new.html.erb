@@ -1,12 +1,24 @@
-<div class="post-list">
-  <a class="post" href="<%= index_organization_camp_path(@organization) %>">
-    <div class="header">
-      <h2 class="title"><%= @organization.name %></h2>
-    </div>
-  </a>
-</div>
+<div class="view-outer-container single-column">
 
-<div class="col-md-6 mx-auto form-container">
+  <%# 
+  PROFILE TOP
+  %>
+  <% if defined?@organization %>
+    <%= render "components/cards/organization-thumb-card",
+      organization: @organization
+    %>
+  <% else %>
+    <div class="search-container">
+      <%= form_with url: index_organization_path, class: "form", method: :get, local: true do |form| %>
+        <input class="input" type="text" name="title" placeholder="Search by name" value="<%= params[:title] %>">
+        <%= form.submit "Search", class: "button" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= render "components/titles/page-title",
+      title: "Add camp" %>
+
   <div class="form-container">
     <div class="comment">
       <%= form_with(url: create_camp_path(@organization), model: @camp, local: true, method: :post) do |f| %>

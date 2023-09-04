@@ -1,0 +1,14 @@
+<a class="card thumb-card" href="<%= href %>">
+    <div class="thumbnail-image">
+        <%= image_tag(image) if image.attached? %>
+    </div>
+    <div class="content">
+        <h5 class="title"><%= title %></h5>
+        <% if defined?(subtitle) %>
+            <div class="subtitle"><%= subtitle %></div>
+        <% end %>
+        <% if defined?(sub_information) %>
+            <div class="sub-information"><%= sub_information %></div>
+        <% end %>
+    </div>
+</a>

@@ -4,12 +4,8 @@ class ActivitiesController < ApplicationController
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:camp_id])
 
-        @name = params[:name]
-        if @name.present?
-          @activity = Activity.where(camp_id: params[:camp_id])
-        else
-          @activity = Activity.all
-        end
+        @activity = Activity.where(camp_id: params[:camp_id])
+        
         render :index
     end
 

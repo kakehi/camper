@@ -1,22 +1,12 @@
-<div class="post-list">
-  <a class="post" href="<%= edit_organization_path(@organization) %>">
-    <div class="header">
-      <h2 class="title"><%= @organization.name %></h2>
-    </div>
-  </a>
-</div>
-<div class="post-list">
-  <a class="post" href="<%= edit_camp_path(@camp) %>">
-    <div class="header">
-      <h2 class="title"><%= @camp.name %></h2>
-    </div>
-  </a>
-</div>
-
 <div class="view-outer-container single-column">
+  <%= render "components/cards/camp-thumb-card",
+    organization: @organization,
+    camp: @camp
+  %>
   <div class="row">
     <div class="col-md-8 mx-auto form-container">
-      <h2 class="h2">New activity</h2>
+      <%= render "components/titles/page-title",
+      title: "Add activity" %>
       <%= form_with(url: create_activity_path, model: @activity, local: true, method: :post, html: { class: 'activity-form' } ) do |f| %>
 
         <div class="form-group">

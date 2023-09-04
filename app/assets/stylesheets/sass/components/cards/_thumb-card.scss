@@ -1,0 +1,26 @@
+.thumb-card{
+    
+    width: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 1rem;
+
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 1.5rem;
+
+    .thumbnail-image{
+        height: 6rem;
+    }
+
+    .content{
+        display: grid;
+        .title{
+
+        }
+        .sub-information{
+            color: #999;
+        }
+    }
+}

@@ -9,7 +9,6 @@ class Organization < ApplicationRecord
     validates :city, presence: true
 
     validates :website, presence: true
-    validates :phone, presence: true
     validates :email, presence: true
 
     # ActiveStorage
