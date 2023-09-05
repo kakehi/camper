@@ -70,6 +70,8 @@ class OrganizationsController < ApplicationController
                 :city,
                 :website,
                 :phone,
-                :email)
+                :email,
+                :age_group_min,
+                :age_group_max)
     end
 end
