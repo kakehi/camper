@@ -3,82 +3,61 @@
   <%# 
   PROFILE TOP
   %>
-  <% if defined?@organization %>
-    <%= render "components/cards/organization-thumb-card",
-      organization: @organization
-    %>
-  <% else %>
-    <div class="search-container">
-      <%= form_with url: index_organization_path, class: "form", method: :get, local: true do |form| %>
-        <input class="input" type="text" name="title" placeholder="Search by name" value="<%= params[:title] %>">
-        <%= form.submit "Search", class: "button" %>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render "components/cards/organization-thumb-card",
+    organization: @organization
+  %>
 
-  <%= render "components/titles/page-title",
+  <div class="content">
+    <%= render "components/titles/page-title",
       title: "Add camp" %>
+    <%= form_with(url: create_camp_path(@organization), model: @camp, local: true, method: :post, html: { class: 'form-container' }) do |f| %>
+      <% if @camp.errors.any? %>
+        <ul>
+          <% @camp.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %> </ul>
+      <% end %>
 
-  <div class="form-container">
-    <div class="comment">
-      <%= form_with(url: create_camp_path(@organization), model: @camp, local: true, method: :post) do |f| %>
-
-        <% if @camp.errors.any? %>
-          <ul>
-            <% @camp.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %> </ul>
-        <% end %>
-
-        <div class="form-group">
-            <%= f.label "Name", class: 'form-label' %>
-            <%= f.text_field :name, class: 'form-control' %>
+      <div class="form-group" id="overview">
+        <div class="form-field">
+          <%= f.label "Name", class: 'form-label' %>
+          <%= f.text_field :name, value: @camp.name, class: 'form-control' %>
         </div>
 
-        <div class="form-group">
+        <div class="form-field">
           <%= f.label "Description", class: 'form-label' %>
-          <%= f.text_area :description, class: 'form-control' %>
+          <%= f.text_area :description, value: @camp.description, class: 'form-control' %>
         </div>
+      </div>
 
-        <div class="form-group image-upload">
-          <%= f.label "Hero image", class: 'form-label' %>
-          <div class="image-preview" id="imagePreview">
-            <img src="" alt="Image Preview" class="image-preview__image">
-            <span class="image-preview__default-text">Image will be displayed here</span>
-          </div>
-          <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
+      <div class="form-group image-upload">
+        <%= f.label "Hero image", class: 'form-label' %>
+        <div class="image-preview" id="imagePreview">
+          <img src="<%= @camp.hero_image.attached? ? url_for(@camp.hero_image) : "" %>" alt="Image Preview" class="image-preview__image <%= @camp.hero_image.attached? ? "-block" : "" %>">
+          <span class="image-preview__default-text <%= @camp.hero_image.attached? ? "-none" : "" %>">No image uploaded</span>
         </div>
+        <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
+      </div>
 
-        <div class="form-group">
-            <h4>Age groups</h4>
-            <%= f.label "Minimum age group (Please select this only, if the target age group is one)", class: 'form-label' %>
+      <div class="form-group">
+          <h4>Age groups</h4>
+          <div class="form-field">
+            <%= f.label "Minimum age group", class: 'form-label' %>
             <%= f.text_field :age_group_min, class: 'form-control' %>
+          </div>
+          <div class="form-field">
             <%= f.label "Max age group (optional)", class: 'form-label' %>
             <%= f.text_field :age_group_max, class: 'form-control' %>
-        </div>
-        
-        <div class="button-group">
-          <%= f.submit 'Create', class: 'btn btn-primary' %>
-        </div>
-
-      <% end %>
-    </div>
+            <div class="caption">Please fill this only if your target age group is a range</div>
+          </div>
+      </div>
+      
+      <div class="button-group">
+        <%= f.submit 'Create', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
-</div>
 
-<div class="post-list">
-  <% @camps.each do |camp| %>
-    <a class="post" href="<%= new_activity_path(@organization, camp) %>">
-      <div class="header">
-        <h2 class="title"><%= camp.name %></h2>
-        <p class="timestamp"><%= camp.created_at.strftime("%B %d, %Y") %></p>
-      </div>
-      <div class="body">
-        <p class="content"><%= camp.description %></p>
-      </div>
-      <div class="image">
-        <%= image_tag(camp.hero_image) if camp.hero_image.attached? %>
-      </div>
-    </a>
-  <% end %>
+
+
 </div>

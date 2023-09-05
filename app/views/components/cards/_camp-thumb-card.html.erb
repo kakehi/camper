@@ -1,5 +1,5 @@
 <%= render "components/cards/thumb-card",
-    href: index_organization_camp_path(organization),
+    href: index_camp_activities_path(organization.id, camp.id),
     title: camp.name,
     subtitle: organization.name,
     image: organization.hero_image,

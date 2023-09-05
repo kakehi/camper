@@ -48,8 +48,10 @@ class ActivitiesController < ApplicationController
         if params[:activity][:hero_image]
             @activity.image.attach(params[:activity][:hero_image])
         end
-
+        
+        
         if @activity.update(activity_params)
+            @activity.inspect
             redirect_to index_organization_camp_path(@organization, @camp), notice: 'Updated'
         else
             Rails.logger.debug(@activity.errors.inspect)

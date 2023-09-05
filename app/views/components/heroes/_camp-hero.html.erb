@@ -2,7 +2,15 @@
 
 <a class="post" href="<%= index_camp_activities_path(@organization, camp) %>">
     <div class="header">
-        <h3 class="title"><%= camp.name %></h3>
+        <div class="flex-container">
+            <h3 class="title"><%= camp.name %></h3>
+            <div>
+                <%= render "uis/buttons/text-link",
+                    text: "Edit camp",
+                    size: "medium",
+                    href: edit_camp_path(@organization, camp) %>
+            </div>
+        </div>
     </div>
     <div class="body">
         <p class="content"><%= camp.description %></p>
