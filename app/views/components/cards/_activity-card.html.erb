@@ -1,9 +1,17 @@
-<div class="card thread-card">
+<div class="card thread-card activity-thread">
     <div class="content">
         <div class="header">
-            <h6 class="date"><%= activity.start_month %>/<%= activity.start_date %> - <%= activity.end_month %>/<%= activity.end_date %></h6>
-            <h6><%= activity.name %></h6>
+            <div class="left-container">
+                <h6 class="date"><%= activity.start_month %>/<%= activity.start_date %> - <%= activity.end_month %>/<%= activity.end_date %></h6>
+                <h6><%= activity.name %></h6>
+            </div>
+            <div class="flex-container right-container">
+                <%= render "uis/buttons/text-link",
+                    text: "Edit activity",
+                    size: "medium",
+                    href: edit_activity_path(organization.id, camp.id, activity.id) %>
+            </div>
         </div>
-        <a href="<%= edit_activity_path(organization.id, camp.id, activity.id) %>">Edit activity</a>
+       
     </div>
 </div>

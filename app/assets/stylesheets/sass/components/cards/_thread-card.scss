@@ -1,21 +1,41 @@
 
 
 .thread-card{
-    padding: 1rem 0;
+    padding: 1rem 0 2rem;
     width: 100%;
     border-top: 1px solid #eee;
 
     .content{
 
         .header{
-            display: grid;
-            grid-template-columns: 1fr 5fr;
-            .date{
-                font-weight: 500;
-                color: #888;
+            display: flex;
+            justify-content: space-between;
+            
+            .flex-container{
+                flex: 0 0 auto;
             }
         }
         
     }
 
+}
+
+
+
+// Activity
+.thread-card.activity-thread{
+    .content{
+        .header{
+            .left-container{
+                display: grid;
+                width: 100%;
+                grid-template-columns: 1fr 6fr;
+                align-items: center;
+                .date{
+                    font-weight: 500;
+                    color: #888;
+                }
+            }
+        }
+    }
 }
