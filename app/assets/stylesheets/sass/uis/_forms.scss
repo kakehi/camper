@@ -14,6 +14,7 @@
             }
 
             .form-control {
+                box-sizing: border-box;
                 width: 100%;
                 border: none;
                 background-color: #f3f3f3;
@@ -36,6 +37,16 @@
 
 }
 
+
+
+// Specialized
+
+.form-container{
+
+    .form-dates-group{
+    }
+
+}
 
 
 
