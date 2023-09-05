@@ -7,7 +7,7 @@
     <div class="col-md-8 mx-auto form-container">
       <%= render "components/titles/page-title",
       title: "Edit activity" %>
-      <%= form_with(url: update_activity_path(@organization.id, @camp.id, @activity.id), model: @activity, local: true, method: :post, html: { class: 'post-form' } ) do |f| %>
+      <%= form_with(url: update_activity_path, model: @activity, local: true, method: :post, html: { class: 'post-form' } ) do |f| %>
 
         <div class="form-group">
           <%= f.label "Name", class: 'form-label' %>

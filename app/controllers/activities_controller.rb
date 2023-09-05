@@ -52,6 +52,7 @@ class ActivitiesController < ApplicationController
         if @activity.update(activity_params)
             redirect_to index_organization_camp_path(@organization, @camp), notice: 'Updated'
         else
+            Rails.logger.debug(@activity.errors.inspect)
             render :edit, status: :unprocessable_entity
         end
     end
