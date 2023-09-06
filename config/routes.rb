@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   post 'organizations/:organization_id/camps/:camp_id/activities/new', to: 'activities#create', as: 'create_activity'
 
   get 'organizations/:organization_id/camps/:camp_id/activities/edit/:id', to: 'activities#edit', as: 'edit_activity'
-  post 'organizations/:organization_id/camps/:camp_id/activities/edit/:id', to: 'activities#edit', as: 'update_activity'
+  post 'organizations/:organization_id/camps/:camp_id/activities/edit/:id', to: 'activities#update', as: 'update_activity'
 
   get 'organizations/:organization_id/camps/:camp_id/activities/destroy/:id', to: 'activities#destroy'
   delete 'organizations/:organization_id/camps/:camp_id/activities/destroy/:id', to: 'activities#destroy', as: 'destroy_activity'
