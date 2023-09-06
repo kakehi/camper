@@ -82,7 +82,8 @@ class ActivitiesController < ApplicationController
                     :start_date,
                     :end_year,
                     :end_month,
-                    :end_date
+                    :end_date,
+                    tag_ids: []
                 )
                 .merge(camp_id: params[:camp_id])
         end

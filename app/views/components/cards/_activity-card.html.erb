@@ -3,7 +3,17 @@
         <div class="header">
             <div class="left-container">
                 <h6 class="date"><%= activity.start_month %>/<%= activity.start_date %> - <%= activity.end_month %>/<%= activity.end_date %></h6>
-                <h6><%= activity.name %></h6>
+                <div class="main-content">
+                    <h6><%= activity.name %></h6>
+                    <div class="description"><%= activity.description %></div>
+                    <div class="flex-container">
+                        <% activity.tags.each do |tag| %>
+                            <%= render "uis/tags/tag",
+                                text: tag.name,
+                                size: "small" %>
+                        <% end %>
+                    </div>
+                </div>
             </div>
             <div class="flex-container right-container">
                 <%= render "uis/buttons/text-link",
@@ -11,6 +21,9 @@
                     size: "medium",
                     href: edit_activity_path(organization.id, camp.id, activity.id) %>
             </div>
+        </div>
+        <div class="body">
+            
         </div>
        
     </div>

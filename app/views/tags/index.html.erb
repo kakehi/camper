@@ -1,0 +1,15 @@
+<div class="search-container">
+  <%= form_with url: index_tag_path, class: "form", method: :get, local: true do |form| %>
+    <input class="input" type="text" name="title" placeholder="Search by name" value="<%= params[:title] %>">
+    <%= form.submit "Search", class: "button" %>
+  <% end %>
+</div>
+
+<div class="view-outer-container organizations-index-container">
+    <div class="grid-container">
+        <% @tag.each do |tag| %>
+            <div><%= tag.name %></div>
+        <% end %>
+    </div>
+
+</div>

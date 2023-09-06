@@ -17,5 +17,6 @@ class Activity < ApplicationRecord
 
     # References
     belongs_to :camp
-    
+    has_many :categories, dependent: :destroy
+    has_many :tags, through: :categories, dependent: :destroy
 end

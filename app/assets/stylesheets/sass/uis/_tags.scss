@@ -1,0 +1,24 @@
+
+
+
+.tag{
+    display: inline-block;
+    background-color: #eee;
+}
+
+
+// Size
+.tag{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    
+    &.small{
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+    }
+
+    &.medium{
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+}

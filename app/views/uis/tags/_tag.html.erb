@@ -1,0 +1,10 @@
+
+<% if defined?(href) %>
+    <a class="tag <% defined?(type) ? type : "" %> <%= size %>" href=<%= href %>>
+        <%= text %>
+    </a>
+<% else %>
+    <div class="tag <% defined?(type) ? type : "" %> <%= size %>">
+        <%= text %>
+    </div>
+<% end %>

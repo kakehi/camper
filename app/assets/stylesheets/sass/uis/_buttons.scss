@@ -6,15 +6,20 @@
 .button{
     
     
-    border: 1px solid rgba(0, 0, 0, 0);
+    border: 2px solid rgba(0, 0, 0, 0);
 
     padding: 0.25rem 1rem;
     border-radius: 0.5rem;
+
+    text-align: center;
+
 }
 
 
 // Type
 .button{
+
+    transition: all 0.2s;
     &.primary{
         background-color: #15B166;
         color: white;
@@ -25,7 +30,16 @@
     }
     &.empty{
         background-color: rgba(0, 0, 0, 0);
+        color: #333;
         border-color: #DDD;
+        border-style: dashed;
+
+        &:hover{
+            background-color: #eee;
+            color: #000;
+            border-color: #eee;
+            border-style: solid;
+        }
     }
 }
 
@@ -39,10 +53,29 @@
     border-radius: 0.5rem;
 
     &.medium{
-        padding: 1rem 1.5rem;
-        border-radius: 0.5rem;
+        padding: 1.5rem 2.25rem;
+        border-radius: 1rem;
+
+        font-size: 1.25rem;
+    }
+
+    &.large{
+        padding: 2rem 3rem;
+        border-radius: 1.5rem;
+
+        font-size: 1.5rem;
     }
 }
+
+// Interaction
+.button{
+    cursor: pointer;
+    &:hover{
+        text-decoration: none;
+    }
+}
+
+
 
 
 .text-link{

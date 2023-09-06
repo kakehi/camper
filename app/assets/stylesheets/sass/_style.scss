@@ -42,8 +42,9 @@ a{
 
 // Grid and flex
 .grid-container{
+    box-sizing: content-box;
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
 }
 

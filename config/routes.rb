@@ -34,11 +34,18 @@ Rails.application.routes.draw do
 
   get 'organizations/:organization_id/camps/:camp_id/activities/new', to: 'activities#new', as: 'new_activity'
   post 'organizations/:organization_id/camps/:camp_id/activities/new', to: 'activities#create', as: 'create_activity'
-  
+
   get 'organizations/:organization_id/camps/:camp_id/activities/edit/:id', to: 'activities#edit', as: 'edit_activity'
   post 'organizations/:organization_id/camps/:camp_id/activities/edit/:id', to: 'activities#edit', as: 'update_activity'
 
   get 'organizations/:organization_id/camps/:camp_id/activities/destroy/:id', to: 'activities#destroy'
   delete 'organizations/:organization_id/camps/:camp_id/activities/destroy/:id', to: 'activities#destroy', as: 'destroy_activity'
   
+
+  ## Tags
+  get 'tags', to: 'tags#index', as: 'index_tag'
+
+  get 'tags/new', to: 'tags#new', as: 'new_tag'
+  post 'tags/new', to: 'tags#create', as: 'create_tag'
+
 end
