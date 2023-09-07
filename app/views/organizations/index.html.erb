@@ -8,15 +8,8 @@
 <div class="view-outer-container organizations-index-container">
     <div class="grid-container">
         <% @organization.each do |organization| %>
-            <% @camp = Camp.where(organization_id: organization.id).first
-            if @camp.present?
-                @href = index_camp_activities_path(organization, @camp)
-            else
-                @href = index_organization_camp_path(organization)
-            end %>
             <%= render "components/cards/organization-grid-card",
-                organization: organization,
-                href: @href
+                organization: organization
             %>
         <% end %>
     </div>

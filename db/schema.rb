@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_06_112239) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_06_162420) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -53,17 +53,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_112239) do
     t.integer "end_date"
     t.integer "age_group_min"
     t.integer "age_group_max"
+    t.integer "base_price"
+    t.integer "discount_price"
     t.index ["camp_id"], name: "index_activities_on_camp_id"
   end
 
   create_table "camps", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.string "description", limit: 500
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "organization_id", null: false
     t.integer "age_group_min"
     t.integer "age_group_max"
+    t.integer "base_price"
+    t.integer "discount_price"
+    t.integer "minimum_discount_week"
     t.index ["organization_id"], name: "index_camps_on_organization_id"
   end
 
@@ -78,7 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_112239) do
 
   create_table "organizations", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name"
-    t.string "description", limit: 500
+    t.string "description", limit: 2000
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "zip_code"

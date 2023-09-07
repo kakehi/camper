@@ -3,6 +3,9 @@
         <div class="header">
             <div class="left-container">
                 <h6 class="date"><%= activity.start_month %>/<%= activity.start_date %> - <%= activity.end_month %>/<%= activity.end_date %></h6>
+                <div class="thumbnail-image">
+                    <%= image_tag(activity.hero_image) if activity.hero_image.attached? %>
+                </div>
                 <div class="main-content">
                     <h6><%= activity.name %></h6>
                     <div class="description"><%= activity.description %></div>
@@ -14,6 +17,7 @@
                         <% end %>
                     </div>
                 </div>
+                <%= render "uis/grammar/price", price: activity.base_price, size: "large" %>
             </div>
             <div class="flex-container right-container">
                 <%= render "uis/buttons/text-link",

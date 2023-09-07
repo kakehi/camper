@@ -46,6 +46,22 @@
     .form-dates-group{
     }
 
+
+    .form-discounted-price{
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        gap: 0.5rem;
+        align-items: center;
+        .description{
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            .line-field{
+                width: 4rem;
+            }
+        }
+    }
+
 }
 
 

@@ -33,11 +33,11 @@ class CampsController < ApplicationController
         @camp = Camp.new(camp_params)
 
         if params[:camp][:hero_image]
-            @camp.image.attach(params[:camp][:hero_image])
+            @camp.hero_image.attach(params[:camp][:hero_image])
         end
 
         if @camp.save
-            redirect_to new_camp_path(params[:organization_id]), notice: 'Camp was added'
+            redirect_to index_camp_activities_path(@organization, @camp), notice: 'Camp was added'
         else
             @organization = Organization.find(params[:organization_id])
             @camps = Camp.where(organization_id: params[:organization_id])
@@ -54,9 +54,9 @@ class CampsController < ApplicationController
     def update
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:id])
-        
+
         if params[:camp][:hero_image]
-            @camp.image.attach(params[:camp][:hero_image])
+            @camp.hero_image.attach(params[:camp][:hero_image])
         end
 
         if @camp.update(camp_params)
@@ -81,7 +81,10 @@ class CampsController < ApplicationController
                     :description,
                     :hero_image,
                     :age_group_min,
-                    :age_group_max
+                    :age_group_max,
+                    :base_price,
+                    :discount_price,
+                    :minimum_discount_week
                 )
                 .merge(organization_id: params[:organization_id])
         end

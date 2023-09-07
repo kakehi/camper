@@ -1,6 +1,7 @@
 
 
 
-<div class="grammar-price">
+<div class="grammar-price <%=  defined?(size) ? size : ""%>">
+    <%= defined?(static_price) && !static_price ? "From" : "" %>
     <div class="figure">$<%= price %></div>week
 </div>

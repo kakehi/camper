@@ -1,13 +1,22 @@
 
-
+// Price
 .grammar-price{
     display: flex;
     gap: 0.25rem;
     align-items: baseline;
     color: #666;
     .figure{
-        font-weight: bold;
+        font-weight: 600;
         font-size: 1.25rem;
+    }
+
+
+    &.large{
+        gap: 0.5rem;
+        font-size: 1.25rem;
+        .figure{
+            font-size: 2rem;
+        }
     }
 }
 

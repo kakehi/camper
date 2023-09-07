@@ -21,11 +21,11 @@ class ActivitiesController < ApplicationController
         @activity = Activity.new(activity_params)
 
         if params[:activity][:hero_image]
-            @activity.image.attach(params[:activity][:hero_image])
+            @activity.hero_image.attach(params[:activity][:hero_image])
         end
 
         if @activity.save
-            redirect_to index_camp_activities_path(@organization, @camp), notice: 'Activities are added'
+            redirect_to index_camp_activities_path(@organization, @camp), notice: 'Activity was added'
         else
             
             @activities = Activity.where(camp_id: params[:camp_id])
@@ -37,6 +37,19 @@ class ActivitiesController < ApplicationController
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:camp_id])
         @activity = Activity.find(params[:id])
+
+        @test = @activity.base_price == ""
+        @textType = @activity.base_price.nil?
+
+        @base_price = @activity.base_price.nil? || @activity.base_price == "" ? 
+            defined?(@camp.base_price) ? 
+                @camp.base_price :
+                "" : @activity.base_price
+        @discount_price = @activity.discount_price.nil? || @activity.discount_price == "" ? 
+            defined?(@camp.discount_price) ? 
+                @camp.discount_price :
+                "" : @activity.discount_price
+ 
         render :edit
     end
     
@@ -46,13 +59,13 @@ class ActivitiesController < ApplicationController
         @activity = Activity.find(params[:id])
 
         if params[:activity][:hero_image]
-            @activity.image.attach(params[:activity][:hero_image])
+            @activity.hero_image.attach(params[:activity][:hero_image])
         end
         
-        
+       
+
         if @activity.update(activity_params)
-            @activity.inspect
-            redirect_to index_organization_camp_path(@organization, @camp), notice: 'Updated'
+            redirect_to index_camp_activities_path(@organization, @camp), notice: 'Updated'
         else
             render :edit, status: :unprocessable_entity
         end
@@ -82,6 +95,8 @@ class ActivitiesController < ApplicationController
                     :end_year,
                     :end_month,
                     :end_date,
+                    :base_price,
+                    :discount_price,
                     tag_ids: []
                 )
                 .merge(camp_id: params[:camp_id])
