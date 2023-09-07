@@ -31,76 +31,28 @@
         <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
       </div>
 
-      <div class="form-group">
-          <h4>Age groups</h4>
-          <div class="form-field">
-            <%= f.label "Minimum age group (Please select this only, if the target age group is one)", class: 'form-label' %>
-            <%= f.text_field :age_group_min, value: defined?(@camp.age_group_min) ? @camp.age_group_min : "", class: 'form-control' %>
-          </div>
-          <div class="form-field">
-            <%= f.label "Max age group (optional)", class: 'form-label' %>
-            <%= f.text_field :age_group_max, value: defined?(@camp.age_group_max) ? @camp.age_group_max : "", class: 'form-control' %>
-          </div>
-      </div>
+      <%# AGE GROUPS %>
+      <%= render "components/forms/age_group", 
+        f: f,
+        form_target: @activity,
+        form_parent: @camp,
+        age_group_min: @age_group_min,
+        age_group_max: @age_group_max
+      %>
 
-      <div class="form-group">
-          <h4>Dates</h4>
-          <div class="form-dates-group">
-            <h6>Starting from</h6>
-            <div class="flex-container">
-              <div class="form-field">
-                <%= f.label "Year", class: 'form-label' %>
-                <%= f.text_field :start_year, class: 'form-control' %>
-              </div>
-              <div class="form-field">
-                <%= f.label "Month", class: 'form-label' %>
-                <%= f.text_field :start_month, class: 'form-control' %>
-              </div>
-              <div class="form-field">
-                <%= f.label "Date", class: 'form-label' %>
-                <%= f.text_field :start_date, class: 'form-control' %>
-              </div>
-            </div>
-          </div>
-          <div class="form-dates-group">
-            <h6>Ending at</h6>
-            <div class="flex-container">
-              <div class="form-field">
-                <%= f.label "Year", class: 'form-label' %>
-                <%= f.text_field :end_year, class: 'form-control' %>
-              </div>
-              <div class="form-field">
-                <%= f.label "Month", class: 'form-label' %>
-                <%= f.text_field :end_month, class: 'form-control' %>
-              </div>
-              <div class="form-field">
-                <%= f.label "Date", class: 'form-label' %>
-                <%= f.text_field :end_date, class: 'form-control' %>
-              </div>
-            </div>
-          </div>
-      </div>
+      <%# DATES %>
+      <%= render "components/forms/dates", 
+        f: f
+      %>
 
-      <div class="form-group">
-        <h4>Weekly cost (Default)</h4>
-        <div class="form-field">
-          <%= @test %>
-          <%= @textType %>
-          <%= f.label "Base cost", class: 'form-label' %>
-          <%= f.text_field :base_price, value: @base_price, class: 'form-control' %>
-        </div>
-        <div class="form-field">
-          <%= f.label "Discounted cost (optional)", class: 'form-label discounted-price-field' %>
-          <% if defined?(@camp.minimum_discount_week) %>
-            <div class="form-discounted-price">
-              <%= f.text_field :discount_price, value: @discount_price, class: 'form-control' %>
-              <div class="description">
-                by signing up <%= defined?(@camp.minimum_discount_week) ? @camp.minimum_discount_week : "" %> weeks or more.
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <%# PRICE %>
+      <%= render "components/forms/price", 
+        f: f,
+        form_target: @activity,
+        form_parent: @camp,
+        base_price: @base_price,
+        discount_price: @discount_price
+      %>
 
       <div class='form-group'>
         <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>

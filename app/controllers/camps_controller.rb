@@ -37,7 +37,7 @@ class CampsController < ApplicationController
         end
 
         if @camp.save
-            redirect_to index_camp_activities_path(@organization, @camp), notice: 'Camp was added'
+            redirect_to index_organization_path, notice: 'Camp was added'
         else
             @organization = Organization.find(params[:organization_id])
             @camps = Camp.where(organization_id: params[:organization_id])

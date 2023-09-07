@@ -13,13 +13,15 @@ class ActivitiesController < ApplicationController
         @activity = Activity.new
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:camp_id])
+
+        render :new
     end
     
     def create
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:camp_id])
         @activity = Activity.new(activity_params)
-
+        
         if params[:activity][:hero_image]
             @activity.hero_image.attach(params[:activity][:hero_image])
         end
@@ -37,18 +39,6 @@ class ActivitiesController < ApplicationController
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:camp_id])
         @activity = Activity.find(params[:id])
-
-        @test = @activity.base_price == ""
-        @textType = @activity.base_price.nil?
-
-        @base_price = @activity.base_price.nil? || @activity.base_price == "" ? 
-            defined?(@camp.base_price) ? 
-                @camp.base_price :
-                "" : @activity.base_price
-        @discount_price = @activity.discount_price.nil? || @activity.discount_price == "" ? 
-            defined?(@camp.discount_price) ? 
-                @camp.discount_price :
-                "" : @activity.discount_price
  
         render :edit
     end

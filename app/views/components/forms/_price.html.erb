@@ -1,0 +1,43 @@
+<%
+    if form_target.base_price.presence
+        @base_price = form_target.base_price
+    elsif defined?(form_parent.base_price) && form_parent.base_price.presence
+        @base_price = form_parent.base_price
+    else
+        @base_price = ""
+    end
+
+    if form_target.discount_price.presence
+        @discount_price = form_target.discount_price
+    elsif defined?(form_parent.discount_price) && form_parent.discount_price.presence
+        @discount_price = form_parent.discount_price
+    else
+        @discount_price = ""
+    end
+
+    if defined?(form_target.minimum_discount_week) && form_target.minimum_discount_week.presence
+        @minimum_discount_week = form_target.minimum_discount_week
+    elsif defined?(form_parent.minimum_discount_week) && form_parent.minimum_discount_week.presence
+        @minimum_discount_week = form_parent.minimum_discount_week
+    else
+        @minimum_discount_week = ""
+    end
+%>
+
+
+<div class="form-group">
+    <h4>Weekly cost (Default)</h4>
+    <div class="form-field">
+        <%= f.label "Base cost", class: 'form-label' %>
+        <%= f.text_field :base_price, value: @base_price, class: 'form-control' %>
+    </div>
+    <div class="form-field">
+        <%= f.label "Discounted cost (optional)", class: 'form-label discounted-price-field' %>
+        <div class="form-discounted-price">
+            <%= f.text_field :discount_price, value: @discount_price, class: 'form-control' %>
+            <div class="description">
+            by signing up <%= f.text_field :minimum_discount_week, value: @minimum_discount_week, class: 'form-control line-field' %> weeks or more.
+            </div>
+        </div>
+    </div>
+</div>
