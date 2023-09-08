@@ -1,7 +1,7 @@
 <%
     if form_target.age_group_min.presence
         @age_group_min = form_target.age_group_min
-    elsif form_parent.age_group_min.presence
+    elsif defined?(form_parent) && form_parent.age_group_min.presence
         @age_group_min = form_parent.age_group_min
     else
         @age_group_min = ""
@@ -9,7 +9,7 @@
 
     if form_target.age_group_max.presence
         @age_group_max = form_target.age_group_max
-    elsif form_parent.age_group_max.presence
+    elsif defined?(form_parent) && form_parent.age_group_max.presence
         @age_group_max = form_parent.age_group_max
     else
         @age_group_max = ""

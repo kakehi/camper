@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   get 'organizations/:organization_id/camps/edit/:id', to: 'camps#edit', as: 'edit_camp'
   post 'organizations/:organization_id/camps/edit/:id', to: 'camps#update', as: 'update_camp'
 
-  get 'camps/destroy/:id', to: 'camps#destroy'
-  delete 'camps/destroy/:id', to: 'camps#destroy', as: 'destroy_camp'
+  get 'organizations/:organization_id/camps/destroy/:id', to: 'camps#destroy'
+  delete 'organizations/:organization_id/camps/destroy/:id', to: 'camps#destroy', as: 'destroy_camp'
 
   ## Activities
   get 'activities', to: 'activities#index', as: 'index_activity'

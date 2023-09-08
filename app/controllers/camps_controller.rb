@@ -66,9 +66,10 @@ class CampsController < ApplicationController
     end
 
     def destroy
+        @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:id])
         @camp.destroy
-        redirect_to index_camp_path, notice: 'Deleted'
+        redirect_to index_organization_camp_path(@organization), notice: 'Deleted'
     end
 
     private
@@ -76,10 +77,14 @@ class CampsController < ApplicationController
             params
                 .require(:camp)
                 .permit(
+                    :camp_type,
                     :name,
                     :subhead,
                     :description,
                     :hero_image,
+                    :website,
+                    :phone,
+                    :email,
                     :age_group_min,
                     :age_group_max,
                     :base_price,

@@ -26,20 +26,24 @@
           href: index_organization_camp_path(@organization) %>
         <div></div>
     </div>
-    <%= render "components/heroes/camp-hero",
-        camp: @camp %>
-    <div class="thread-container">
-      <% @activity.each do |activity| %>
-        <%= render "components/cards/activity-card",
-            organization: @organization,
-            activity: activity,
-            camp: @camp %>
-      <% end %>
-      <%= render "uis/buttons/button",
-            type: "empty",
-            text: "Add activity",
-            size: "large",
-            href: new_activity_path(@organization, @camp) %>
+    <div class="activities-container">
+      <%= render "components/heroes/camp-hero",
+          camp: @camp %>
+      <div class="thread-container">
+        <%= render "components/titles/section-title",
+          title: "Sessions" %>
+        <% @activity.each do |activity| %>
+          <%= render "components/cards/activity-card",
+              organization: @organization,
+              activity: activity,
+              camp: @camp %>
+        <% end %>
+        <%= render "uis/buttons/button",
+              type: "empty",
+              text: "Add session",
+              size: "large",
+              href: new_activity_path(@organization, @camp) %>
+      </div>
     </div>
   </div>
 

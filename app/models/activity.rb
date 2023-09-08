@@ -1,6 +1,5 @@
 class Activity < ApplicationRecord
     # Validation
-    validates :name, presence: true
 
     validates :age_group_min, presence: true
 

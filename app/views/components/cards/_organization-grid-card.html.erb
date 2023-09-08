@@ -1,16 +1,17 @@
 
 
 <% 
-    @camp = Camp.where(organization_id: organization.id).first
-    
-    if @camp.present?
+    @camps = Camp.where(organization_id: organization.id)
+    @camp = @camps.first
+
+
+    if @camps.count == 1 && @camp.present?
         @href = index_camp_activities_path(organization, @camp)
     else
         @href = index_organization_camp_path(organization)
     end
 
     if @camp.present?
-        @href = index_camp_activities_path(organization, @camp)
         @activities = Activity.where(camp_id: @camp.id)
         @is_price_set = @activities.select { |e| e.base_price.is_a?(Integer) }.count > 0
         if @is_price_set

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_08_080050) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_08_154104) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -70,6 +70,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_08_080050) do
     t.integer "discount_price"
     t.integer "minimum_discount_week"
     t.string "subhead", limit: 500
+    t.string "website"
+    t.integer "phone"
+    t.string "email"
+    t.integer "camp_type"
     t.index ["organization_id"], name: "index_camps_on_organization_id"
   end
 
