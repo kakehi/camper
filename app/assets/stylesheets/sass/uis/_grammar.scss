@@ -11,6 +11,14 @@
     }
 
 
+    &.medium{
+        gap: 0.5rem;
+        font-size: 1rem;
+        .figure{
+            font-size: 1.75rem;
+        }
+    }
+
     &.large{
         gap: 0.5rem;
         font-size: 1.25rem;

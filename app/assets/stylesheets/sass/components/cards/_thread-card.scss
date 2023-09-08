@@ -23,7 +23,11 @@
 
 
 
-// Activity
+/*
+
+    ACTIVITY
+
+*/
 .thread-card.activity-thread{
     .content{
         .header{
@@ -58,4 +62,24 @@
 
         
     }
+}
+
+// CAMP types
+.thread-card.activity-thread{
+    &.camp-type-1{
+        padding: 1rem 0 1rem;
+        .content{
+            .header{
+                .left-container{
+                    grid-template-columns: 1fr 5fr 1fr;
+                    gap: 1rem;
+
+                    .main-content{
+                        gap: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+    
 }

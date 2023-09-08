@@ -29,7 +29,9 @@
         <h4>Age groups</h4>
         <div class="form-field">
           <%= f.label "Camp type", class: 'form-label' %>
-          <%= f.text_field :camp_type, value: @camp.camp_type.present ? @camp.camp_type : "0", class: 'form-control' %>
+          <%= f.select :camp_type, 
+            options_for_select(
+              Array[*camp_type_options.collect {|v,i| [v,camp_type_options.index(v)] }], :selected => f.object.camp_type), :class => 'form-drop-box' %>
         </div>
       </div>
 
@@ -50,7 +52,7 @@
       %>
 
       <%# AGE GROUPS %>
-      <%= render "components/forms/age_group", 
+      <%= render "components/forms/age-group", 
         f: f,
         form_target: @camp,
         form_parent: @organization
@@ -64,6 +66,14 @@
         base_price: @base_price,
         discount_price: @discount_price
       %>
+      
+      <%# THEMES %>
+      <% if @camp_type != 1 %>
+        <%= render "components/forms/themes", 
+          f: f,
+          form_target: @camp
+        %>
+      <% end %>
       
       <div class="button-group">
         <%= f.submit 'Create', class: 'btn btn-primary' %>
