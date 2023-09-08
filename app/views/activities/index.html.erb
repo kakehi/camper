@@ -17,10 +17,15 @@
   <% end %>
 
 
-
-
-
-  <div class="container camp">
+  <div class="section camp">
+    <div class="section-header flex-container">
+        <%= render "uis/buttons/button",
+          type: "secondary",
+          text: "View all camps",
+          size: "regular",
+          href: index_organization_camp_path(@organization) %>
+        <div></div>
+    </div>
     <%= render "components/heroes/camp-hero",
         camp: @camp %>
     <div class="thread-container">

@@ -10,3 +10,37 @@
         transform: translate(-50%, -50%);
     }
 }
+
+
+
+// Types
+
+.thumbnail-image{
+    &.circular{
+        border-radius: 50%;
+        img{
+            width: 150%;
+        }
+    }
+}
+
+
+// Sizes
+
+.thumbnail-image{
+    &.large{
+        width: 20rem;
+
+        &.circular{
+            height: 20rem;
+        }
+        
+    }
+    &.medium{
+        width: 10rem;
+        &.circular{
+            height: 10rem;
+        }
+        
+    }
+}

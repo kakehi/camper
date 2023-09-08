@@ -1,16 +1,22 @@
-
-
 <a href="<%= index_camp_activities_path(@organization, camp) %>">
-    <div class="hero camp-hero" >
+    <div class="hero-card camp" >
         <div class="content">
             <% if defined?(camp.hero_image) %>
                 <%= render "uis/thumb_images/thumb_images",
                     type: "circular",
-                    size: "medium",
+                    size: "large",
                     image: camp.hero_image %>
             <% end %>
             <div class="flex-container">
-                <h3 class="title"><%= camp.name %></h3>
+                <div class="overview-container">
+                    <h3 class="title"><%= camp.name %></h3>
+                    <% if defined?(camp.subhead) %>
+                        <h5><%= camp.subhead %></h5>
+                    <% end %>
+                    <% if defined?(camp.description) %>
+                        <p><%= camp.description %></p>
+                    <% end %>
+                </div>
                 <div>
                     <%= render "uis/buttons/text-link",
                         text: "Edit camp",

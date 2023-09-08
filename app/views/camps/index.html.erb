@@ -1,4 +1,4 @@
-<div class="view-outer-container single-column">
+<div class="view-outer-container double-column">
 
     <%# 
         PROFILE TOP
@@ -12,16 +12,24 @@
     <%# 
         INDEX
     %>
-    <div class="thread-container">
-        <% @camps.each do |camp| %>
-            <%= render "components/heroes/camp-hero",
-            camp: camp %>
-        <% end %>
-        <%= render "uis/buttons/button",
-            type: "empty",
-            text: "Add camp",
-            size: "medium",
-            href: new_camp_path(@organization) %>
+    <div class="section camp">
+        <%= render "components/titles/page-title",
+            title: "Camps" %>
+        <div class="thread-container">
+            <% @camps.each do |camp| %>
+                <div class="thread-card">
+                    <%= render "components/cards/camp-hero-card",
+                    camp: camp %>
+                    
+                </div>
+            <% end %>
+            <%= render "uis/buttons/button",
+                type: "empty",
+                text: "Add camp",
+                size: "medium",
+                href: new_camp_path(@organization) %>
+        </div>
     </div>
+    
 
 </div>

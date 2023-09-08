@@ -1,0 +1,16 @@
+.hero-card.camp{
+    .content{
+        display: flex;
+        gap: 4rem;
+
+        .flex-container{
+            width: 100%;
+            .overview-container{
+                width: 600px;
+                display: grid;
+                gap: 1.5rem;
+            }
+        }
+       
+    }
+}

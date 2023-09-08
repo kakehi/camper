@@ -29,7 +29,7 @@ class CampsController < ApplicationController
     end
 
     def create
-        
+        @organization = Organization.find(params[:organization_id])
         @camp = Camp.new(camp_params)
 
         if params[:camp][:hero_image]
@@ -37,9 +37,8 @@ class CampsController < ApplicationController
         end
 
         if @camp.save
-            redirect_to index_organization_path, notice: 'Camp was added'
+            redirect_to index_camp_activities_path(@organization, @camp), notice: 'Camp was added'
         else
-            @organization = Organization.find(params[:organization_id])
             @camps = Camp.where(organization_id: params[:organization_id])
             render :new, status: :unprocessable_entity
         end
@@ -78,6 +77,7 @@ class CampsController < ApplicationController
                 .require(:camp)
                 .permit(
                     :name,
+                    :subhead,
                     :description,
                     :hero_image,
                     :age_group_min,
