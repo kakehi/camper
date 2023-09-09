@@ -3,14 +3,24 @@
         display: flex;
         gap: 4rem;
 
+        .thumbnail-image{
+            flex-shrink: 0;
+        }
+
         .flex-container{
             width: 100%;
             .overview-container{
-                width: 600px;
+                max-width: 600px;
                 display: grid;
-                gap: 1.5rem;
+                gap: 1rem;
             }
         }
        
+        .button-group-cotainer{
+            width: 100%;
+            display: flex;
+            gap: 2rem;
+            justify-content: right;
+        }
     }
 }
