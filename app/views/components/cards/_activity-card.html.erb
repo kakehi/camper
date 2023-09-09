@@ -8,48 +8,47 @@
 <div class="card thread-card activity-thread <%= @camp_type_class %>">
     <div class="content">
         <div class="header">
-            <div class="left-container">
-                <h6 class="date"><%= activity.start_month %>/<%= activity.start_date %> - <%= activity.end_month %>/<%= activity.end_date %></h6>
+            
+
+            <% if @camp_type != 1 %>
+                <%= render "uis/thumb_images/thumb_image",
+                    type: "circular",
+                    size: "medium",
+                    image: activity.hero_image %>
+            <% end %>
+            
+            <div class="main-content">
+                <h4 class="date"><%= activity.start_month %>/<%= activity.start_date %> - <%= activity.end_month %>/<%= activity.end_date %></h4>
 
                 <% if @camp_type != 1 %>
-                    <div class="thumbnail-image">
-                        <%= image_tag(activity.hero_image) if activity.hero_image.attached? %>
+                    <h4><%= activity.name %></h4>
+                    <div class="flex-container">
+                        <% activity.tags.each do |tag| %>
+                            <%= render "uis/tags/tag",
+                                text: tag.name,
+                                size: "small" %>
+                        <% end %>
                     </div>
                 <% end %>
-                
-                <div class="main-content">
-                    <% if @camp_type != 1 %>
-                        <h6><%= activity.name %></h6>
-                        <div class="description"><%= activity.description %></div>
-                        <div class="flex-container">
-                            <% activity.tags.each do |tag| %>
-                                <%= render "uis/tags/tag",
-                                    text: tag.name,
-                                    size: "small" %>
-                            <% end %>
-                        </div>
-                    <% end %>
-                    <div class="description">
-                        <%= render "uis/grammar/age-group",
-                            size: "medium",
-                            age_group_min: activity.age_group_min,
-                            age_group_max: activity.age_group_max %>
-                    </div>
+                <div class="description">
+                    <%= render "uis/grammar/age-group",
+                        size: "medium",
+                        age_group_min: activity.age_group_min,
+                        age_group_max: activity.age_group_max %>
                 </div>
-                
 
-
-                <%= render "uis/grammar/price", price: activity.base_price, size: "medium" %>
-            </div>
-            <div class="flex-container right-container">
                 <%= render "uis/buttons/text-link",
-                    text: "Edit activity",
-                    size: "medium",
-                    href: edit_activity_path(organization.id, camp.id, activity.id) %>
+                text: "Edit activity",
+                size: "medium",
+                href: edit_activity_path(organization.id, camp.id, activity.id) %>
             </div>
+            
+
+
+            <%= render "uis/grammar/price", price: activity.base_price, size: "medium" %>
         </div>
         <div class="body">
-            
+            <div class="description"><%= activity.description %></div>
         </div>
        
     </div>

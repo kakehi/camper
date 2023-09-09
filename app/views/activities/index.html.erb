@@ -1,6 +1,5 @@
 <div class="view-outer-container double-column">
 
-
   <%# 
       PROFILE TOP
   %>
@@ -17,13 +16,17 @@
   <% end %>
 
 
-  <div class="section camp">
+  <div class="section camp <%= @camp.hero_image.present? ? "hero-image" : "no-image" %>">
     <div class="section-header flex-container">
-        <%= render "uis/buttons/button",
-          type: "secondary",
-          text: "View all camps",
-          size: "regular",
-          href: index_organization_camp_path(@organization) %>
+        <% if @organization_camps.count > 1 %>
+          <%= render "uis/buttons/button",
+              type: "secondary",
+              text: "View all camps",
+              size: "regular",
+              href: index_organization_camp_path(@organization)  %>
+        <% else %>
+          <div></div>
+        <% end %>
         <div></div>
     </div>
     <div class="activities-container">
