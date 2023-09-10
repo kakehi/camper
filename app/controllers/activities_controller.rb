@@ -11,10 +11,15 @@ class ActivitiesController < ApplicationController
     end
 
     def new
-        @activity = Activity.new
+        
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:camp_id])
-
+        if params[:default_activity].present? 
+            @activity = Activity.find(params[:default_activity]).dup
+            @activity.name += ' Duplicated'
+        else
+            @activity = Activity.new
+        end
         render :new
     end
     
@@ -61,6 +66,15 @@ class ActivitiesController < ApplicationController
             render :edit, status: :unprocessable_entity
         end
     end
+
+
+    def duplicate
+        @organization = Organization.find(params[:organization_id])
+        @camp = Camp.find(params[:camp_id])
+        @activity = Activity.find(params[:id])
+        redirect_to new_activity_path(@organization, @camp, default_activity: @activity), notice: 'Please save the duplicated session.'
+    end
+
 
     def destroy
         @organization = Organization.find(params[:organization_id])

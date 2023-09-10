@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   get 'organizations/:organization_id/camps/edit/:id', to: 'camps#edit', as: 'edit_camp'
   post 'organizations/:organization_id/camps/edit/:id', to: 'camps#update', as: 'update_camp'
 
+
+  get 'organizations/:organization_id/camps/duplicate/:id', to: 'camps#duplicate', as: 'duplicate_camp'
+
   get 'organizations/:organization_id/camps/destroy/:id', to: 'camps#destroy'
   delete 'organizations/:organization_id/camps/destroy/:id', to: 'camps#destroy', as: 'destroy_camp'
 
@@ -37,6 +40,8 @@ Rails.application.routes.draw do
 
   get 'organizations/:organization_id/camps/:camp_id/activities/edit/:id', to: 'activities#edit', as: 'edit_activity'
   post 'organizations/:organization_id/camps/:camp_id/activities/edit/:id', to: 'activities#update', as: 'update_activity'
+
+  get 'organizations/:organization_id/camps/:camp_id/activities/duplicate/:id', to: 'activities#duplicate', as: 'duplicate_activity'
 
   get 'organizations/:organization_id/camps/:camp_id/activities/destroy/:id', to: 'activities#destroy'
   delete 'organizations/:organization_id/camps/:camp_id/activities/destroy/:id', to: 'activities#destroy', as: 'destroy_activity'

@@ -1,16 +1,14 @@
 <%
-    @camp_type = defined?(camp.camp_type) ? camp.camp_type : 0;
+    @camp_type = defined?(camp.camp_type) ? camp.camp_type : 0
     @camp_type_class = "camp-type-"+camp.camp_type.to_s
-
+    @hero_image = activity.hero_image.present? ? "hero-image" : "no-image"
 %>
 
 
-<div class="card thread-card activity-thread <%= @camp_type_class %>">
+<div class="card thread-card activity-thread <%= @camp_type_class %> <%= @hero_image %>">
     <div class="content">
         <div class="header">
-            
-
-            <% if @camp_type != 1 %>
+            <% if @camp_type != 1 && activity.hero_image.present? %>
                 <%= render "uis/thumb_images/thumb_image",
                     type: "circular",
                     size: "medium",
@@ -37,10 +35,7 @@
                         age_group_max: activity.age_group_max %>
                 </div>
 
-                <%= render "uis/buttons/text-link",
-                text: "Edit activity",
-                size: "medium",
-                href: edit_activity_path(organization.id, camp.id, activity.id) %>
+                
             </div>
             
 
@@ -49,6 +44,10 @@
         </div>
         <div class="body">
             <div class="description"><%= activity.description %></div>
+            <%= render "uis/buttons/text-link",
+                text: "Edit activity",
+                size: "medium",
+                href: edit_activity_path(organization.id, camp.id, activity.id) %>
         </div>
        
     </div>

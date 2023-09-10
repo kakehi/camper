@@ -8,8 +8,13 @@
   %>
   
   <div class="content">
-    <%= render "components/titles/page-title",
-      title: "Edit camp" %>
+    <div class="header-container flex-container">
+      <%= render "components/titles/page-title",
+        title: "Edit camp" %>
+      
+      <%= link_to 'Duplicate', duplicate_camp_path(@organization, @camp), model: @camp, class:  "btn btn-danger" %>
+    </div>
+    
     <%= form_with(url: update_camp_path, model: @camp, local: true, method: :post, html: { class: 'form-container' }) do |f| %>
 
       <% if @camp.errors.any? %>

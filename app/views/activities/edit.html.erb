@@ -11,8 +11,11 @@
   %>
 
   <div class="content">
-    <%= render "components/titles/page-title",
-    title: "Edit activity" %>
+    <div class="header flex-container">
+      <%= render "components/titles/page-title",
+        title: "Edit session" %>
+      <%= link_to 'Duplicate', duplicate_activity_path(@organization, @camp), model: @camp, class:  "btn  btn-danger" %>
+    </div>
     <%= form_with(url: update_activity_path, model: @activity, local: true, method: :post, html: { class: 'form-container' } ) do |f| %>
 
       <%# Overview %>

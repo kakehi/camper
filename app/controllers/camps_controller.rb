@@ -23,8 +23,12 @@ class CampsController < ApplicationController
 
     def new
         @organization = Organization.find(params[:organization_id])
-        @camp = Camp.new
-        @camps = Camp.where(organization_id: params[:organization_id])
+        if params[:default_camp].present? 
+            @camp = Camp.find(params[:default_camp]).dup
+            @camp.name += ' Duplicated'
+        else
+            @camp = Camp.new
+        end
         render :new
     end
 
@@ -43,6 +47,8 @@ class CampsController < ApplicationController
             render :new, status: :unprocessable_entity
         end
     end
+
+
 
     def edit
         @organization = Organization.find(params[:organization_id])
@@ -64,6 +70,16 @@ class CampsController < ApplicationController
             render :edit, status: :unprocessable_entity
         end
     end
+
+    
+    
+    def duplicate
+        @organization = Organization.find(params[:organization_id])
+        @camp = Camp.find(params[:id])
+        redirect_to new_camp_path(@organization, default_camp: @camp), notice: 'Please save the duplicated camp.'
+    end
+
+
 
     def destroy
         @organization = Organization.find(params[:organization_id])

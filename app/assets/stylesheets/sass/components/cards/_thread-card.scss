@@ -55,9 +55,23 @@
         .body{
             margin-top: 2rem;
             margin-left: 12rem;
+            max-width: 800px;
         }
 
         
+    }
+}
+
+
+// No image
+.thread-card.activity-thread.no-image{
+    .content{
+        .header{
+            grid-template-columns: 5fr 1fr;
+        }
+        .body{
+            margin-left: 0rem;
+        }
     }
 }
 
