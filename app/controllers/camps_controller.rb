@@ -107,6 +107,7 @@ class CampsController < ApplicationController
                     :base_price,
                     :discount_price,
                     :minimum_discount_week,
+                    required_minimum_session,
                     tag_ids: []
                 )
                 .merge(organization_id: params[:organization_id])

@@ -17,10 +17,9 @@ class ProfilesController < ApplicationController
         else
             @profile = Profile.new
             render :new
-        end
-        
-        
+        end 
     end
+
 
     def create
         @profile = Profile.new(profile_params)
