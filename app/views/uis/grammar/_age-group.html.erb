@@ -1,9 +1,9 @@
 
 
 <div>
-    <%= age_group_options[age_group_min] %>
-    <% if age_group_max.present? %>
+    <%= age_group_options.select{|obj| obj[:id] == age_group_min}[0][:name] %>
+    <% if age_group_max.present? && age_group_max != nil %>
         to
-        <%= age_group_options[age_group_max] %>
+        <%= age_group_options.select{|obj| obj[:id] == age_group_max}[0][:name] %>
     <% end %>
 </div>

@@ -16,7 +16,9 @@ class ActivitiesController < ApplicationController
         @camp = Camp.find(params[:camp_id])
         if params[:default_activity].present? 
             @activity = Activity.find(params[:default_activity]).dup
-            @activity.name += ' Duplicated'
+            if @activity.name.present? 
+                @activity.name += ' Duplicated'
+            end
         else
             @activity = Activity.new
         end

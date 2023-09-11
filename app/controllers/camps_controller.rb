@@ -25,7 +25,9 @@ class CampsController < ApplicationController
         @organization = Organization.find(params[:organization_id])
         if params[:default_camp].present? 
             @camp = Camp.find(params[:default_camp]).dup
-            @camp.name += ' Duplicated'
+            if @camp.name.present? 
+                @camp.name += ' Duplicated'
+            end
         else
             @camp = Camp.new
         end
@@ -59,7 +61,6 @@ class CampsController < ApplicationController
     def update
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:id])
-
         if params[:camp][:hero_image]
             @camp.hero_image.attach(params[:camp][:hero_image])
         end

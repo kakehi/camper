@@ -4,7 +4,7 @@
     elsif defined?(form_parent) && form_parent.age_group_min.presence
         @age_group_min = form_parent.age_group_min
     else
-        @age_group_min = ""
+        @age_group_min = "s"
     end
 
     if form_target.age_group_max.presence
@@ -18,17 +18,23 @@
 
 <div class="form-group">
     <h4>Age groups</h4>
+    <%= @age_group_min %>
+    <%= form_target.age_group_min.present? %>
     <div class="form-field">
         <%= f.label "Minimum age group (Please select this only, if the target age group is one)", class: 'form-label' %>
         <%= f.select :age_group_min, 
             options_for_select(
-                Array[*age_group_options.collect {|v,i| [v,age_group_options.index(v)] }], :selected => @age_group_min), :class => 'form-drop-box' %>
+                age_group_options.map{|c|[c[:name], c[:id]]},
+                :selected => @age_group_min), 
+            {class: 'form-drop-box'} %>
     </div>
     <div class="form-field">
         <%= f.label "Max age group (optional)", class: 'form-label' %>
         <%= f.select :age_group_max, 
-        options_for_select(
-            Array[*age_group_options.collect {|v,i| [v,age_group_options.index(v)] }], :selected => @age_group_max), :class => 'form-drop-box' %>
+            options_for_select(
+                age_group_options.map{|c|[c[:name], c[:id]]},
+                :selected => @age_group_max), 
+            {class: 'form-drop-box'} %>
     </div>
     
 </div>

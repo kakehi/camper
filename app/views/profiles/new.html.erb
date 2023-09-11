@@ -1,0 +1,61 @@
+<div class="view-outer-container single-column">
+    <div class="content">
+        <%= render "components/titles/page-title",
+        title: "Create profile" %>
+        <%= form_with(url: create_profile_path, model: @profile, local: true, method: :post, html: { class: 'form-container' }) do |f| %>
+
+        
+        <% if @profile.is_a?(ActiveRecord::Base) && @profile.errors.any? %>
+            <ul>
+                <% @profile.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        <% end %>
+
+        <div class="form-group">
+            
+            <% if @user.is_a?(ActiveRecord::Base) %>
+                <div><%= @user.email %></div>
+            <% end %>
+            
+            <h4>Name</h4>
+            <div class="form-field">
+                <%= f.label "First name", class: 'form-label' %>
+                <%= f.text_field :first_name, class: 'form-control' %>
+            </div>
+            <div class="form-field">
+                <%= f.label "Last name", class: 'form-label' %>
+                <%= f.text_field :last_name, class: 'form-control' %>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <h4>Locations</h4>
+            <div class="form-field">
+                <%= f.label "Zip code", class: 'form-label' %>
+                <%= f.text_field :zip_code, class: 'form-control' %>
+            </div>
+            <div class="form-field">
+                <%= f.label "Country", class: 'form-label' %>
+                <%= f.text_field :country, class: 'form-control' %>
+            </div>
+            <div class="form-field">
+                <%= f.label "State", class: 'form-label' %>
+                <%= f.text_field :state, class: 'form-control' %>
+            </div>
+            <div class="form-field">
+                <%= f.label "City", class: 'form-label' %>
+                <%= f.text_field :city, class: 'form-control' %>
+            </div>
+        </div>
+
+
+
+        <div class="button-group">
+            <%= f.submit 'Create', class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+</div>
