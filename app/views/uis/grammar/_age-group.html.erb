@@ -1,9 +1,14 @@
-
+<%
+    @age_group_max_arr = age_group_options.select{|obj| obj[:id] == age_group_max};
+    if @age_group_max_arr.count > 0
+        @age_group_max = @age_group_max_arr[0]
+    end
+%>
 
 <div>
     <%= age_group_options.select{|obj| obj[:id] == age_group_min}[0][:name] %>
-    <% if age_group_max.present? && age_group_max != nil %>
+    <% if age_group_max.present? && @age_group_max != nil %>
         to
-        <%= age_group_options.select{|obj| obj[:id] == age_group_max}[0][:name] %>
+        <%= @age_group_max[:name] %>
     <% end %>
 </div>

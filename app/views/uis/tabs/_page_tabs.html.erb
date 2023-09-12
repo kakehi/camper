@@ -1,0 +1,7 @@
+<div class="tabs page-tabs">
+    <% tabs.each do |tab| %>
+        <a class="tab <%= tab[:id] %> <%= selected %> <%= tab[:id] == selected ? "selected" : "unselected" %>" href="<%= tab[:href] %>">
+            <%= tab[:name] %>
+        </a>
+    <% end %>
+</div>

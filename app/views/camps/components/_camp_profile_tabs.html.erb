@@ -1,0 +1,16 @@
+
+<%= render "uis/tabs/page_tabs",
+    tabs: [
+        {
+            "id": 0,
+            "name": "Overview",
+            "href": camp_profile_detail_path
+        },
+        {
+            "id": 1,
+            "name": "Sessions",
+            "href": index_camp_activities_path
+        }
+    ],
+    selected: selected
+%>

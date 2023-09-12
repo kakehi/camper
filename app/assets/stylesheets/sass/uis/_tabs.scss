@@ -1,0 +1,26 @@
+
+
+// Page tabs
+
+.tabs.page-tabs{
+  
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    .tab{
+        display: block;
+        padding: 1rem;
+        transition: all 0.2s;
+        cursor: pointer;
+        border-bottom: 2px solid rgba(255, 255, 255, 0);
+
+        &:hover{
+            text-decoration: none;
+            background-color: #efefef;
+        }     
+        
+        &.selected{
+            border-color: #000;
+        }
+    }
+    
+}

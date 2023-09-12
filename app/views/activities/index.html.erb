@@ -4,8 +4,10 @@
       PROFILE TOP
   %>
   <% if defined?@organization %>
-    <%= render "components/heroes/organization-hero",
-        organization: @organization %>
+    <%= render "camps/components/camp_profile_hero",
+      organization: @organization,
+      selected: 1
+    %>
   <% else %>
     <div class="search-container">
       <%= form_with url: index_organization_path, class: "form", method: :get, local: true do |form| %>
@@ -17,24 +19,8 @@
 
 
   <div class="section camp <%= @camp.hero_image.present? ? "hero-image" : "no-image" %>">
-    <div class="section-header flex-container">
-        <% if @organization_camps.count > 1 %>
-          <%= render "uis/buttons/button",
-              type: "secondary",
-              text: "View all camps",
-              size: "regular",
-              href: index_organization_camp_path(@organization)  %>
-        <% else %>
-          <div></div>
-        <% end %>
-        <div></div>
-    </div>
     <div class="activities-container">
-      <%= render "components/heroes/camp-hero",
-          camp: @camp %>
       <div class="thread-container">
-        <%= render "components/titles/section-title",
-          title: "Sessions" %>
         <% @activity.each do |activity| %>
           <%= render "components/cards/activity-card",
               organization: @organization,

@@ -18,6 +18,19 @@ class CampsController < ApplicationController
 
         render :index
     end
+    
+
+
+    # Profile
+    def overview
+
+        @organization = Organization.find(params[:organization_id])
+        @camps = Camp.where(organization_id: params[:organization_id])
+        @camp = Camp.find(params[:camp_id])
+
+        render :overview
+    end
+
 
     before_action :authenticate_user!
 
@@ -99,6 +112,10 @@ class CampsController < ApplicationController
                     :subhead,
                     :description,
                     :hero_image,
+                    :zip_code,
+                    :country,
+                    :state, 
+                    :city,
                     :website,
                     :phone,
                     :email,
@@ -107,7 +124,7 @@ class CampsController < ApplicationController
                     :base_price,
                     :discount_price,
                     :minimum_discount_week,
-                    required_minimum_session,
+                    :required_minimum_session,
                     tag_ids: []
                 )
                 .merge(organization_id: params[:organization_id])

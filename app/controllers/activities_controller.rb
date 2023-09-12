@@ -2,9 +2,7 @@ class ActivitiesController < ApplicationController
 
     def index
         @organization = Organization.find(params[:organization_id])
-        @organization_camps = Camp.where(organization_id: params[:organization_id])
         @camp = Camp.find(params[:camp_id])
-
         @activity = Activity.where(camp_id: params[:camp_id])
         
         render :index

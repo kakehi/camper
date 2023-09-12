@@ -50,6 +50,13 @@
         <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
       </div>
 
+      <%# LOCATION %>
+      <%= render "components/forms/location", 
+          f: f,
+          form_target: @camp,
+          form_parent: @organization
+      %>
+
       <%# CONTACTS %>
       <%= render "components/forms/contacts", 
           f: f,

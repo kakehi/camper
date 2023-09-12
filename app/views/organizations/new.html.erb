@@ -46,6 +46,12 @@
         </div>
     </div>
 
+    <%# LOCATION %>
+    <%= render "components/forms/location", 
+        f: f,
+        form_target: @organization
+    %>
+
     <%# CONTACTS %>
     <%= render "components/forms/contacts", 
         f: f,

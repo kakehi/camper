@@ -1,6 +1,28 @@
+// Hero
+.camp-profile-hero-container{
 
 
-.camp-overview-container{
-    margin-left: 12rem;
-    width: 600px;
+    .camp-header-container{
+
+        margin-top: 3rem;
+
+        .tabs.page-tabs{
+            margin-top: 1rem;
+        }
+    }
+
+    .camp-overview-container{
+        margin-left: 12rem;
+        width: 600px;
+    }
+
+}
+
+
+
+// Section  
+.section.camp{
+    padding: 1rem 0;
+
+    
 }

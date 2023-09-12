@@ -1,0 +1,30 @@
+<div class="view-outer-container double-column">
+
+    <%# 
+        PROFILE HERO
+    %>
+    <%= render "camps/components/camp_profile_hero",
+        organization: @organization,
+        selected: 0
+    %>
+
+
+    <%# 
+        Overview
+    %>
+    <div class="section camp overview side-panel-grid-container">
+        <div>
+            <%= @camp.description %>
+        </div>
+        <div class="side-panel-container">
+            <%= render "uis/lists/list_item", title: "Website", content: @camp.website, href: @camp.website %>
+            <%= render "uis/lists/list_item", title: "Email", content: @camp.email %>
+
+            <%= render "uis/lists/list_item", title: "Location", content: "#{@camp.city}, #{@camp.state}, #{@camp.country}, #{@camp.zip_code}" %>
+            
+        </div>
+        
+    </div>
+    
+
+</div>

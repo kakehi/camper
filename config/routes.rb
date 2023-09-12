@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   get 'profile/z8opKTG2XA/:user_id/new', to: 'profiles#new', as: 'new_profile'
   post 'profile/z8opKTG2XA/:user_id/new', to: 'profiles#create', as: 'create_profile'
 
-  get 'profile/edit/:id', to: 'profiles#edit', as: 'edit_profile'
-  post 'profile/edit/:id', to: 'profiles#update', as: 'update_profile'
+  get 'profile/edit/:user_id/:id', to: 'profiles#edit', as: 'edit_profile'
+  post 'profile/edit/:user_id/:id', to: 'profiles#update', as: 'update_profile'
 
   get 'profile/destroy/:id', to: 'profiles#destroy'
   delete 'profile/destroy/:id', to: 'profiles#destroy', as: 'destroy_profile'
@@ -42,21 +42,23 @@ Rails.application.routes.draw do
   get 'organizations/:organization_id/camps/destroy/:id', to: 'camps#destroy'
   delete 'organizations/:organization_id/camps/destroy/:id', to: 'camps#destroy', as: 'destroy_camp'
 
+  get 'organizations/:organization_id/camps/:camp_id/overview', to: 'camps#overview', as: 'camp_profile_detail'
+
   ## Activities
   get 'activities', to: 'activities#index', as: 'index_activity'
 
-  get 'organizations/:organization_id/camps/:camp_id/activities', to: 'activities#index', as: 'index_camp_activities'
+  get 'organizations/:organization_id/camps/:camp_id/sessions', to: 'activities#index', as: 'index_camp_activities'
 
-  get 'organizations/:organization_id/camps/:camp_id/activities/new', to: 'activities#new', as: 'new_activity'
-  post 'organizations/:organization_id/camps/:camp_id/activities/new', to: 'activities#create', as: 'create_activity'
+  get 'organizations/:organization_id/camps/:camp_id/sessions/new', to: 'activities#new', as: 'new_activity'
+  post 'organizations/:organization_id/camps/:camp_id/sessions/new', to: 'activities#create', as: 'create_activity'
 
-  get 'organizations/:organization_id/camps/:camp_id/activities/edit/:id', to: 'activities#edit', as: 'edit_activity'
-  post 'organizations/:organization_id/camps/:camp_id/activities/edit/:id', to: 'activities#update', as: 'update_activity'
+  get 'organizations/:organization_id/camps/:camp_id/sessions/edit/:id', to: 'activities#edit', as: 'edit_activity'
+  post 'organizations/:organization_id/camps/:camp_id/sessions/edit/:id', to: 'activities#update', as: 'update_activity'
 
-  get 'organizations/:organization_id/camps/:camp_id/activities/duplicate/:id', to: 'activities#duplicate', as: 'duplicate_activity'
+  get 'organizations/:organization_id/camps/:camp_id/sessions/duplicate/:id', to: 'activities#duplicate', as: 'duplicate_activity'
 
-  get 'organizations/:organization_id/camps/:camp_id/activities/destroy/:id', to: 'activities#destroy'
-  delete 'organizations/:organization_id/camps/:camp_id/activities/destroy/:id', to: 'activities#destroy', as: 'destroy_activity'
+  get 'organizations/:organization_id/camps/:camp_id/sessions/destroy/:id', to: 'activities#destroy'
+  delete 'organizations/:organization_id/camps/:camp_id/sessions/destroy/:id', to: 'activities#destroy', as: 'destroy_activity'
   
 
   ## Tags

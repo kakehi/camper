@@ -1,0 +1,19 @@
+
+
+<% if content.present? %>
+
+    <% if defined?(href) %>
+        <div class="list-item-container">
+            <div class="title"><%= title %>:</div>
+            <a href=<%= href %> target="_blank"><%= content %></a>
+        </div>
+    <% else %>
+        <div class="list-item-container">
+            <div class="title"><%= title %>:</div>
+            <div><%= content %></div>
+        </div>
+    <% end %>
+    
+<% else %>
+    ""
+<% end %>

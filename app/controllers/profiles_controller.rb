@@ -9,11 +9,10 @@ class ProfilesController < ApplicationController
 
 
     def new
-        @user = current_user
-        @profile = Profile.where(user_id: @user.id)
+        @profile = Profile.find_by(user_id: current_user.id)
 
-        if(@profile.is_a?(ActiveRecord::Base))
-            redirect_to edit_profile_path(@profile.id)
+        if @profile.present?
+            redirect_to edit_profile_path(current_user.id, @profile.id)
         else
             @profile = Profile.new
             render :new
@@ -24,7 +23,7 @@ class ProfilesController < ApplicationController
     def create
         @profile = Profile.new(profile_params)
         if @profile.save
-            redirect_to detail_profile_path(@profile), notice: 'Profile was created'
+            redirect_to detail_profile_path(current_user.id, @profile.id), notice: 'Profile was created'
         else
             render :new, status: :unprocessable_entity
         end

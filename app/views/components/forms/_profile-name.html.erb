@@ -1,0 +1,19 @@
+
+
+
+<div class="form-group">        
+    <% if @user.is_a?(ActiveRecord::Base) %>
+        <div><%= @user.email %></div>
+    <% end %>
+    <h4>Name</h4>
+    <div class="flex-container">
+        <div class="form-field">
+            <%= f.label "First name", class: 'form-label' %>
+            <%= f.text_field :first_name, class: 'form-control' %>
+        </div>
+        <div class="form-field">
+            <%= f.label "Last name", class: 'form-label' %>
+            <%= f.text_field :last_name, class: 'form-control' %>
+        </div>
+    </div>
+</div>

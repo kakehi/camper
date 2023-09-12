@@ -1,0 +1,13 @@
+
+
+
+
+// List item
+.list-item-container{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+    .title{
+        color: #666;
+    }
+}
