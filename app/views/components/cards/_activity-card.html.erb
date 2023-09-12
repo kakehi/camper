@@ -16,7 +16,10 @@
             <% end %>
             
             <div class="main-content">
-                <h4 class="date"><%= activity.start_month %>/<%= activity.start_date %> - <%= activity.end_month %>/<%= activity.end_date %></h4>
+                <% if activity.start_at.present? && activity.end_at.present? %>
+    
+                    <h4 class="date"><%= activity.start_at.to_formatted_s(:short) %> - <%= activity.end_at.to_formatted_s(:short) %></h4>
+                <% end %>
 
                 <% if @camp_type != 1 %>
                     <h4><%= activity.name %></h4>

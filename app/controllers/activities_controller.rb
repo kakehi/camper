@@ -94,6 +94,8 @@ class ActivitiesController < ApplicationController
                     :hero_image,
                     :age_group_min,
                     :age_group_max,
+                    :start_at,
+                    :end_at,
                     :start_year,
                     :start_month,
                     :start_date,

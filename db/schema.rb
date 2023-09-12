@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_024917) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_12_210135) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -55,6 +55,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_024917) do
     t.integer "age_group_max"
     t.integer "base_price"
     t.integer "discount_price"
+    t.date "start_at"
+    t.date "end_at"
     t.index ["camp_id"], name: "index_activities_on_camp_id"
   end
 
@@ -88,6 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_024917) do
     t.string "country"
     t.string "state"
     t.string "city"
+    t.integer "region"
     t.index ["organization_id"], name: "index_camps_on_organization_id"
   end
 
@@ -98,6 +101,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_024917) do
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_categories_on_activity_id"
     t.index ["tag_id"], name: "index_categories_on_tag_id"
+  end
+
+  create_table "favorite_organizations", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_favorite_organizations_on_organization_id"
+    t.index ["profile_id"], name: "index_favorite_organizations_on_profile_id"
   end
 
   create_table "organizations", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
@@ -114,6 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_024917) do
     t.string "email"
     t.integer "age_group_min"
     t.integer "age_group_max"
+    t.integer "region"
   end
 
   create_table "profiles", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
@@ -155,5 +168,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_024917) do
   add_foreign_key "camp_tag_relations", "tags"
   add_foreign_key "categories", "activities"
   add_foreign_key "categories", "tags"
+  add_foreign_key "favorite_organizations", "organizations"
+  add_foreign_key "favorite_organizations", "profiles"
   add_foreign_key "profiles", "users"
 end

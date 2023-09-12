@@ -3,4 +3,5 @@ class Profile < ApplicationRecord
     validates :last_name, presence: true
 
     belongs_to :user
+    has_many :favorite_organization, dependent: :destroy
 end

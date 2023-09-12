@@ -1,10 +1,28 @@
+<%
+
+    @profile = Profile.find_by(user_id: current_user.id)
+
+%>
+
+
 <div class="hero organization-hero">
     <div class="header">
         <h1 class="title"><%= organization.name %></h1>
         <div class="flex-container">
             <%= render "uis/grammar/location",
                 location: @organization %>
-            <div>
+            
+            <div class="flex-container">
+                <% if defined?(@organization.favorite_organizations) && @organization.favorite_organization?(@profile) %>
+                    <%= link_to destroy_favorite_organization_path(@organization.id), method: :delete do %>
+                        <span style="color:red;">❤︎</span>
+                    <% end %>
+                <% else %>
+                    <%= link_to create_favorite_organization_path(@organization.id), method: :post do %>
+                        <span>❤︎</span>
+                    <% end %>
+                <% end %>
+
                 <%= render "uis/buttons/text-link",
                     text: "Edit organization",
                     size: "medium",

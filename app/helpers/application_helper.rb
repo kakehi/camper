@@ -2,6 +2,10 @@ module ApplicationHelper
     def age_group_options
         [
             {
+                name: "Unselected",
+                id: nil
+            },
+            {
                 name: "1 year",
                 id: 1
             },
@@ -72,10 +76,31 @@ module ApplicationHelper
             {
                 name: "Grade 12",
                 id: 33
+            }
+        ]
+    end
+
+
+    def location_region_options
+        [
+            {
+                id: nil,
+                name: "Other region"
             },
             {
-                name: "Unselected",
-                id: nil
+                id: 1,
+                name: "New York-Newark",
+                zip_codes: [7624]
+            },
+            {
+                id: 2,
+                name: "Washington-Baltimore-Arlington",
+                zip_codes: [20016, 21210, 21234, 21244, 22303]
+            },
+            {
+                id: 3,
+                name: "Philadelphia",
+                zip_codes: [19102]
             }
         ]
     end

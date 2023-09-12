@@ -48,10 +48,9 @@
       <%# PRICE %>
       <%= render "components/forms/price", 
         f: f,
+        page: "activity",
         form_target: @activity,
-        form_parent: @camp,
-        base_price: @base_price,
-        discount_price: @discount_price
+        form_parent: @camp
       %>
 
       <%# THEMES %>

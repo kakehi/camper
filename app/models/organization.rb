@@ -16,4 +16,5 @@ class Organization < ApplicationRecord
 
     # Reference
     has_many :camps, dependent: :destroy
+    has_many :favorite_organization, dependent: :destroy
 end

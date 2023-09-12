@@ -26,26 +26,6 @@
         <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
     </div>
 
-    <div class="form-group">
-        <h4>Locations</h4>
-        <div class="form-field">
-            <%= f.label "Zip code", class: 'form-label' %>
-            <%= f.text_field :zip_code, class: 'form-control' %>
-        </div>
-        <div class="form-field">
-            <%= f.label "Country", class: 'form-label' %>
-            <%= f.text_field :country, class: 'form-control' %>
-        </div>
-        <div class="form-field">
-            <%= f.label "State", class: 'form-label' %>
-            <%= f.text_field :state, class: 'form-control' %>
-        </div>
-        <div class="form-field">
-            <%= f.label "City", class: 'form-label' %>
-            <%= f.text_field :city, class: 'form-control' %>
-        </div>
-    </div>
-
     <%# LOCATION %>
     <%= render "components/forms/location", 
         f: f,

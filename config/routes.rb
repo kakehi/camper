@@ -1,3 +1,5 @@
+
+
 Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -66,5 +68,14 @@ Rails.application.routes.draw do
 
   get 'tags/new', to: 'tags#new', as: 'new_tag'
   post 'tags/new', to: 'tags#create', as: 'create_tag'
+
+
+  ## FAVORITES
+  resources :organizations do
+    resource :favorite_organizations, only: [:create, :destroy]
+  end
+
+  post 'organizations/:organization_id/favorite-organizations(.:format)', to: 'favorite_organizations#create', as: 'create_favorite_organization'
+  delete 'organizations/:organization_id/favorite-organizations/:id(.:format)', to: 'favorite_organizations#destroy', as: 'destroy_favorite_organization'
 
 end

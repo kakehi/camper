@@ -44,7 +44,7 @@ class OrganizationsController < ApplicationController
             @organization.hero_image.attach(params[:organization][:hero_image])
         end
         if @organization.update(organization_params)
-            redirect_to index_organization_camp_path(@organization), notice: 'Organization information is pdated'
+            redirect_to index_organization_camp_path(@organization), notice: 'Organization information is updated'
         else
             render :edit, status: :unprocessable_entity
         end
@@ -56,6 +56,12 @@ class OrganizationsController < ApplicationController
         redirect_to index_organization_path, notice: 'Deleted'
     end
 
+
+    def favorited?(user)
+        @profile = Profile.find_by(user_id: current_user.id)
+        FavoriteOrganization.where(profile_id: @profile.id).exists?
+    end
+
     private
     def organization_params
         params
@@ -65,6 +71,7 @@ class OrganizationsController < ApplicationController
                 :description, 
                 :hero_image,
                 :zip_code,
+                :region,
                 :country,
                 :state, 
                 :city,
@@ -72,6 +79,8 @@ class OrganizationsController < ApplicationController
                 :phone,
                 :email,
                 :age_group_min,
-                :age_group_max)
+                :age_group_max,
+                favorite_organizations: []
+            )
     end
 end

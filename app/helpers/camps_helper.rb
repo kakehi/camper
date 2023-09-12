@@ -41,11 +41,10 @@ module CampsHelper
             end
         end
 
-        age_group = age_group_min.nil? ? 
-            "" : "#{age_group_options[age_group_min]}"
-        age_group = age_group_max.nil? ? 
-            age_group : "#{age_group} to #{age_group_options[age_group_max]}"
+        render "uis/grammar/age-group",
+            size: "medium",
+            age_group_min: age_group_min,
+            age_group_max: age_group_max
 
-        return age_group
     end
 end

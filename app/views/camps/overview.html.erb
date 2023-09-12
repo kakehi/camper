@@ -21,6 +21,11 @@
             <%= render "uis/lists/list_item", title: "Email", content: @camp.email %>
 
             <%= render "uis/lists/list_item", title: "Location", content: "#{@camp.city}, #{@camp.state}, #{@camp.country}, #{@camp.zip_code}" %>
+
+            <%= render "uis/grammar/age-group",
+                size: "medium",
+                age_group_min: @camp.age_group_min,
+                age_group_max: @camp.age_group_max %>
             
         </div>
         

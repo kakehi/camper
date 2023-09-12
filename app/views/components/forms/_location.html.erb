@@ -1,5 +1,13 @@
 <%
 
+    if form_target.country.present?
+        @country = form_target.country
+    elsif defined?(form_parent) && form_parent.country.present?
+        @country = form_parent.country
+    else
+        @country = ""
+    end
+
     if form_target.zip_code.present?
         @zip_code = form_target.zip_code
     elsif defined?(form_parent) && form_parent.zip_code.present?
@@ -8,12 +16,12 @@
         @zip_code = ""
     end
 
-    if form_target.country.present?
-        @country = form_target.country
-    elsif defined?(form_parent) && form_parent.country.present?
-        @country = form_parent.country
+    if form_target.region.present?
+        @region = form_target.region
+    elsif defined?(form_parent) && form_parent.region.present?
+        @region = form_parent.region
     else
-        @country = ""
+        @region = location_region_options.select{|obj| obj[:id] == nil}[0]
     end
 
 
@@ -39,13 +47,24 @@
 <div class="form-group">
     <h4>Locations</h4>
     <div class="form-field">
-        <%= f.label "Zip code", class: 'form-label' %>
-        <%= f.text_field :zip_code, value: @zip_code, class: 'form-control' %>
-    </div>
-    <div class="form-field">
         <%= f.label "Country", class: 'form-label' %>
         <%= f.text_field :country, value: @country, class: 'form-control' %>
     </div>
+
+    <div class="form-field">
+        <%= f.label "Zip code", class: 'form-label' %>
+        <%= f.text_field :zip_code, value: @zip_code, class: 'form-control' %>
+    </div>
+
+    <div class="form-field">
+        <%= f.label "Region / Metro", class: 'form-label' %>
+        <%= f.select :region, 
+            options_for_select(
+                location_region_options.map{|c|[c[:name], c[:id]]},
+                :selected => @region), 
+            {class: 'form-drop-box'} %>
+    </div>
+    
     <div class="form-field">
         <%= f.label "State", class: 'form-label' %>
         <%= f.text_field :state, value: @state, class: 'form-control' %>
