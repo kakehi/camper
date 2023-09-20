@@ -9,6 +9,11 @@
     <div class="content">
         <h6 class="title"><%= title %></h6>
         <div class="sub-information"><%= sub_information %></div>
-        <%= render "uis/grammar/price", price: price, static_price: static_price %>
+        <% if defined?(price)
+            render "uis/grammar/price", price: price, static_price: static_price 
+        end %>
+        <% if defined?(weekly_price)
+            render "uis/grammar/price", price: price, weekly_price: weekly_price, static_price: static_price 
+        end %>
     </div>
 </a>

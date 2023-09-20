@@ -8,16 +8,17 @@ Rails.application.routes.draw do
   get '/', to: 'organizations#index', as: 'index_organization'
 
   ## Profile
-  get 'profile/:id', to: 'profiles#detail', as: 'detail_profile'
+  get 'profile/:id/detail', to: 'profiles#detail', as: 'profile_detail'
+  get 'profile/:id/favorite-organizations', to: 'profiles#favorite_organizations', as: 'favorite_organizations_profile'
 
-  get 'profile/z8opKTG2XA/:user_id/new', to: 'profiles#new', as: 'new_profile'
-  post 'profile/z8opKTG2XA/:user_id/new', to: 'profiles#create', as: 'create_profile'
+  get 'profile/z8opKTG2XA/:user_id/new', to: 'profiles#new', as: 'profile_new'
+  post 'profile/z8opKTG2XA/:user_id/new', to: 'profiles#create', as: 'profile_create'
 
-  get 'profile/edit/:user_id/:id', to: 'profiles#edit', as: 'edit_profile'
-  post 'profile/edit/:user_id/:id', to: 'profiles#update', as: 'update_profile'
+  get 'profile/edit/:user_id/:id', to: 'profiles#edit', as: 'profile_edit'
+  post 'profile/edit/:user_id/:id', to: 'profiles#update', as: 'profile_update'
 
   get 'profile/destroy/:id', to: 'profiles#destroy'
-  delete 'profile/destroy/:id', to: 'profiles#destroy', as: 'destroy_profile'
+  delete 'profile/destroy/:id', to: 'profiles#destroy', as: 'profile_destroy'
 
   ## Organizations
   get 'organizations/new', to: 'organizations#new', as: 'new_organization'
@@ -76,6 +77,6 @@ Rails.application.routes.draw do
   end
 
   post 'organizations/:organization_id/favorite-organizations(.:format)', to: 'favorite_organizations#create', as: 'create_favorite_organization'
-  delete 'organizations/:organization_id/favorite-organizations/:id(.:format)', to: 'favorite_organizations#destroy', as: 'destroy_favorite_organization'
+  delete 'organizations/:organization_id/favorite-organizations(.:format)', to: 'favorite_organizations#destroy', as: 'destroy_favorite_organization'
 
 end

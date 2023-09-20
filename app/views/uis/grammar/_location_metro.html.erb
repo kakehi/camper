@@ -1,0 +1,31 @@
+<%
+    
+    targetMetroName = ""
+    
+    if defined?(location.city)
+        targetMetroName += "#{location.city}"
+    end
+
+    if defined?(location.state)
+        targetMetroName += "#{(targetMetroName != "" ? ", ": "")}#{location.state}"
+    end
+    
+    if defined?(location.country)
+        targetMetroName += "#{(targetMetroName != "" ? ", ": "")}#{location.country}"
+    end
+    
+
+
+    if defined?(location.zip_code)
+        targetMetro = location_region_options.select{|c| 
+            c[:zip_codes].present? && 
+            c[:zip_codes].select{|zc| zc == location.zip_code}.count > 0
+        }
+        if targetMetro.count > 0
+            targetMetroName = targetMetro[0][:name]
+        end
+    end
+    
+%>
+
+<div class="grammar-location metro"><%= targetMetroName %></div>

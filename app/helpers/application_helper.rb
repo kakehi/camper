@@ -101,6 +101,11 @@ module ApplicationHelper
                 id: 3,
                 name: "Philadelphia",
                 zip_codes: [19102]
+            },
+            {
+                id: 31,
+                name: "Raleigh-Durham-Cary",
+                zip_codes: [27601]
             }
         ]
     end

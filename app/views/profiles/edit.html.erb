@@ -2,7 +2,7 @@
     <div class="content">
         <%= render "components/titles/page-title",
         title: "Edit profile" %>
-        <%= form_with(url: update_profile_path, model: @profile, local: true, method: :post, html: { class: 'form-container' }) do |f| %>
+        <%= form_with(url: profile_update_path, model: @profile, local: true, method: :post, html: { class: 'form-container' }) do |f| %>
 
         <% if @profile.is_a?(ActiveRecord::Base) && @profile.errors.any? %>
             <ul>

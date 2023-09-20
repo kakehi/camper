@@ -10,27 +10,36 @@
     else
         @href = index_organization_camp_path(organization)
     end
-
+    date = 0
     if @camp.present?
         @activities = Activity.where(camp_id: @camp.id)
         @is_price_set = @activities.select { |e| e.base_price.is_a?(Integer) }.count > 0
         if @is_price_set
-            @_sorted_activities = @activities.select { |e| e.base_price.is_a?(Integer) }.sort_by(&:"#{"base_price"}")
-            @max_price_activity = @_sorted_activities.last
-            @min_price_activity = @_sorted_activities.first
-            @price = @min_price_activity.base_price
+
+            # New activities array with weekly price            
+            @_mapped_activities = @activities
+            @max_price_activity = @_mapped_activities.last
+            @min_price_activity = @_mapped_activities.first
+
+            @weekly_price = 0
+            if @min_price_activity.base_price.is_a?(Integer) && @min_price_activity.start_at.is_a?(Date) && @min_price_activity.end_at.is_a?(Date)
+                @weekly_price = @min_price_activity.base_price / ((@min_price_activity.end_at - @min_price_activity.start_at).to_f/7).ceil
+            end
+            
             @static_price = @max_price_activity.base_price == @min_price_activity.base_price
         else
-            @price = 120
+            price = 120
             @static_price = true
         end
 
     else
         @href = index_organization_camp_path(organization)
-        @price = 80
+        price = 80
     end 
 %>
 
+
+<%= date %>
 
 <%= render "components/cards/grid-card",
     href: @href,
@@ -38,6 +47,7 @@
     title: organization.name,
     sub_information: organization.city,
     organization: organization,
-    price: @price,
+    price: "",
+    weekly_price: @weekly_price,
     static_price: @static_price
 %>

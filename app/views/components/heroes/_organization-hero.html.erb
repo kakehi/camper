@@ -7,19 +7,22 @@
 
 <div class="hero organization-hero">
     <div class="header">
+        <%= render "uis/grammar/location_metro",
+                location: @organization %>
         <h1 class="title"><%= organization.name %></h1>
         <div class="flex-container">
-            <%= render "uis/grammar/location",
-                location: @organization %>
-            
             <div class="flex-container">
-                <% if defined?(@organization.favorite_organizations) && @organization.favorite_organization?(@profile) %>
-                    <%= link_to destroy_favorite_organization_path(@organization.id), method: :delete do %>
+                <% if @organization.favorited?(current_user) %>
+                    <%= form_with url: destroy_favorite_organization_path(@organization.id), method: :delete do |form| %>
+                        <%= form.button style: 'background-color: transparent; border: none;' do %>
                         <span style="color:red;">❤︎</span>
+                        <% end %>
                     <% end %>
                 <% else %>
-                    <%= link_to create_favorite_organization_path(@organization.id), method: :post do %>
-                        <span>❤︎</span>
+                    <%= form_with url: create_favorite_organization_path(@organization.id), method: :post do |form| %>
+                        <%= form.button style: 'background-color: transparent; border: none;' do %>
+                          <span>❤︎</span>
+                        <% end %>
                     <% end %>
                 <% end %>
 
@@ -34,7 +37,7 @@
         <div class="left-image image hero-image">
             <%= image_tag(organization.hero_image) if organization.hero_image.attached? %>
         </div>
-        <div class="rigjt-image">
+        <div class="right-image">
         </div>
     </div>
 </div>

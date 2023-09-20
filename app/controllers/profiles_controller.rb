@@ -7,12 +7,18 @@ class ProfilesController < ApplicationController
         render :detail
     end
 
+    def favorite_organizations
+        @profile = Profile.find(params[:id])
+        @favorite_organizations = FavoriteOrganization.all()
+        render :favorite_organizations
+    end
+
 
     def new
         @profile = Profile.find_by(user_id: current_user.id)
 
         if @profile.present?
-            redirect_to edit_profile_path(current_user.id, @profile.id)
+            redirect_to profile_edit_path(current_user.id, @profile.id)
         else
             @profile = Profile.new
             render :new
@@ -23,7 +29,7 @@ class ProfilesController < ApplicationController
     def create
         @profile = Profile.new(profile_params)
         if @profile.save
-            redirect_to detail_profile_path(current_user.id, @profile.id), notice: 'Profile was created'
+            redirect_to profile_detail_path(current_user.id, @profile.id), notice: 'Profile was created'
         else
             render :new, status: :unprocessable_entity
         end
@@ -43,7 +49,7 @@ class ProfilesController < ApplicationController
         end
 
         if @profile.update(profile_params)
-            render :edit, notice: 'Profile was updated'
+            redirect_to profile_detail_path(@profile), notice: 'Profile was updated'
         else
             render :edit, status: :unprocessable_entity
         end

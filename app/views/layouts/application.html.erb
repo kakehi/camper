@@ -31,6 +31,9 @@
                 <%= link_to "Add new organization", new_organization_path, class: "nav-link" %>
               </div>
               <div>
+                <%= link_to "Profile", profile_detail_path(Profile.find_by(user_id: current_user.id)), class: "nav-link" %>
+              </div>
+              <div>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
               </div>
             <% else %>

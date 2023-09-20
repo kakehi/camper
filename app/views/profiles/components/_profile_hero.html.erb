@@ -1,0 +1,20 @@
+<div class="profile-hero-container">
+    
+    <div class="camp-header-container">
+
+        <div class="flex-container">
+            <h3><%=  @profile.first_name %> <%=  @profile.last_name %></h3>
+            <div class="button-group-container">
+                <%= render "uis/buttons/text-link",
+                    text: "Edit profile",
+                    size: "medium",
+                    href: profile_edit_path(@profile) %>
+            </div>
+        </div>
+
+        <%= render "profiles/components/profile_tabs",
+            selected: selected
+        %>
+    </div>
+    
+</div>

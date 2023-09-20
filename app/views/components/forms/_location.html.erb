@@ -1,6 +1,6 @@
 <%
 
-    if form_target.country.present?
+    if defined?(form_target.country)
         @country = form_target.country
     elsif defined?(form_parent) && form_parent.country.present?
         @country = form_parent.country
@@ -8,7 +8,7 @@
         @country = ""
     end
 
-    if form_target.zip_code.present?
+    if defined?(form_target.zip_code)
         @zip_code = form_target.zip_code
     elsif defined?(form_parent) && form_parent.zip_code.present?
         @zip_code = form_parent.zip_code
@@ -16,7 +16,7 @@
         @zip_code = ""
     end
 
-    if form_target.region.present?
+    if defined?(form_target.region)
         @region = form_target.region
     elsif defined?(form_parent) && form_parent.region.present?
         @region = form_parent.region
@@ -25,7 +25,7 @@
     end
 
 
-    if form_target.state.present?
+    if defined?(form_target.state)
         @state = form_target.state
     elsif defined?(form_parent) && form_parent.state.present?
         @state = form_parent.state
@@ -33,7 +33,7 @@
         @state = ""
     end
 
-    if form_target.city.present?
+    if defined?(form_target.city)
         @city = form_target.city
     elsif defined?(form_parent) && form_parent.city.present?
         @city = form_parent.city

@@ -2,16 +2,22 @@ class FavoriteOrganizationsController < ApplicationController
 
     def create
         @Profile = Profile.find_by(user_id: current_user.id)
-        @favorite_organization = FavoriteOrganizations.new(profile_id: @Profile.id, post_id: params[:organization_id])
-        @favorite_organization.save
-        render index_organization_path
+        @favorite_organization = FavoriteOrganization.new(profile_id: @Profile.id, organization_id: params[:organization_id])
+
+        logger.debug "Person attributes hash: #{@favorite_organization.errors.full_messages}"
+
+        if @favorite_organization.save
+            redirect_to index_organization_path
+        else
+            redirect_to profile_detail_path
+        end
     end
 
     def destroy
         @Profile = Profile.find_by(user_id: current_user.id)
-        @favorite_organization = FavoriteOrganizations.new(profile_id: @Profile.id, post_id: params[:organization_id])
+        @favorite_organization = FavoriteOrganization.find_by(profile_id: @Profile.id, organization_id: params[:organization_id])
         @favorite_organization.destroy
-        render index_organization_path
+        redirect_to  index_organization_path
     end
 
 end

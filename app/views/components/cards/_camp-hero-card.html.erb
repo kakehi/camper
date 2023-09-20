@@ -1,7 +1,7 @@
 
-<div class="hero-card camp" >
+<div class="hero-card camp <%= camp.hero_image.present? ? 'hero-image' : 'no-image' %>"" >
     <div class="content">
-        <% if defined?(camp.hero_image) %>
+        <% if camp.hero_image.present? %>
             <%= render "uis/thumb_images/thumb_image",
                 type: "circular",
                 size: "large",
@@ -22,7 +22,7 @@
                 
                 <%= camp_get_age_group_from_activities(camp) %>
 
-                <div class="button-group-cotainer">
+                <div class="button-group-container">
                     <%= render "uis/buttons/text-link",
                         text: "View camp",
                         size: "medium",

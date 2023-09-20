@@ -5,7 +5,7 @@ class OrganizationsController < ApplicationController
         if @name.present?
           @organization = Organization.where('name LIKE ?', "%#{@name}%")
         else
-          @organization = Organization.all
+          @organization = Organization.all.reverse()
         end
         
         render :index
@@ -57,18 +57,14 @@ class OrganizationsController < ApplicationController
     end
 
 
-    def favorited?(user)
-        @profile = Profile.find_by(user_id: current_user.id)
-        FavoriteOrganization.where(profile_id: @profile.id).exists?
-    end
-
     private
     def organization_params
         params
             .require(:organization)
             .permit(
                 :name,
-                :description, 
+                :description,
+                :organization_type,
                 :hero_image,
                 :zip_code,
                 :region,

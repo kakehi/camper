@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_12_210135) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_14_113311) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -114,7 +114,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_210135) do
 
   create_table "organizations", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name"
-    t.string "description", limit: 2000
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "zip_code"
@@ -127,6 +127,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_12_210135) do
     t.integer "age_group_min"
     t.integer "age_group_max"
     t.integer "region"
+    t.integer "organization_type"
   end
 
   create_table "profiles", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|

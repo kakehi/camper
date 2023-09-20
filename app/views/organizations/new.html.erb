@@ -3,50 +3,16 @@
     <%= render "components/titles/page-title",
     title: "Add organization" %>
     <%= form_with(url: create_organization_path, model: @organization, local: true, method: :post, html: { class: 'form-container' }) do |f| %>
-    <% if @organization.errors.any? %>
-        <ul>
-            <% @organization.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-    <% end %>
 
-    <%# Overview %>
-    <%= render "components/forms/overview", 
-        f: f,
-        form_target: @organization
-    %>
+        <%= render "organizations/components/organization_form", 
+            f: f,
+            form_target: @organization
+        %>
 
-    <div class="form-group image-upload">
-        <%= f.label "Hero image", class: 'form-label' %>
-        <div class="image-preview" id="imagePreview">
-        <img src="" alt="Image Preview" class="image-preview__image">
-        <span class="image-preview__default-text">Image will be displayed here</span>
+        <div class="button-group">
+            <%= f.submit 'Create', class: 'btn btn-primary' %>
         </div>
-        <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
-    </div>
-
-    <%# LOCATION %>
-    <%= render "components/forms/location", 
-        f: f,
-        form_target: @organization
-    %>
-
-    <%# CONTACTS %>
-    <%= render "components/forms/contacts", 
-        f: f,
-        form_target: @organization
-    %>
-
-    <%# AGE GROUPS %>
-    <%= render "components/forms/age-group", 
-        f: f,
-        form_target: @organization
-    %>
-
-    <div class="button-group">
-        <%= f.submit 'Create', class: 'btn btn-primary' %>
-    </div>
+        
     <% end %>
   </div>
 </div>
