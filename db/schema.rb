@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_14_113311) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_21_210015) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -144,6 +144,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_113311) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "schedule_activities", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "activity_id", null: false
+    t.integer "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_schedule_activities_on_activity_id"
+    t.index ["profile_id"], name: "index_schedule_activities_on_profile_id"
+  end
+
   create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -172,4 +182,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_14_113311) do
   add_foreign_key "favorite_organizations", "organizations"
   add_foreign_key "favorite_organizations", "profiles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "schedule_activities", "activities"
+  add_foreign_key "schedule_activities", "profiles"
 end

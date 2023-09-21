@@ -2,6 +2,12 @@ class ProfilesController < ApplicationController
 
     before_action :authenticate_user!
 
+    def schedule
+        @profile = Profile.find(params[:id])
+        @schedule_activities = ScheduleActivity.where(profile_id: @profile.id)
+        render :schedule
+    end
+
     def detail
         @profile = Profile.find(params[:id])
         render :detail

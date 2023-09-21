@@ -24,8 +24,8 @@
         <% @activity.each do |activity| %>
           <%= render "components/cards/activity-card",
               organization: @organization,
-              activity: activity,
-              camp: @camp %>
+              camp: @camp,
+              activity: activity %>
         <% end %>
         <%= render "uis/buttons/button",
               type: "empty",

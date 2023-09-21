@@ -16,11 +16,10 @@ class Organization < ApplicationRecord
 
     # Reference
     has_many :camps, dependent: :destroy
-    has_many :favorite_organization, dependent: :destroy
+    has_many :favorite_organizations, dependent: :destroy
 
     def favorited?(user)
         @profile = Profile.find_by(user_id: user.id)
         FavoriteOrganization.where(profile_id: @profile.id).exists?
-        
     end
 end

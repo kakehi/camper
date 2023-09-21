@@ -1,0 +1,38 @@
+<% if defined?(size)
+    @size = size
+else
+    @size = "regular"    
+end %>
+
+
+<% if activity.scheduled?(current_user, activity) %>
+    <%= form_with url: destroy_schedule_activity_path(activity.id), method: :delete do |form| %>
+        <%= form.button style: 'background-color: transparent; border: none;' do %>
+            <% if defined?(type) && type == "text" %>
+                <%= render "uis/buttons/text-link",
+                    text: "Scheduled",
+                    size: @size,
+                    icon: {
+                        src: "/images/icons/heart-on.svg"
+                    } %>
+            <% else %>
+                <span style="color:red;">Save this ❤︎</span>
+            <% end %>
+        <% end %>
+    <% end %>
+<% else %>
+    <%= form_with url: create_schedule_activity_path(activity.id), method: :post do |form| %>
+        <%= form.button style: 'background-color: transparent; border: none;' do %>
+            <% if defined?(type) && type == "text" %>
+                <%= render "uis/buttons/text-link",
+                    text: "Schedule",
+                    size: @size,
+                    icon: {
+                        src: "/images/icons/heart-off.svg"
+                    } %>
+            <% else %>
+                <span style="color:red;">Save this ❤︎</span>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>

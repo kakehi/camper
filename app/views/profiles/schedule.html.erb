@@ -1,0 +1,27 @@
+
+
+
+
+<div class="view-outer-container double-column">
+
+    <%# 
+        
+        PROFILE HERO
+    
+    %>
+    <%= render "profiles/components/profile_hero",
+        selected: 0
+    %>
+
+    <% @schedule_activities.each do |e| %>
+        <% _activity = Activity.find_by(id: e.activity_id) %>
+        <% _camp = Camp.find_by(id: _activity.camp_id) %>
+        <% _organization = Organization.find_by(id: _camp.organization_id) %>
+
+        <%= render "components/cards/activity-card",
+            organization: _organization,
+            camp: _camp,
+            activity: _activity
+        %>
+    <% end %>
+</div>

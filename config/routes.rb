@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   get '/', to: 'organizations#index', as: 'index_organization'
 
   ## Profile
+  get 'profile/:id/schedule', to: 'profiles#schedule', as: 'profile_schedule'
   get 'profile/:id/detail', to: 'profiles#detail', as: 'profile_detail'
-  get 'profile/:id/favorite-organizations', to: 'profiles#favorite_organizations', as: 'favorite_organizations_profile'
+  get 'profile/:id/favorite-organizations', to: 'profiles#favorite_organizations', as: 'profile_favorite_organizations'
 
   get 'profile/z8opKTG2XA/:user_id/new', to: 'profiles#new', as: 'profile_new'
   post 'profile/z8opKTG2XA/:user_id/new', to: 'profiles#create', as: 'profile_create'
@@ -78,5 +79,13 @@ Rails.application.routes.draw do
 
   post 'organizations/:organization_id/favorite-organizations(.:format)', to: 'favorite_organizations#create', as: 'create_favorite_organization'
   delete 'organizations/:organization_id/favorite-organizations(.:format)', to: 'favorite_organizations#destroy', as: 'destroy_favorite_organization'
+
+  ## SCHEDULES
+  resources :activities do
+    resource :schedule_activities, only: [:create, :destroy]
+  end
+
+  post 'activities/:activity_id/schedule-activities(.:format)', to: 'schedule_activities#create', as: 'create_schedule_activity'
+  delete 'activities/:activity_id/schedule-activities(.:format)', to: 'schedule_activities#destroy', as: 'destroy_schedule_activity'
 
 end

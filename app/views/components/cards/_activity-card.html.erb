@@ -51,6 +51,10 @@
                 text: "Edit activity",
                 size: "medium",
                 href: edit_activity_path(organization.id, camp.id, activity.id) %>
+
+            <%= render "uis/buttons/styled/schedule-activity-button",
+                type: "text",
+                activity: activity %>
         </div>
        
     </div>

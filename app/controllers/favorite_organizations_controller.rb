@@ -4,8 +4,6 @@ class FavoriteOrganizationsController < ApplicationController
         @Profile = Profile.find_by(user_id: current_user.id)
         @favorite_organization = FavoriteOrganization.new(profile_id: @Profile.id, organization_id: params[:organization_id])
 
-        logger.debug "Person attributes hash: #{@favorite_organization.errors.full_messages}"
-
         if @favorite_organization.save
             redirect_to index_organization_path
         else
