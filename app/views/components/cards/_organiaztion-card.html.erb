@@ -1,0 +1,13 @@
+<div class="card thread-card organization-thread <%= @camp_type_class %> <%= @hero_image %>">
+    <div class="content">
+        <div class="header">
+            <div class="main-content">
+                <h5><%= organization.name %></h5s>
+            </div>
+            
+        </div>
+        <%= render "uis/buttons/styled/favorite-organization-button",
+                    type: "text",
+                    organization: organization %>
+    </div>
+</div>

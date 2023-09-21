@@ -13,7 +13,11 @@
         selected: 1
     %>
 
-    <%= @favorite_organizations %>
-    <%= @favorite_organizations.count() %>
-
+    <% @favorite_organizations.each do |e| %>
+        <% _organization = Organization.find_by(id: e.organization_id) %>
+        
+        <%= render "components/cards/organiaztion-card",
+            organization: _organization
+        %>
+    <% end %>
 </div>

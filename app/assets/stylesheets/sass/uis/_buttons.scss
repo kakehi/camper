@@ -56,24 +56,37 @@
     &.regular{
         padding: 0.75rem 1rem;
         border-radius: 0.75rem;
-
-        font-size: 1rem;
     }
 
     &.medium{
         padding: 1rem 1.5rem;
         border-radius: 1rem;
-
-        font-size: 1.25rem;
     }
 
     &.large{
         padding: 2rem 3rem;
         border-radius: 1.5rem;
+    }
+}
 
+.button, .text-link{
+
+    font-size: 1rem;
+
+    &.regular{
+        font-size: 1rem;
+    }
+
+    &.medium{
+        font-size: 1.25rem;
+    }
+
+    &.large{
         font-size: 1.5rem;
     }
 }
+
+
 
 // Interaction
 .button{
@@ -88,4 +101,15 @@
 
 .text-link{
     text-decoration: underline;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #777;
+
+    &:hover{
+        text-decoration: none;
+        color: #666;
+    }
 }

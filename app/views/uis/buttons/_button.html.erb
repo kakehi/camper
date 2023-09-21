@@ -1,3 +1,9 @@
-<a class="button <%= type %> <%= size %>" href=<%= href %>>
+<% if defined?(size)
+    @size = size
+else
+    @size = "regular"    
+end %>
+
+<a class="button <%= type %> <%= @size %>" href=<%= href %>>
     <%= text %>
 </a>

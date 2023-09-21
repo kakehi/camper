@@ -1,3 +1,21 @@
-<a class="text-link <%= size %>" href=<%= href %>>
-    <%= text %>
-</a>
+<% if defined?(size)
+    @size = size
+else
+    @size = "regular"    
+end %>
+
+<% if defined?(href) %>
+    <a class="text-link <%= @size %>" href=<%= href %>>
+        <% if defined?(icon) %> 
+            <img class="icon" alt=<%= text %> src=<%= icon[:src] %>/>
+        <% end %>
+        <%= text %>
+    </a>
+<% else %>
+    <span class="text-link <%= @size %>">
+        <% if defined?(icon) %> 
+            <img class="icon" alt=<%= text %> src=<%= icon[:src] %>/>
+        <% end %>
+        <%= text %>
+    </span>
+<% end %>
