@@ -1,0 +1,19 @@
+
+<% 
+    font_size = ""
+    if defined?(size)
+
+        if size == "large"
+            font_size = "h3"
+        elsif size == "medium"
+            font_size = "h4"
+        end
+
+    end 
+%>
+
+<% if start_at.present? && end_at.present? %>
+    <div class="date <%= font_size %> ">
+        <%= start_at.to_formatted_s(:short) %> - <%= end_at.to_formatted_s(:short) %>
+    </div>
+<% end %>

@@ -28,9 +28,9 @@
             </div>
             <div class="footer">
                 <div class="footer-child date">
-                    <% if activity.start_at.present? && activity.end_at.present? %>
-                        <%= activity.start_at.to_formatted_s(:short) %> - <%= activity.end_at.to_formatted_s(:short) %>
-                    <% end %>
+                    <%= render "uis/grammar/week",
+                        start_at: activity.start_at,
+                        end_at: activity.end_at %>
                 </div>
                 <div class="footer-child location">
                     <%= render "uis/buttons/text-link",

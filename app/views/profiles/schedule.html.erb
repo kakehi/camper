@@ -15,17 +15,45 @@
 
     <div class="list-card-container">
 
-        <% @schedule_activities.each do |e| %>
-            <% _activity = Activity.find_by(id: e.activity_id) %>
-            <% _camp = Camp.find_by(id: _activity.camp_id) %>
-            <% _organization = Organization.find_by(id: _camp.organization_id) %>
+        <% get_current_summer[:weeks].each do |w| %>
 
-            <%= render "components/cards/activity-schedule-card",
-                organization: _organization,
-                camp: _camp,
-                activity: _activity
-            %>
+            <% weekly_activities = @schedule_activities
+            .map{|e|
+                Activity.find_by(id: e.activity_id)
+            }.select{|a|
+                if defined?(a[:start_at]) && defined?(a[:end_at])
+                    (w[:start_at] <= a[:start_at] && a[:start_at] <= w[:end_at]) ||
+                    (a[:end_at] <= w[:end_at] && w[:start_at] <= a[:end_at]) ||
+                    (a[:start_at] <= w[:start_at] && w[:start_at] <= a[:end_at]) ||
+                    (w[:end_at] <= a[:end_at] && a[:start_at] <= w[:end_at])
+                else
+                    false
+                end
+            }%>
+            
+            <div class="schedule-week-container">
+                <div class="header section-title">
+                    <%= render "uis/grammar/week",
+                        size: "medium",
+                        start_at: w[:start_at],
+                        end_at: w[:end_at] %>
+                </div>
+                <div class="card-container">
+                    <% weekly_activities.each do |a| %>
+                        <% _camp = Camp.find_by(id: a.camp_id) %>
+                        <% _organization = Organization.find_by(id: _camp.organization_id) %>
+            
+                        <%= render "components/cards/activity-schedule-card",
+                            organization: _organization,
+                            camp: _camp,
+                            activity: a
+                        %>
+                    <% end %>
+                </div>
+            </div>
+            
         <% end %>
+        
 
     </div>
 </div>

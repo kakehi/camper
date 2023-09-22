@@ -16,10 +16,11 @@
             <% end %>
             
             <div class="main-content">
-                <% if activity.start_at.present? && activity.end_at.present? %>
-    
-                    <h4 class="date"><%= activity.start_at.to_formatted_s(:short) %> - <%= activity.end_at.to_formatted_s(:short) %></h4>
-                <% end %>
+
+                <%= render "uis/grammar/week",
+                    size: "medium",
+                    start_at: activity.start_at,
+                    end_at: activity.end_at %>
 
                 <% if @camp_type != 1 %>
                     <h4><%= activity.name %></h4>
