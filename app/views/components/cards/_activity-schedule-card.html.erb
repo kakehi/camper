@@ -1,0 +1,55 @@
+
+
+<%
+    if activity.hero_image.present?
+        hero_image = activity.hero_image
+    elsif camp.hero_image.present?
+        hero_image = camp.hero_image
+    else
+        hero_image = organization.hero_image
+    end
+%>
+
+
+<div class="card list-card activity-schedule-card">
+    <div class="content">
+        <div class="left-body">
+            <div class="header">
+                <h4>
+                    <% if activity.name.nil? %>
+                        <%= camp.name %>
+                    <% else %>
+                        <%= activity.name %>
+                    <% end %>
+                </h4>
+                <%= render "uis/buttons/styled/schedule-activity-button",
+                    type: "text",
+                    activity: activity %>
+            </div>
+            <div class="footer">
+                <div class="footer-child date">
+                    <% if activity.start_at.present? && activity.end_at.present? %>
+                        <%= activity.start_at.to_formatted_s(:short) %> - <%= activity.end_at.to_formatted_s(:short) %>
+                    <% end %>
+                </div>
+                <div class="footer-child location">
+                    <%= render "uis/buttons/text-link",
+                        text: organization.name,
+                        size: "small",
+                        href: get_organization_href(organization) %>
+                    <%= render "uis/grammar/location",
+                        location: camp %>
+                </div>
+                <div class="footer-child price">
+                    <%= render "uis/grammar/price", price: activity.base_price, size: "small" %>
+                </div>
+            </div>
+
+        </div>
+        <div class="right-image">
+            <%= render "uis/thumb_images/thumb_image",
+                size: "fill",
+                image: hero_image %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+
+
+
+.list-card{
+
+    border-radius: 1rem;
+    overflow: hidden;
+
+    background-color: white;
+    box-shadow: 0.5rem 0.5rem 2rem rgba(0,0,0,0.05);
+
+}
+
+
+
+/*
+
+    ACTIVITY SCHEDULE
+
+*/
+.list-card.activity-schedule-card{
+
+    
+
+    .content{
+        
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+
+        .left-body{
+
+            padding: 2rem;
+
+            .header{
+                padding: 0 0 1rem;
+                border-bottom: 1px solid #eee;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+            }
+            .footer{
+
+                padding: 1rem 0 0;
+                display: grid;
+                grid-template-columns: 1fr 4fr 1fr;
+                
+                .footer-child{
+                    &:not(:last-child){
+                        border-right: 1px solid #eee;
+                    }
+                    &:not(:first-child){
+                        padding-left: 1rem;
+                    }
+                }
+                
+                
+            }
+        }
+
+        .right-image{
+            overflow: hidden;
+        }
+
+        
+    }
+}
+
+

@@ -4,12 +4,8 @@
     @camps = Camp.where(organization_id: organization.id)
     @camp = @camps.first
 
+    href = get_organization_href(organization)
 
-    if @camps.count == 1 && @camp.present?
-        @href = index_camp_activities_path(organization, @camp)
-    else
-        @href = index_organization_camp_path(organization)
-    end
     date = 0
     if @camp.present?
         @activities = Activity.where(camp_id: @camp.id)
@@ -33,7 +29,6 @@
         end
 
     else
-        @href = index_organization_camp_path(organization)
         price = 80
     end 
 %>
@@ -42,7 +37,7 @@
 <%= date %>
 
 <%= render "components/cards/grid-card",
-    href: @href,
+    href: href,
     hero_image: organization.hero_image,
     title: organization.name,
     sub_information: organization.city,
