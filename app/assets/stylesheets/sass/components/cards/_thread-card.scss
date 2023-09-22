@@ -33,7 +33,7 @@
         .header{
             display: grid;
             width: 100%;
-            grid-template-columns: 1fr 5fr 1fr;
+            grid-template-columns: 1fr 5fr 1fr 1fr;
             gap: 2rem;
             align-items: center;
             
@@ -67,7 +67,7 @@
 .thread-card.activity-thread.no-image{
     .content{
         .header{
-            grid-template-columns: 5fr 1fr;
+            grid-template-columns: 5fr 1fr 1fr
         }
         .body{
             margin-left: 0rem;

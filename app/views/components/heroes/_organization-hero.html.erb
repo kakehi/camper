@@ -16,9 +16,8 @@
                     type: "text",
                     organization: @organization %>
                     
-                <%= render "uis/buttons/text-link",
-                    text: "Edit organization",
-                    href: edit_organization_path(organization) %>
+                <%= render "uis/buttons/styled/edit-button",
+                    organization: organization %>
             </div>
         </div>
     </div>

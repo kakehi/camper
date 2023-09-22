@@ -1,18 +1,25 @@
 
-
-
-
-
 .button{
-    
-    
-    border: 2px solid rgba(0, 0, 0, 0);
+ 
+    border: 1px solid rgba(0, 0, 0, 0);
 
     padding: 0.25rem 1rem;
     border-radius: 0.5rem;
 
     text-align: center;
+    gap: 0.5rem;
+}
 
+.text-link{
+    text-decoration: underline;
+    color: #777;
+    gap: 0.25rem;
+}
+
+.button, .text-link{
+    display: flex;
+    align-items: center;
+    
 }
 
 
@@ -24,6 +31,9 @@
     &.primary{
         background-color: #15B166;
         color: white;
+        &:hover{
+            background-color: #189357;
+        }
     }
     &.secondary{
         border-color: #999;
@@ -46,9 +56,6 @@
 
 // Size
 .button{
-
-    
-    border: 1px solid;
 
     padding: 0.25rem 1rem;
     border-radius: 0.5rem;
@@ -75,6 +82,9 @@
 
     &.regular{
         font-size: 1rem;
+        .icon{
+            width: 1rem;
+        }
     }
 
     &.medium{
@@ -89,25 +99,16 @@
 
 
 // Interaction
-.button{
+.button, .text-link{
     cursor: pointer;
+}
+.button{
     &:hover{
         text-decoration: none;
     }
 }
 
-
-
-
 .text-link{
-    text-decoration: underline;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    color: #777;
-
     &:hover{
         text-decoration: none;
         color: #666;

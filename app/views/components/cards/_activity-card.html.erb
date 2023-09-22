@@ -41,19 +41,20 @@
                 
             </div>
             
+            <div class="header-child text-right">
+                <%= render "uis/grammar/price", price: activity.base_price, size: "medium" %>
+            </div>
 
+            <div class="header-child text-right">
+                <%= render "uis/buttons/styled/schedule-activity-button",
+                    type: "cta",
+                    activity: activity %>
+            </div>
 
-            <%= render "uis/grammar/price", price: activity.base_price, size: "medium" %>
         </div>
         <div class="body">
             <div class="description"><%= activity.description %></div>
-            <%= render "uis/buttons/text-link",
-                text: "Edit activity",
-                size: "medium",
-                href: edit_activity_path(organization.id, camp.id, activity.id) %>
-
-            <%= render "uis/buttons/styled/schedule-activity-button",
-                type: "text",
+            <%= render "uis/buttons/styled/edit-button",
                 activity: activity %>
         </div>
        

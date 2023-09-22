@@ -13,10 +13,15 @@ end %>
                     text: "Scheduled",
                     size: @size,
                     icon: {
-                        src: "/images/icons/heart-on.svg"
+                        src: "/images/icons/calendar-black.svg"
                     } %>
             <% else %>
-                <span style="color:red;">Save this ❤︎</span>
+                <%= render "uis/buttons/button",
+                    text: "Schedule",
+                    size: @size,
+                    icon: {
+                        src: "/images/icons/calendar-white.svg"
+                    } %>
             <% end %>
         <% end %>
     <% end %>
@@ -28,10 +33,16 @@ end %>
                     text: "Schedule",
                     size: @size,
                     icon: {
-                        src: "/images/icons/heart-off.svg"
+                        src: "/images/icons/calendar-black.svg"
                     } %>
             <% else %>
-                <span style="color:red;">Save this ❤︎</span>
+                <%= render "uis/buttons/button",
+                    text: "Schedule",
+                    type: "primary",
+                    size: @size,
+                    icon: {
+                        src: "/images/icons/calendar-white.svg"
+                    } %>
             <% end %>
         <% end %>
     <% end %>

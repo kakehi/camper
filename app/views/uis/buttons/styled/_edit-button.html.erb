@@ -1,0 +1,32 @@
+<% if defined?(size)
+    @size = size
+else
+    @size = "regular"    
+end %>
+
+
+<% if defined?(organization)
+    @href = edit_organization_path(organization)
+    @text = "Edit organization"
+elsif defined?(camp)
+    @organization = Organization.find_by(id: camp.organization_id)
+    @href = edit_camp_path(@organization, camp)
+    @text = "Edit camp"  
+elsif defined?(activity)
+    @camp = Camp.find_by(id: activity.camp_id)
+    @organization = Organization.find_by(id: @camp.organization_id)
+    @href = edit_activity_path(@organization, @camp, activity)
+    @text = "Edit session"  
+elsif defined?(profile)
+    @href = profile_edit_path(profile)
+    @text = "Edit profile"  
+end %>
+
+
+<%= render "uis/buttons/text-link",
+    text: @text,
+    size: @size,
+    href: @href,
+    icon: {
+        src: "/images/icons/pen-black.svg"
+    } %>

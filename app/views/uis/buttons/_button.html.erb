@@ -4,6 +4,20 @@ else
     @size = "regular"    
 end %>
 
-<a class="button <%= type %> <%= @size %>" href=<%= href %>>
-    <%= text %>
-</a>
+
+
+<% if defined?(href) %>
+    <a class="button <%= type %> <%= @size %>" href=<%= href %>>
+        <% if defined?(icon) %> 
+            <img class="icon" alt=<%= text %> src=<%= icon[:src] %>/>
+        <% end %>
+        <%= text %>
+    </a>
+<% else %>
+    <span class="button <%= type %> <%= @size %>">
+        <% if defined?(icon) %> 
+            <img class="icon" alt=<%= text %> src=<%= icon[:src] %>/>
+        <% end %>
+        <%= text %>
+    </span>
+<% end %>
