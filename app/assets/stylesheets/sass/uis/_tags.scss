@@ -4,6 +4,7 @@
 .tag{
     display: inline-block;
     background-color: #eee;
+    display: inline;
 }
 
 
@@ -13,8 +14,9 @@
     border-radius: 0.5rem;
     
     &.small{
-        padding: 0.25rem 0.75rem;
+        padding: 0.15rem 0.5rem;
         border-radius: 0.5rem;
+        font-size: 0.8rem;
     }
 
     &.medium{

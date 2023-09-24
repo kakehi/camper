@@ -19,7 +19,8 @@
 
         <div class="title">
             <%= render "uis/grammar/location_metro",
-                    location: organization %>
+                size: "small",
+                location: organization %>
             <h6><%= organization.name %></h6>
         </div>
 
@@ -27,13 +28,15 @@
             <%= render "uis/grammar/price", weekly_price: weekly_price %>
         <% end %>
 
-        <% tags.each do |t| %>
-            <%= render "uis/tags/tag",
-                text: t[:name],
-                size: "small" %>
+        <% if tags.count > 0 %>
+            <div class="flex-wrap-container">
+                <% tags.each do |t| %>
+                    <%= render "uis/tags/tag",
+                        text: t[:name],
+                        size: "small" %>
+                <% end %>
+            </div>
         <% end %>
-            
-
 
     </div>
 </a>

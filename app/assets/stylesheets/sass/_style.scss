@@ -3,7 +3,7 @@ body{
     margin: 0;
     padding: 0;
     background-color: #fff;
-    color: black;
+    color: #333;
 }
 
 body .main-container{
@@ -61,6 +61,13 @@ a{
 
     }
 }
+.flex-wrap-container{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
 
 .side-panel-grid-container{
     box-sizing: content-box;
@@ -72,6 +79,22 @@ a{
         border-radius: 0.75rem;
         border: 1px solid #ddd;
         padding: 1rem;
+
+        .side-panel-section-container{
+            padding: 1rem 0;
+            display: grid;
+            gap: 0.5rem;
+
+            &:first-child{
+                padding: 0 0 1rem;
+            }
+            &:last-child{
+                padding: 1rem 0 0;
+            }
+            &:not(:first-child):not(:last-child){
+                padding: 1rem 0;
+            }
+        }
     }
 }
 

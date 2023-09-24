@@ -17,15 +17,20 @@
             <%= @camp.description %>
         </div>
         <div class="side-panel-container">
-            <%= render "uis/lists/list_item", title: "Website", content: @camp.website, href: @camp.website %>
-            <%= render "uis/lists/list_item", title: "Email", content: @camp.email %>
+            <div class="side-panel-section-container">
+                <%= render "uis/grammar/location",
+                    location: @camp %>
+                <%= render "uis/grammar/age-group",
+                    age_group_min: @camp.age_group_min,
+                    age_group_max: @camp.age_group_max %>
+            </div>
 
-            <%= render "uis/lists/list_item", title: "Location", content: "#{@camp.city}, #{@camp.state}, #{@camp.country}, #{@camp.zip_code}" %>
+            <div class="side-panel-section-container">
+                <%= render "uis/lists/list_item", title: "Website", content: @camp.website, href: @camp.website %>
+                <%= render "uis/lists/list_item", title: "Email", content: @camp.email %>
+            </div>
 
-            <%= render "uis/grammar/age-group",
-                size: "medium",
-                age_group_min: @camp.age_group_min,
-                age_group_max: @camp.age_group_max %>
+            
             
         </div>
         

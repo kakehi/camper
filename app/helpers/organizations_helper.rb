@@ -55,7 +55,15 @@ module OrganizationsHelper
         camps.each{|c|
             tags.concat(camp_get_tags(c))
         }
-        tags
+
+        sorted_tags = []
+        while tags.count > 0 
+            max_tag = tags.max_by { |v| tags.count(v) }
+            sorted_tags.push(max_tag)
+            tags.delete(max_tag)
+        end 
+
+        sorted_tags
     end
 
 end

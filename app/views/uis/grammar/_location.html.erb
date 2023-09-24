@@ -1,4 +1,11 @@
-<div class="grammar grammar-location">
+
+<% 
+    @size = defined?(size) ? size : "regular"
+%>
+
+
+
+<div class="grammar grammar-location <%= @size %>">
     <img class="location icon" src="/images/icons/location-black.svg"/>
     <%= location.city %>,
     <%= location.state %>,

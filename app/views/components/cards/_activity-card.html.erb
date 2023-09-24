@@ -19,7 +19,7 @@
                         end_at: activity.end_at %></h4>
                     <% else %>
                         <h4 class="title"><%= activity.name %></h4>
-                        <div class="flex-container">
+                        <div class="flex-wrap-container">
                             <% activity.tags.each do |tag| %>
                                 <%= render "uis/tags/tag",
                                     text: tag.name,
@@ -36,8 +36,8 @@
             </div>
 
             <% if defined?(activity.description) %>
-                <div class="body">
-                    <div class="description"><%= activity.description %></div>
+                <div class="body description">
+                    <%= activity.description %>
                 </div>
             <% end %>
 
@@ -48,18 +48,19 @@
                     <% else %>
                         <%= render "uis/grammar/week",
                             start_at: activity.start_at,
-                            end_at: activity.end_at %>
+                            end_at: activity.end_at,
+                            icon: true
+                        %>
                     <% end %>
                         
                 </div>
                 <div class="footer-child stats">
                     <%= render "uis/grammar/age-group",
-                        size: "medium",
                         age_group_min: activity.age_group_min,
                         age_group_max: activity.age_group_max %>
                 </div>
                 <div class="footer-child price">
-                    <%= render "uis/grammar/price", price: activity.base_price, size: "small" %>
+                    <%= render "uis/grammar/price", price: activity.base_price, size: "medium" %>
                     <div class="header-child text-right">
                         <%= render "uis/buttons/styled/schedule-activity-button",
                             type: "cta",

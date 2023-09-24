@@ -106,6 +106,16 @@ module ApplicationHelper
                 id: 31,
                 name: "Raleigh-Durham-Cary",
                 zip_codes: [27601]
+            },
+            {
+                id: 33,
+                name: "Richmond-VA",
+                zip_codes: [23220]
+            },
+            {
+                id: 33,
+                name: "Virginia Beach-Norfolk",
+                zip_codes: []
             }
         ]
     end

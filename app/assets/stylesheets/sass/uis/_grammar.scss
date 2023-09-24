@@ -4,10 +4,57 @@
     display: flex;
     gap: 0.25rem;
 
-    .icon{
-        width: 1.25rem;
+}
+
+
+/*
+
+    Size
+
+*/
+.grammar{
+
+    &.small{
+        gap: 0.3rem;
+        font-size: 0.8rem;
+        .icon{
+            width: 1rem;
+        }
+    }
+
+    &.regular{
+        gap: 0.5rem;
+        font-size: 1rem;
+        .icon{
+            width: 1.25rem;
+        }
+    }
+
+    &.medium{
+        gap: 0.7rem;
+        font-size: 1.2rem;
+        .icon{
+            width: 1.5rem;
+        }
+    }
+
+    &.large{
+        gap: 1rem;
+        font-size: 1.5rem;
+        .icon{
+            width: 1.75rem;
+        }
     }
 }
+
+
+
+
+/*
+
+    Custom
+    
+*/
 
 
 // Price
@@ -15,25 +62,30 @@
     align-items: baseline;
     color: #666;
     .figure{
-        font-weight: 600;
-        font-size: 1.25rem;
+        font-weight: 700;
     }
 
 
     &.medium{
-        gap: 0.5rem;
-        font-size: 1rem;
         .figure{
-            font-size: 1.75rem;
+            font-size: 1.5rem;
         }
     }
 
     &.large{
-        gap: 0.5rem;
-        font-size: 1.25rem;
         .figure{
-            font-size: 2rem;
+            font-size: 1.75rem;
         }
+    }
+}
+
+
+// Date
+.grammar-date{
+    align-items: center;
+    
+    .icon{
+        filter: opacity(80%);
     }
 }
 
@@ -41,13 +93,22 @@
 // Location
 .grammar-location{
     align-items: center;
-
-    color: #999;
+    
     .icon{
-        filter: opacity(40%);
+        filter: opacity(80%);
     }
 
     &:hover{
         text-decoration: underline;
+    }
+}
+
+
+// Age Group
+.grammar-age-group{
+    align-items: center;
+
+    .icon{
+        filter: opacity(80%);
     }
 }

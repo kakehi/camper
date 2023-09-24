@@ -2,13 +2,14 @@
 <% 
     font_size = ""
     if defined?(size)
-
+        @size = size
         if size == "large"
             font_size = "h3"
         elsif size == "medium"
             font_size = "h4"
         end
-
+    else
+        @size = "regular"
     end 
 %>
 
@@ -23,7 +24,10 @@
 
 
 <% if start_at.present? && end_at.present? %>
-    <div class="date <%= font_size %> ">
+    <div class="grammar grammar-date <%= @size %> <%= font_size %> ">
+        <% if defined?(icon) && icon %>
+            <img class="calendar icon" src="/images/icons/calendar-black.svg"/>
+        <% end %>
         <%= text %>
     </div>
 <% end %>

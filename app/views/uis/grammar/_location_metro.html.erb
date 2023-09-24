@@ -25,10 +25,14 @@
             targetMetroName = targetMetro[0][:name]
         end
     end
+
     
+    @size = defined?(size) ? size : "regular"
+
+
 %>
 
-<div class="grammar grammar-location metro">
+<div class="grammar grammar-location metro <%= @size %>">
     <img class="location icon" src="/images/icons/location-black.svg"/>
     <%= targetMetroName %>
 </div>

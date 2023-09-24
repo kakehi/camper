@@ -26,6 +26,14 @@
                 justify-content: space-between;
                 align-items: baseline;
             }
+
+            .body{
+                margin: 0.5rem 0;
+                &.description{
+                    max-width: 800px;
+                } 
+            }
+
             .footer{
 
                 padding: 1rem 0 0;
