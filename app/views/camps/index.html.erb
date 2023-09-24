@@ -16,10 +16,10 @@
         <%= render "components/titles/page-title",
             title: "Camps" %>
         <div class="thread-container">
-            <% @camps.each do |camp| %>
+            <% @camps.each do |c| %>
                 <div class="thread-card">
                     <%= render "components/cards/camp-hero-card",
-                    camp: camp %>
+                    camp: c %>
                     
                 </div>
             <% end %>

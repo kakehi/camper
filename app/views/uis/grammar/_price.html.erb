@@ -1,11 +1,11 @@
 
 
 <% if defined?(weekly_price) && weekly_price.is_a?(Integer) %>
-    <div class="grammar-price <%=  defined?(size) ? size : ""%>">
-        <%= defined?(static_price) && !static_price ? "From" : "" %>
+    <div class="grammar grammar-price <%=  defined?(size) ? size : ""%>">
+        From<div class="figure">$<%= weekly_price %></div>week
     </div>
 <% elsif price.is_a?(Integer) %>
-    <div class="grammar-price <%=  defined?(size) ? size : ""%>">
+    <div class="grammar grammar-price <%=  defined?(size) ? size : ""%>">
         <%= defined?(static_price) && !static_price ? "From" : "" %>
         <div class="figure">$<%= price %></div>session
     </div>

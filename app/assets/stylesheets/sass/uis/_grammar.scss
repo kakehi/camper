@@ -1,8 +1,17 @@
 
-// Price
-.grammar-price{
+
+.grammar{
     display: flex;
     gap: 0.25rem;
+
+    .icon{
+        width: 1.25rem;
+    }
+}
+
+
+// Price
+.grammar-price{
     align-items: baseline;
     color: #666;
     .figure{
@@ -29,9 +38,15 @@
 }
 
 
-
+// Location
 .grammar-location{
+    align-items: center;
+
     color: #999;
+    .icon{
+        filter: opacity(40%);
+    }
+
     &:hover{
         text-decoration: underline;
     }

@@ -37,6 +37,7 @@
     padding-bottom: 1.5rem;
     padding: 1rem;
     border-radius: 1rem;
+    
     .image{
         height: 14rem;
         border-radius: 1rem;
@@ -46,10 +47,12 @@
     }
 
     .content{
-        padding: 0.5rem 0;
-        gap: 0.5rem;
-        .title{
+        padding: 0.75rem 0;
+        gap: 1rem;
 
+        .title{
+            display: grid;
+            gap: 0.25rem;
         }
         .sub-information{
         }

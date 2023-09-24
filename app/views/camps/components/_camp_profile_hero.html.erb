@@ -16,11 +16,11 @@
     <div class="camp-header-container">
 
         <% if @organization_camps.count > 1 %>
-            <%= render "uis/buttons/button",
-                type: "secondary",
-                text: "View all camps",
-                size: "regular",
-                href: index_organization_camp_path(@organization)  %>
+            <div class="header-control">
+                <%= render "uis/buttons/styled/back-button",
+                    text: "View all camps",
+                    href: index_organization_camp_path(@organization)  %>
+            </div>
         <% end %>
         <%= render "components/heroes/camp-hero",
             camp: @camp %>

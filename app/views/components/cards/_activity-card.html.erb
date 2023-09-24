@@ -5,59 +5,79 @@
 %>
 
 
-<div class="card thread-card activity-thread <%= @camp_type_class %> <%= @hero_image %>">
+<div class="card list-card activity-card <%= @camp_type_class %> <%= @hero_image %>">
     <div class="content">
-        <div class="header">
-            <% if @camp_type != 1 && activity.hero_image.present? %>
-                <%= render "uis/thumb_images/thumb_image",
-                    type: "circular",
-                    size: "medium",
-                    image: activity.hero_image %>
+        <div class="left-body">
+            <div class="header">
+                <div class="main-content">
+                    
+                    
+
+                    <% if @camp_type == 1 %>
+                        <h4 class="title"><%= render "uis/grammar/week",
+                        start_at: activity.start_at,
+                        end_at: activity.end_at %></h4>
+                    <% else %>
+                        <h4 class="title"><%= activity.name %></h4>
+                        <div class="flex-container">
+                            <% activity.tags.each do |tag| %>
+                                <%= render "uis/tags/tag",
+                                    text: tag.name,
+                                    size: "small" %>
+                            <% end %>
+                        </div>
+                    <% end %>
+                    
+                </div>
+
+                <%= render "uis/buttons/styled/edit-button",
+                    activity: activity %>
+                
+            </div>
+
+            <% if defined?(activity.description) %>
+                <div class="body">
+                    <div class="description"><%= activity.description %></div>
+                </div>
             <% end %>
-            
-            <div class="main-content">
 
-                <%= render "uis/grammar/week",
-                    size: "medium",
-                    start_at: activity.start_at,
-                    end_at: activity.end_at %>
-
-                <% if @camp_type != 1 %>
-                    <h4><%= activity.name %></h4>
-                    <div class="flex-container">
-                        <% activity.tags.each do |tag| %>
-                            <%= render "uis/tags/tag",
-                                text: tag.name,
-                                size: "small" %>
-                        <% end %>
-                    </div>
-                <% end %>
-                <div class="description">
+            <div class="footer">
+                <div class="footer-child date">
+                    <% if @camp_type == 1 %>
+                        <%= "Session #{index+1}" %>
+                    <% else %>
+                        <%= render "uis/grammar/week",
+                            start_at: activity.start_at,
+                            end_at: activity.end_at %>
+                    <% end %>
+                        
+                </div>
+                <div class="footer-child stats">
                     <%= render "uis/grammar/age-group",
                         size: "medium",
                         age_group_min: activity.age_group_min,
                         age_group_max: activity.age_group_max %>
                 </div>
-
-                
+                <div class="footer-child price">
+                    <%= render "uis/grammar/price", price: activity.base_price, size: "small" %>
+                    <div class="header-child text-right">
+                        <%= render "uis/buttons/styled/schedule-activity-button",
+                            type: "cta",
+                            activity: activity %>
+                    </div>
+                </div>
             </div>
-            
-            <div class="header-child text-right">
-                <%= render "uis/grammar/price", price: activity.base_price, size: "medium" %>
-            </div>
-
-            <div class="header-child text-right">
-                <%= render "uis/buttons/styled/schedule-activity-button",
-                    type: "cta",
-                    activity: activity %>
-            </div>
-
+        
         </div>
-        <div class="body">
-            <div class="description"><%= activity.description %></div>
-            <%= render "uis/buttons/styled/edit-button",
-                activity: activity %>
-        </div>
-       
+
+        <% if activity.hero_image.present? %>
+            <div class="right-image">
+                <%= render "uis/thumb_images/thumb_image",
+                    size: "fill",
+                    image: activity.hero_image %>
+            </div>
+        <% end %>
+
     </div>
+
 </div>

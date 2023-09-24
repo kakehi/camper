@@ -65,4 +65,16 @@ module ScheduleActivitiesHelper
     def get_current_summer
         get_summer_templates([2023]).first()
     end
+
+    def dates_overlap?(a, b)
+        if defined?(a[:start_at]) && defined?(a[:end_at])
+            (b[:start_at] <= a[:start_at] && a[:start_at] <= b[:end_at]) ||
+            (a[:end_at] <= b[:end_at] && b[:start_at] <= a[:end_at]) ||
+            (a[:start_at] <= b[:start_at] && b[:start_at] <= a[:end_at]) ||
+            (b[:end_at] <= a[:end_at] && a[:start_at] <= b[:end_at])
+        else
+            false
+        end
+        
+    end
 end

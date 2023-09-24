@@ -12,8 +12,18 @@
     end 
 %>
 
+
+<% 
+    if(start_at.month == end_at.month) 
+        text = "#{start_at.strftime("%b")} #{start_at.strftime("%d")} - #{end_at.strftime("%d")}"
+    else
+        text = "#{start_at.strftime("%b")} #{start_at.strftime("%d")} - #{end_at.strftime("%b")} #{end_at.strftime("%d")}"
+    end
+%>
+
+
 <% if start_at.present? && end_at.present? %>
     <div class="date <%= font_size %> ">
-        <%= start_at.to_formatted_s(:short) %> - <%= end_at.to_formatted_s(:short) %>
+        <%= text %>
     </div>
 <% end %>

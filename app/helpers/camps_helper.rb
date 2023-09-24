@@ -47,4 +47,41 @@ module CampsHelper
             age_group_max: age_group_max
 
     end
+
+
+    def camp_get_minimum_weekly_cost(c)
+        minimum_weekly_price = 0
+        activities = Activity.where(camp_id: c.id)
+        activities.each{|a|
+            if a.start_at.present? && a.end_at.present? && a.base_price.present?
+                addition = (a.end_at - a.start_at)%7
+                if a.end_at - a.start_at > 5
+                    week_count = a.start_at.step(a.end_at+addition, 7).count
+                else
+                    week_count = 1
+                end
+                
+                weekly_price = a.base_price / week_count
+                if minimum_weekly_price == 0 || minimum_weekly_price > weekly_price
+                    minimum_weekly_price = weekly_price
+                end
+
+            end
+        }
+        minimum_weekly_price
+    end
+
+
+    def camp_get_tags(c)
+        tags = []
+        activities = Activity.where(camp_id: c.id)
+        activities.each{|a|
+            cats = Category.where(activity_id: a.id)
+            cats.each {|cat|
+                tags = tags.concat(Tag.where(id: cat.tag_id))
+            }
+        }
+        tags
+    end
+
 end

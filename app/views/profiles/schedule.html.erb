@@ -20,16 +20,7 @@
             <% weekly_activities = @schedule_activities
             .map{|e|
                 Activity.find_by(id: e.activity_id)
-            }.select{|a|
-                if defined?(a[:start_at]) && defined?(a[:end_at])
-                    (w[:start_at] <= a[:start_at] && a[:start_at] <= w[:end_at]) ||
-                    (a[:end_at] <= w[:end_at] && w[:start_at] <= a[:end_at]) ||
-                    (a[:start_at] <= w[:start_at] && w[:start_at] <= a[:end_at]) ||
-                    (w[:end_at] <= a[:end_at] && a[:start_at] <= w[:end_at])
-                else
-                    false
-                end
-            }%>
+            }.select{|a| dates_overlap?(a, w) }%>
             
             <div class="schedule-week-container">
                 <div class="header section-title">

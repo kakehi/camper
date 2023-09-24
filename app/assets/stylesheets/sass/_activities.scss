@@ -1,12 +1,23 @@
 
 
+.activities-container{
+
+    .card-container{
+        display: grid;
+        gap: 1rem;
+    }
+
+    
+}
+
 
 .hero-image{
     .activities-container{
 
-        .thread-container{
+        .card-container{
             padding-left: 12rem;
         }
+
         
     }
 }

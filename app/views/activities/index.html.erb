@@ -1,3 +1,23 @@
+<% 
+
+  weeks = get_current_summer[:weeks].select do |w|
+    available = false
+    @activity.each do |a|
+      if !available
+        available = dates_overlap?(a, w)
+      end
+    end
+    available
+  end
+  
+%>
+
+
+
+
+
+
+
 <div class="view-outer-container double-column">
 
   <%# 
@@ -20,13 +40,46 @@
 
   <div class="section camp <%= @camp.hero_image.present? ? "hero-image" : "no-image" %>">
     <div class="activities-container">
-      <div class="thread-container">
-        <% @activity.each do |activity| %>
-          <%= render "components/cards/activity-card",
-              organization: @organization,
-              camp: @camp,
-              activity: activity %>
+      <div class="card-container">
+
+        <% if @camp.camp_type == 0 %>
+          <% weeks.each do |w| %>
+          
+            <div class="schedule-week-container">
+              <div class="header section-title">
+                  <%= render "uis/grammar/week",
+                      size: "medium",
+                      start_at: w[:start_at],
+                      end_at: w[:end_at] %>
+              </div>
+              <div class="card-container">
+                  <% @activity.each do |a| %>
+                      <% if dates_overlap?(a, w)%>
+                        <%= render "components/cards/activity-card",
+                            organization: @organization,
+                            camp: @camp,
+                            activity: a
+                        %>
+                      <% end %>
+                      
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% elsif @camp.camp_type == 1 %>
+
+          <% @activity.each_with_index do |a, i| %>
+            <%= render "components/cards/activity-card",
+                organization: @organization,
+                camp: @camp,
+                activity: a,
+                index: i
+            %>
+          <% end %>
+
         <% end %>
+
+
         <%= render "uis/buttons/button",
               type: "empty",
               text: "Add session",
