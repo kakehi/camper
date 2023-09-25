@@ -7,6 +7,8 @@ class OrganizationsController < ApplicationController
         else
           @organization = Organization.all.reverse()
         end
+
+        @tags = Tag.find([3, 7, 1, 20])
         
         render :index
 

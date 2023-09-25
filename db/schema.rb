@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_21_210015) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_25_182128) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -91,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_210015) do
     t.string "state"
     t.string "city"
     t.integer "region"
+    t.integer "camp_group"
     t.index ["organization_id"], name: "index_camps_on_organization_id"
   end
 

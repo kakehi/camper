@@ -20,6 +20,6 @@ class Organization < ApplicationRecord
 
     def favorited?(user)
         @profile = Profile.find_by(user_id: user.id)
-        FavoriteOrganization.where(profile_id: @profile.id).exists?
+        FavoriteOrganization.where(profile_id: @profile.id, organization_id: id).exists?
     end
 end

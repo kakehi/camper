@@ -34,9 +34,20 @@
         &:hover{
             background-color: #189357;
         }
+
+        &.primary-on{
+            background-color: #999;
+            &:hover{
+                background-color: #777;
+            }
+        }
     }
     &.secondary{
-        border-color: #999;
+        border-color: #ccc;
+        &:hover{
+            border-color: #ccc;
+            background-color: #ccc;
+        }
     }
     &.empty{
         background-color: rgba(0, 0, 0, 0);
@@ -59,7 +70,7 @@
     border-radius: 0.5rem;
 
     &.regular{
-        padding: 0.75rem 1rem;
+        padding: 0.7rem 1rem;
         border-radius: 0.75rem;
     }
 
@@ -81,7 +92,7 @@
     &.regular{
         font-size: 1rem;
         .icon{
-            width: 1rem;
+            width: 1.25rem;
         }
     }
 
@@ -98,7 +109,7 @@
 
 // Interaction
 .button, .text-link{
-    cursor: pointer;
+    cursor:pointer;
 }
 .button{
     &:hover{

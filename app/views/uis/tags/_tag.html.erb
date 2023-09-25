@@ -10,18 +10,17 @@
 %>
 
 
-
 <% if defined?(href) %>
     <a class="tag <% defined?(type) ? type : "" %> <%= size %>" href=<%= href %>>
         <% if defined? @icon %>
-            <%= image_tag(@icon) if @icon.attached? %>
+            <%= image_tag(@icon) if @icon.present? %>
         <% end %>
         <%= @text %>
     </a>
 <% else %>
     <div class="tag <% defined?(type) ? type : "" %> <%= size %>">
         <% if defined? @icon %>
-            <%= image_tag(@icon) if @icon.attached? %>
+            <%= image_tag(@icon) if @icon.present? %>
         <% end %>
         <%= @text %>
     </div>

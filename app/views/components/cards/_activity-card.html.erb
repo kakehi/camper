@@ -62,11 +62,12 @@
                 </div>
                 <div class="footer-child price">
                     <%= render "uis/grammar/price", price: activity.base_price, size: "medium" %>
-                    <div class="header-child text-right">
-                        <%= render "uis/buttons/styled/schedule-activity-button",
+                    <%= render "uis/buttons/styled/schedule-activity-button",
                             type: "cta",
                             activity: activity %>
-                    </div>
+                    <%= render "uis/buttons/styled/order-activity-button",
+                            type: "cta",
+                            activity: activity %>
                 </div>
             </div>
         

@@ -24,3 +24,25 @@
     }
     
 }
+
+
+/*
+
+    Uniqui
+
+*/
+
+// Icon
+.tabs.page-tabs.icon{
+
+    .tab{
+        display: grid;
+        gap: 0.25rem;
+        text-align: center;
+
+        img{
+            margin: auto;
+            width: 2rem;
+        }
+    }
+}

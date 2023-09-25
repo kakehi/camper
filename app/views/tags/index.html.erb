@@ -10,7 +10,8 @@
         <% @tag.each do |t| %>
             <%= render "uis/tags/tag",
               href: edit_tag_path(t.id),
-              tg: t,
+              text: "#{t[:name]}, id=#{t[:id]}",
+              icon: t.icon,
               size: "small" %>
         <% end %>
     </div>

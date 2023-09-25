@@ -1,7 +1,21 @@
-<div class="tabs page-tabs">
-    <% tabs.each do |tab| %>
-        <a class="tab <%= tab[:id] %> <%= selected %> <%= tab[:id] == selected ? "selected" : "unselected" %>" href="<%= tab[:href] %>">
-            <%= tab[:name] %>
+<%
+
+    @type = "regular"
+    if(defined?(type))
+        @type = type
+    end
+
+%>
+
+
+
+<div class="tabs page-tabs <%= @type %>">
+    <% tabs.each do |t| %>
+        <a class="tab <%= t[:id] %> <%= selected %> <%= t[:id] == selected ? "selected" : "unselected" %>" href="<%= t[:href] %>">
+            <% if @type == "icon" && defined?(t.icon) %>
+                <%= image_tag(t.icon) if t.icon.present? %>
+            <% end %>
+            <%= t[:name] %>
         </a>
     <% end %>
 </div>

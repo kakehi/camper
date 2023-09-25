@@ -6,6 +6,19 @@ module CampsHelper
         ]        
     end
 
+    def camp_group_options
+        [
+            {
+                id: 2018,
+                name: "2018 Summer camp"
+            },
+            {
+                id: 2017,
+                name: "2017 Summer camp"
+            }
+        ]        
+    end
+
     def required_minimum_session_options
         [
             {
@@ -28,24 +41,56 @@ module CampsHelper
     end
 
 
-    def camp_get_age_group_from_activities(camp)
-        activities = Activity.where(camp_id: camp.id)
+
+
+    # Age group
+    def camp_get_age_group_min_from_activities(c)
+        activities = Activity.where(camp_id: c.id)
         age_group_min = nil
-        age_group_max = nil
-        activities.each do |activity|
-            if activity.age_group_min.present?
-                age_group_min = activity.age_group_min
-            end
-            if activity.age_group_max.present?
-                age_group_max = activity.age_group_max
+        activities.each do |a|
+            if (defined? a.age_group_min) && (a.age_group_min.is_a? Integer)
+                if (age_group_min == nil) || ((age_group_min.is_a? Integer) && (age_group_min > a.age_group_min))
+                    age_group_min = a.age_group_min
+                end
             end
         end
-
-        render "uis/grammar/age-group",
-            age_group_min: age_group_min,
-            age_group_max: age_group_max
-
+        if(activities.count == 0)
+            if (age_group_min == nil) && (defined? c.age_group_min) && (c.age_group_min.is_a? Integer)
+                age_group_min = c.age_group_min
+            end
+        end
+        age_group_min
     end
+
+    def camp_get_age_group_max_from_activities(c)
+        activities = Activity.where(camp_id: c.id)
+        age_group_max = nil
+        activities.each do |a|
+            if (defined? a.age_group_max) && (a.age_group_max.is_a? Integer)
+                if (age_group_max == nil) || ((age_group_max.is_a? Integer) && (age_group_max < a.age_group_max))
+                    age_group_max = a.age_group_max
+                end
+            end
+        end
+        if(activities.count == 0)
+            if (age_group_max == nil) && (defined? c.age_group_max) && (c.age_group_max.is_a? Integer)
+                age_group_max = c.age_group_max
+            end
+        end
+        age_group_max
+    end
+
+    def camp_render_age_group_from_activities(c)
+        render "uis/grammar/age-group",
+            age_group_min: camp_get_age_group_min_from_activities(c),
+            age_group_max: camp_get_age_group_max_from_activities(c)
+    end
+
+
+
+
+
+
 
 
     def camp_get_minimum_weekly_cost(c)

@@ -7,13 +7,21 @@
     href = get_organization_href(organization)
     weekly_price = organization_get_minimum_weekly_cost(organization)
     tags = organization_get_camp_tags(organization)
+
+    @hero_image = organization.hero_image
+    if defined?(@camp.hero_image) && @camp.hero_image.attached?
+        @hero_image = @camp.hero_image
+    end
+
+    age_group_min = organization_get_age_group_min_from_camps(organization)
+    age_group_max = organization_get_age_group_max_from_camps(organization)
 %>
 
 
 
 <a class="card grid-card" href="<%= href %>">
     <div class="image">
-        <%= image_tag(organization.hero_image) if organization.hero_image.attached? %>
+        <%= image_tag(@hero_image) if @hero_image.attached? %>
     </div>
     <div class="content">
 
@@ -37,6 +45,16 @@
                 <% end %>
             </div>
         <% end %>
+
+        <% if defined?(age_group_min) %>
+            <%= render "uis/grammar/age-group",
+                size: "small",
+                age_group_min: age_group_min,
+                age_group_max: age_group_max
+            %>
+        <% end %>
+
+        
 
     </div>
 </a>

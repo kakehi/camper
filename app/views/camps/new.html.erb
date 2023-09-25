@@ -26,16 +26,11 @@
         form_target: @camp
       %>
 
-      <%# Type %>
-      <div class="form-group">
-        <h4>Age groups</h4>
-        <div class="form-field">
-          <%= f.label "Camp type", class: 'form-label' %>
-          <%= f.select :camp_type, 
-            options_for_select(
-              Array[*camp_type_options.collect {|v,i| [v,camp_type_options.index(v)] }], :selected => f.object.camp_type), :class => 'form-drop-box' %>
-        </div>
-      </div>
+      <%# Templates %>
+      <%= render "components/forms/camp-format", 
+          f: f,
+          form_target: @camp
+      %>
 
       <div class="form-group image-upload">
         <%= f.label "Hero image", class: 'form-label' %>

@@ -1,0 +1,31 @@
+<%
+    if form_target.camp_group.presence
+        @camp_group = form_target.camp_group
+    else
+        @camp_group = ""
+    end
+%>
+
+
+<%# Type %>
+<div class="form-group">
+    <h4>Camp group</h4>
+    <div class="form-field">
+        <%= f.label "Camp group (year)", class: 'form-label' %>
+        <%= f.select :camp_group,
+        options_for_select(
+                camp_group_options.map{|c|[c[:name], c[:id]]},
+                :selected => @camp_group), 
+            {class: 'form-drop-box'} %>
+    </div>
+</div>
+
+<div class="form-group">
+    <h4>Camp type</h4>
+    <div class="form-field">
+        <%= f.label "Camp type", class: 'form-label' %>
+        <%= f.select :camp_type, 
+        options_for_select(
+            Array[*camp_type_options.collect {|v,i| [v,camp_type_options.index(v)] }], :selected => f.object.camp_type), :class => 'form-drop-box' %>
+    </div>
+</div>

@@ -10,18 +10,18 @@ end %>
         <%= form.button style: 'background-color: transparent; border: none;' do %>
             <% if defined?(type) && type == "text" %>
                 <%= render "uis/buttons/text-link",
-                    text: "Remove",
+                    text: "Cancel",
                     size: @size,
                     icon: {
-                        src: "/images/icons/calendar-on-black.svg"
+                        src: "/images/icons/trash-black.svg"
                     } %>
             <% else %>
                 <%= render "uis/buttons/button",
-                    text: "Remove",
-                    type: "secondary secondary-on",
+                    text: "Cancel",
+                    type: "primary primary-on",
                     size: @size,
                     icon: {
-                        src: "/images/icons/calendar-on-black.svg"
+                        src: "/images/icons/trash-white.svg"
                     } %>
             <% end %>
         <% end %>
@@ -31,19 +31,16 @@ end %>
         <%= form.button style: 'background-color: transparent; border: none;' do %>
             <% if defined?(type) && type == "text" %>
                 <%= render "uis/buttons/text-link",
-                    text: "Schedule",
+                    text: "Sign up now",
                     size: @size,
                     icon: {
                         src: "/images/icons/calendar-black.svg"
                     } %>
             <% else %>
                 <%= render "uis/buttons/button",
-                    text: "Schedule",
-                    type: "secondary",
-                    size: @size,
-                    icon: {
-                        src: "/images/icons/calendar-black.svg"
-                    } %>
+                    text: "Sign up now",
+                    type: "primary",
+                    size: @size %>
             <% end %>
         <% end %>
     <% end %>

@@ -18,7 +18,7 @@
     <% if age_group_min.present? && @age_group_min != nil %>
         <%= @age_group_min[:name] %>
     <% end %>
-    <% if age_group_max.present? && @age_group_max != nil %>
+    <% if age_group_max.present? && @age_group_max != nil && age_group_min != age_group_max %>
         to
         <%= @age_group_max[:name] %>
     <% end %>

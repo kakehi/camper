@@ -9,6 +9,7 @@ class CampsController < ApplicationController
           @camp = Camp.all
         end
 
+
         if params[:organization_id].present?
             @organization = Organization.find(params[:organization_id])
             @camps = Camp.where(organization_id: params[:organization_id])
@@ -39,7 +40,7 @@ class CampsController < ApplicationController
         if params[:default_camp].present? 
             @camp = Camp.find(params[:default_camp]).dup
             if @camp.name.present? 
-                @camp.name += ' Duplicated'
+                @camp.name += ' [Duplicated]'
             end
         else
             @camp = Camp.new
@@ -78,6 +79,8 @@ class CampsController < ApplicationController
             @camp.hero_image.attach(params[:camp][:hero_image])
         end
 
+        logger.debug @camp
+
         if @camp.update(camp_params)
             redirect_to index_camp_activities_path(@organization, @camp), notice: 'Updated'
         else
@@ -108,6 +111,7 @@ class CampsController < ApplicationController
                 .require(:camp)
                 .permit(
                     :camp_type,
+                    :camp_group,
                     :name,
                     :subhead,
                     :description,

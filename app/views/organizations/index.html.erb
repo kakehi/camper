@@ -5,7 +5,14 @@
   <% end %>
 </div>
 
+
 <div class="view-outer-container organizations-index-container">
+
+    <%= render "uis/tabs/page_tabs",
+        type: "icon", 
+        tabs: @tags,
+        selected: ""
+    %>
     <div class="grid-container">
         <% @organization.each do |organization| %>
             <%= render "components/cards/organization-grid-card",

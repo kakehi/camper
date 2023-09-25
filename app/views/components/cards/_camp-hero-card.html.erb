@@ -7,6 +7,7 @@
                 size: "large",
                 image: camp.hero_image %>
         <% end %>
+
         <div class="flex-container">
             <div class="overview-container">
                 
@@ -20,7 +21,7 @@
                     <p><%= camp.description %></p>
                 <% end %>
                 
-                <%= camp_get_age_group_from_activities(camp) %>
+                <%= camp_render_age_group_from_activities(camp) %>
 
                 <div class="button-group-container">
                     <%= render "uis/buttons/text-link",

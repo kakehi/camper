@@ -85,11 +85,21 @@
                 }
             }
             .footer{
-                grid-template-columns: 1fr 3fr 2fr;
+                display: flex;
 
+                .date{
+                    min-width: 8rem;
+                }
+                .stats{
+                    flex-grow: 1;
+                }
                 .price{
                     display: flex;
                     align-items: center;
+                    gap: 0.5rem;
+                    button{
+                        padding: 0;
+                    }
                 }
             }
         }
