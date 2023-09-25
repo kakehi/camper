@@ -1,10 +1,28 @@
 
+
+<% if defined?(tg)
+        @text = tg.name
+        @icon = tg.icon
+    else
+        @text = defined?(text) ? text  : nil 
+        @icon = defined?(icon) ? icon  : nil 
+    end
+%>
+
+
+
 <% if defined?(href) %>
     <a class="tag <% defined?(type) ? type : "" %> <%= size %>" href=<%= href %>>
-        <%= text %>
+        <% if defined? @icon %>
+            <%= image_tag(@icon) if @icon.attached? %>
+        <% end %>
+        <%= @text %>
     </a>
 <% else %>
     <div class="tag <% defined?(type) ? type : "" %> <%= size %>">
-        <%= text %>
+        <% if defined? @icon %>
+            <%= image_tag(@icon) if @icon.attached? %>
+        <% end %>
+        <%= @text %>
     </div>
 <% end %>

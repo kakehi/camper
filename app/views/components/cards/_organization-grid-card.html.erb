@@ -32,7 +32,7 @@
             <div class="flex-wrap-container">
                 <% tags.each do |t| %>
                     <%= render "uis/tags/tag",
-                        text: t[:name],
+                        tg: t,
                         size: "small" %>
                 <% end %>
             </div>

@@ -6,9 +6,12 @@
 </div>
 
 <div class="view-outer-container organizations-index-container">
-    <div class="grid-container">
-        <% @tag.each do |tag| %>
-            <div><%= tag.name %></div>
+    <div class="flex-wrap-container">
+        <% @tag.each do |t| %>
+            <%= render "uis/tags/tag",
+              href: edit_tag_path(t.id),
+              tg: t,
+              size: "small" %>
         <% end %>
     </div>
 

@@ -42,7 +42,6 @@ module CampsHelper
         end
 
         render "uis/grammar/age-group",
-            size: "medium",
             age_group_min: age_group_min,
             age_group_max: age_group_max
 
@@ -74,6 +73,11 @@ module CampsHelper
 
     def camp_get_tags(c)
         tags = []
+        camp_tags = CampTagRelation.where(camp_id: c.id)
+        camp_tags.each {|tag|
+            tags = tags.concat(Tag.where(id: tag.tag_id))
+        }
+
         activities = Activity.where(camp_id: c.id)
         activities.each{|a|
             cats = Category.where(activity_id: a.id)

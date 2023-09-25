@@ -13,7 +13,7 @@
                 <a href="<%= index_camp_activities_path(@organization, camp) %>"><h3 class="title"><%= camp.name %></h3></a>
                 
                 <% if defined?(camp.subhead) %>
-                    <h5><%= camp.subhead %></h5>
+                    <h6><%= camp.subhead %></h6>
                 <% end %>
                 
                 <% if defined?(camp.description) %>
@@ -25,7 +25,6 @@
                 <div class="button-group-container">
                     <%= render "uis/buttons/text-link",
                         text: "View camp",
-                        size: "medium",
                         href: index_camp_activities_path(@organization, camp) %>
                     <%= render "uis/buttons/styled/edit-button",
                         camp: camp %>

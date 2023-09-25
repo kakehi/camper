@@ -71,6 +71,8 @@ Rails.application.routes.draw do
   get 'tags/new', to: 'tags#new', as: 'new_tag'
   post 'tags/new', to: 'tags#create', as: 'create_tag'
 
+  get 'tags/edit/:id', to: 'tags#edit', as: 'edit_tag'
+  post 'tags/edit/:id', to: 'tags#update', as: 'update_tag'
 
   ## FAVORITES
   resources :organizations do

@@ -100,7 +100,7 @@ module ApplicationHelper
             {
                 id: 3,
                 name: "Philadelphia",
-                zip_codes: [19102]
+                zip_codes: [19102, 19144]
             },
             {
                 id: 31,

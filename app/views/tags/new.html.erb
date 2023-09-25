@@ -13,6 +13,13 @@
                 <%= f.text_field :name, class: 'form-control' %>
             </div>
         </div>
+
+        <%# ICON %>
+        <%= render "components/forms/image-uploader", 
+            f: f,
+            title: "Icon",
+            target_image: @tag.icon
+        %>
         
         <div class="button-group">
             <%= f.submit 'Create', class: 'btn btn-primary' %>

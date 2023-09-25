@@ -1,5 +1,7 @@
 
-
+<% 
+    tags = camp_get_tags(camp)
+%>
 
 <div class="hero camp-hero <%= camp.hero_image.present? ? "hero-image" : "no-image" %>" >
     <div class="content">
@@ -9,8 +11,23 @@
                 size: "medium",
                 image: camp.hero_image %>
         <% end %>
-        <div class="flex-container">
-            <a href="<%= index_camp_activities_path(@organization, camp) %>"><h2 class="title"><%= camp.name %></h2></a>
+        <div class="flex-container body">
+            <div class='header'>
+                <a href="<%= index_camp_activities_path(@organization, camp) %>" class="title">
+                    <h2><%= camp.name %></h2>
+                </a>
+
+                <% if tags.count > 0 %>
+                    <div class="flex-wrap-container">
+                        <% tags.each do |t| %>
+                            <%= render "uis/tags/tag",
+                                text: t[:name],
+                                size: "small" %>
+                        <% end %>
+                    </div>
+                <% end %>
+
+            </div>
             <div>
                 <%= render "uis/buttons/styled/edit-button",
                     camp: camp %>

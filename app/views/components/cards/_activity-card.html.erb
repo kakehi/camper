@@ -15,8 +15,9 @@
 
                     <% if @camp_type == 1 %>
                         <h4 class="title"><%= render "uis/grammar/week",
-                        start_at: activity.start_at,
-                        end_at: activity.end_at %></h4>
+                            start_at: activity.start_at,
+                            end_at: activity.end_at,
+                            size: "large" %></h4>
                     <% else %>
                         <h4 class="title"><%= activity.name %></h4>
                         <div class="flex-wrap-container">

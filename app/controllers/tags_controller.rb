@@ -15,8 +15,8 @@ class TagsController < ApplicationController
     def create
         @tag = Tag.new(tag_params)
 
-        if params[:tag][:icon_image]
-            @tag.icon_image.attach(params[:tag][:icon_image])
+        if params[:tag][:icon]
+            @tag.icon.attach(params[:tag][:icon])
         end
 
         if @tag.save
@@ -33,8 +33,8 @@ class TagsController < ApplicationController
     
     def update
         @tag = Tag.find(params[:id])
-        if params[:tag][:hero_image]
-            @tag.hero_image.attach(params[:tag][:hero_image])
+        if params[:tag][:icon]
+            @tag.icon.attach(params[:tag][:icon])
         end
         if @tag.update(tag_params)
             redirect_to index_tag_path(@tag), notice: 'Tag information is updated'
@@ -54,7 +54,8 @@ class TagsController < ApplicationController
         params
             .require(:tag)
             .permit(
-                :name)
+                :name,
+                :icon)
     end
 
 end

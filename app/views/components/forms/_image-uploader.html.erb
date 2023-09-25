@@ -1,0 +1,13 @@
+<%
+    @title = defined?(title) ? title : "Image"
+%>
+
+
+<div class="form-group image-upload">
+  <%= f.label @title, class: 'form-label' %>
+  <div class="image-preview" id="imagePreview">
+    <img src="<%= target_image.attached? ? url_for(target_image) : "" %>" alt="Image Preview" class="image-preview__image <%= target_image.attached? ? "-block" : "" %>">
+    <span class="image-preview__default-text <%= target_image.attached? ? "-none" : "" %>">No image uploaded</span>
+  </div>
+  <%= f.file_field :icon, class: 'form-control-file', id: 'imageUpload' %>
+</div>
