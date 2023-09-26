@@ -1,0 +1,6 @@
+alert("AAAAAAAA")
+$("#organization-favorite-button-<%= @organization.id %>").html(
+    "<%= j(render "favorite_organizations/favorite-organization-button", 
+        type: "text",
+        organization: @organization) %>"
+);
