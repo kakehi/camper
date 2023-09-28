@@ -1,6 +1,6 @@
 
 <% 
-    tags = camp_get_tags(camp)
+    tags = camp_get_sorted_tags(camp)
 %>
 
 <div class="hero camp-hero <%= camp.hero_image.present? ? "hero-image" : "no-image" %>" >

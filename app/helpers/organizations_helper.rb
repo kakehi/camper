@@ -25,6 +25,7 @@ module OrganizationsHelper
         end
     end
 
+    
     def get_organization_href(o)
         camps = get_organization_target_group(o)
         camp = camps.first

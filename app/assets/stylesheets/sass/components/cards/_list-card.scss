@@ -25,6 +25,11 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: baseline;
+
+                .title{
+                    display: grid;
+                    gap: 0.5rem;
+                }
             }
 
             .body{
@@ -70,7 +75,7 @@
 
 /*
 
-    ACTIVITY SCHEDULE
+    ACTIVITY
 
 */
 .list-card.activity-card{
@@ -132,8 +137,6 @@
     .content{
         grid-template-columns: 4fr 1fr;
         .left-body{
-
-            padding: 2rem;
 
             .header{
 

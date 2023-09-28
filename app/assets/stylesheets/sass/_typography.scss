@@ -8,11 +8,14 @@ body{
 }
 
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h7{
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, .h5-reg, h6, .h6, .h7, .h7-reg{
     font-family: "Arimo", "Helvetica", "Arial", sans-serif;
     margin: 0;
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .h7{
     font-weight: 600;
 }
+
 
 h1, .h1{
     font-size: 2.5rem;
@@ -30,7 +33,7 @@ h4, .h4{
     font-size: 1.75rem;
     line-height: 2rem;
 }
-h5, .h5{
+h5, .h5, .h5-reg{
     font-size: 1.5rem;
     line-height: 2rem;
 }
@@ -38,12 +41,25 @@ h6, .h6{
     font-size: 1.25rem;
     line-height: 1.5rem;
 }
-.h7{
+.h7, .h7-reg{
     font-size: 1rem;
     line-height: 1.25rem;
+}
+
+
+
+.subtext{
+    font-size: 1rem;
+    color: #999;
+}
+.subtext-mini{
+    font-size: 0.8rem;
+    color: #999;
 }
 
 
 .text-right{
     text-align: right;
 }
+
+

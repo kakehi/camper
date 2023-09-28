@@ -19,7 +19,10 @@
 .button, .text-link{
     display: flex;
     align-items: center;
-    
+}
+.button{
+
+    justify-content: center;
 }
 
 
@@ -51,12 +54,14 @@
     }
     &.empty{
         background-color: rgba(0, 0, 0, 0);
-        border-color: #DDD;
+        border-color: #eee;
         border-style: dashed;
+        border-width: 4px;
+        color: #aaa;
 
         &:hover{
             background-color: #eee;
-            color: #000;
+            color: #666;
             border-color: #eee;
             border-style: solid;
         }
@@ -82,7 +87,13 @@
     &.large{
         padding: 2rem 3rem;
         border-radius: 1.5rem;
+
+        &.empty{
+            padding: 6rem 3rem;
+        }
     }
+
+   
 }
 
 .button, .text-link{
@@ -111,6 +122,7 @@
 .button, .text-link{
     cursor:pointer;
 }
+
 .button{
     &:hover{
         text-decoration: none;

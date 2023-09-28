@@ -88,8 +88,17 @@ module CampsHelper
 
 
 
-
-
+    # Age group
+    def camp_get_metro(c)
+        _region=nil
+        if c.region != nil
+            _region=c.region
+        else
+            o = Organization.find_by(id: c.organization_id)
+            _region=o.region
+        end
+        location_region_options.select{|r| _region == r[:id]}.first
+    end
 
 
 
@@ -131,6 +140,18 @@ module CampsHelper
             }
         }
         tags
+    end
+
+    def camp_get_sorted_tags(c)
+        tags = camp_get_tags(c)
+        sorted_tags = []
+        while tags.count > 0 
+            max_tag = tags.max_by { |v| tags.count(v) }
+            sorted_tags.push(max_tag)
+            tags.delete(max_tag)
+        end 
+
+        sorted_tags
     end
 
 end

@@ -8,14 +8,26 @@
 %>
 
 
-
-<div class="tabs page-tabs <%= @type %>">
-    <% tabs.each do |t| %>
-        <a class="tab <%= t[:id] %> <%= selected %> <%= t[:id] == selected ? "selected" : "unselected" %>" href="<%= t[:href] %>">
-            <% if @type == "icon" && defined?(t.icon) %>
-                <%= image_tag(t.icon) if t.icon.present? %>
+<% if defined?(link) %>
+    <div class="tabs page-tabs <%= @type %>">
+        <% tabs.each do |t| %>
+            <%= link_to link(categories: t.name.downcase), :class => "tab #{t[:id]} #{t[:id] == selected ? 'selected' : 'unselected'}" do %>
+                <% if @type == "icon" && defined?(t.icon) %>
+                    <%= image_tag(t.icon) if t.icon.present? %>
+                <% end %>
+                <%= t[:name] %>
             <% end %>
-            <%= t[:name] %>
-        </a>
-    <% end %>
-</div>
+        <% end %>
+    </div>
+<% else %>
+    <div class="tabs page-tabs <%= @type %>">
+        <% tabs.each do |t| %>
+            <a class="tab <%= t[:id] %> <%= selected %> <%= t[:id] == selected ? "selected" : "unselected" %>" href="<%= t[:href] %>">
+                <% if @type == "icon" && defined?(t.icon) %>
+                    <%= image_tag(t.icon) if t.icon.present? %>
+                <% end %>
+                <%= t[:name] %>
+            </a>
+        <% end %>
+    </div>
+<% end %>

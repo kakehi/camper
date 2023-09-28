@@ -1,0 +1,19 @@
+<% if defined?(size)
+    @size = size
+else
+    @size = "regular"    
+end %>
+
+<% if defined?(text)
+    @text = text
+else
+    @text = "Go back"    
+end %>
+
+<%= render "uis/buttons/text-link",
+    text: @text,
+    size: @size,
+    href: href,
+    icon: {
+        src: "/images/icons/search-black.svg"
+    } %>

@@ -10,6 +10,11 @@ class OrganizationsController < ApplicationController
 
         @tags = Tag.find([3, 7, 1, 20])
         
+        @categories = params[:categories].present? ? 
+            params[:categories].split(',').map{|c| 
+                _tag = Tag.where('lower(name) = ?', c.downcase).first
+            }:[]
+
         render :index
 
     end

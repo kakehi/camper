@@ -1,5 +1,6 @@
-
-
+<% 
+    _region_this_week = location_region_options.first
+%>
 
 
 <div class="view-outer-container double-column">
@@ -17,10 +18,12 @@
 
         <% get_current_summer[:weeks].each do |w| %>
 
-            <% weekly_activities = @schedule_activities
-            .map{|e|
-                Activity.find_by(id: e.activity_id)
-            }.select{|a| dates_overlap?(a, w) }%>
+            
+            <% _weekly_activities = @schedule_activities
+                                        .map{|e|
+                                            Activity.find_by(id: e.activity_id)
+                                        }.select{|a| dates_overlap?(a, w) } 
+            %>
             
             <div class="schedule-week-container">
                 <div class="header section-title">
@@ -30,16 +33,32 @@
                         end_at: w[:end_at] %>
                 </div>
                 <div class="card-container">
-                    <% weekly_activities.each do |a| %>
-                        <% _camp = Camp.find_by(id: a.camp_id) %>
-                        <% _organization = Organization.find_by(id: _camp.organization_id) %>
-            
-                        <%= render "components/cards/activity-schedule-card",
-                            organization: _organization,
-                            camp: _camp,
-                            activity: a
-                        %>
+
+                    <% if _weekly_activities.count > 0 %>
+                         
+                        <% _weekly_activities.each do |a| %>
+                            <% c = Camp.find_by(id: a.camp_id) %>
+                            <% o = Organization.find_by(id: c.organization_id) %>
+                            <% _region_this_week = camp_get_metro(c) %>
+                            
+                            <%= render "components/cards/activity-schedule-card",
+                                organization: o,
+                                camp: c,
+                                activity: a
+                            %>
+                        <% end %>
+
+                    <% else %>
+                        <div class="button empty large" style="display: grid; gap: 0.5rem;">
+                            <div class="h5-reg">Add camp</div>
+                            <%= render "uis/buttons/styled/search-button",
+                                text: _region_this_week[:id] != nil ? "Search around #{_region_this_week[:name]}" : "Search",
+                                type: "secondary",
+                                size: "small",
+                                href: _region_this_week[:id] != nil ? index_organization_path(locations: _region_this_week[:name].downcase) : index_organization_path %>
+                        </div>
                     <% end %>
+
                 </div>
             </div>
             

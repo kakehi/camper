@@ -1,6 +1,9 @@
 import { Turbo } from "@hotwired/turbo-rails"
 Turbo.session.drive = false
 
+import Rails from "@rails/ujs";
+Rails.start();
+
 // 画像プレビュー機能
 document.addEventListener("turbo:load", function() {
   const imageUpload = document.getElementById('imageUpload');

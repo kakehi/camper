@@ -8,11 +8,25 @@
 
 <div class="view-outer-container organizations-index-container">
 
-    <%= render "uis/tabs/page_tabs",
-        type: "icon", 
-        tabs: @tags,
-        selected: ""
-    %>
+    <div class="tabs page-tabs icon">
+      <% @tags.each do |t| %>
+
+          <% 
+            _selected = @categories.select{|c|
+             c.name.downcase == t.name.downcase
+            }.count > 0
+          %>
+
+          <%= link_to index_organization_path(categories: t.name.downcase), :class => "tab #{t[:id]} #{_selected ? 'selected' : 'unselected'}" do %>
+              <% if defined?(t.icon) %>
+                  <%= image_tag(t.icon) if t.icon.present? %>
+              <% end %>
+              <%= t[:name] %>
+          <% end %>
+      <% end %>
+    </div>
+
+
     <div class="grid-container">
         <% @organization.each do |organization| %>
             <%= render "components/cards/organization-grid-card",

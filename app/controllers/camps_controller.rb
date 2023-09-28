@@ -93,7 +93,23 @@ class CampsController < ApplicationController
     def duplicate
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:id])
-        redirect_to new_camp_path(@organization, default_camp: @camp), notice: 'Please save the duplicated camp.'
+
+        # キャンプを複製する
+        dup_c = @camp.dup
+        dup_c.name += " [Duplicated]"
+        dup_c.save
+
+        @activities = Activity.where(camp_id: @camp.id)
+
+        if @activities.count > 0 
+            @activities.each do |a|
+                dup_a = a.dup
+                dup_a.camp_id = dup_c.id
+                dup_a.save
+            end
+        end
+
+        redirect_to edit_camp_path(@organization, dup_c), notice: 'Camp was duplicated'
     end
 
 
@@ -104,6 +120,8 @@ class CampsController < ApplicationController
         @camp.destroy
         redirect_to index_organization_camp_path(@organization), notice: 'Deleted'
     end
+
+
 
     private
         def camp_params

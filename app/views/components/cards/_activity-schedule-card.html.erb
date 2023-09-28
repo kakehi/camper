@@ -15,13 +15,17 @@
     <div class="content">
         <div class="left-body">
             <div class="header">
-                <h4>
+                
+                <%= link_to index_camp_activities_path(organization, camp), class:"title" do %>
                     <% if activity.name.nil? %>
-                        <%= camp.name %>
+                        <div class="subtext"><%= organization.name %></div>
+                        <h4><%= camp.name %></h4>
                     <% else %>
-                        <%= activity.name %>
+                        <div class="subtext"><%= camp.name %></div>
+                        <h4><%= activity.name %></h4>
                     <% end %>
-                </h4>
+                <% end %>
+
                 <%= render "uis/buttons/styled/schedule-activity-button",
                     type: "text",
                     activity: activity %>

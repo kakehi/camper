@@ -1,6 +1,2 @@
-alert("AAAAAAAA")
-$("#organization-favorite-button-<%= @organization.id %>").html(
-    "<%= j(render "favorite_organizations/favorite-organization-button", 
-        type: "text",
-        organization: @organization) %>"
-);
+console.log("destroying");
+$("#organization-favorite-button-<%= @organization.id %>").html('<%= j(render "favorite_organizations/favorite-organization-button", type: "text", organization: @organization) %>');

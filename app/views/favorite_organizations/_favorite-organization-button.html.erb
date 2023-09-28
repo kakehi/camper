@@ -4,9 +4,11 @@ else
     @size = "regular"    
 end %>
 
-<div id="organization-favorite-button-<%= @organization.id %>">
+<div id="organization-favorite-button-<%= organization.id %>">
+    
     <% if organization.favorited?(current_user) %>
-        <%= form_with url: destroy_favorite_organization_path(@organization.id), local: true, method: :delete do |form| %>
+        
+        <%= form_with url: destroy_favorite_organization_path(organization.id), local: false, method: :delete do |form| %>
             <%= form.button style: 'background-color: transparent; border: none;' do %>
                 <% if defined?(type) && type == "text" %>
                     <%= render "uis/buttons/text-link",
@@ -20,8 +22,10 @@ end %>
                 <% end %>
             <% end %>
         <% end %>
+
     <% else %>
-        <%= form_with url: create_favorite_organization_path(@organization.id), local: true, method: :post do |form| %>
+    
+        <%= form_with url: create_favorite_organization_path(organization.id), local: false, method: :post do |form| %>
             <%= form.button style: 'background-color: transparent; border: none;' do %>
                 <% if defined?(type) && type == "text" %>
                     <%= render "uis/buttons/text-link",
@@ -35,5 +39,7 @@ end %>
                 <% end %>
             <% end %>
         <% end %>
+        
     <% end %>
+
 </div>
