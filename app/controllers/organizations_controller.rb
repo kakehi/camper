@@ -1,12 +1,32 @@
 class OrganizationsController < ApplicationController
     
     def index
+
+        # PARAMS
+        # Names
         @name = params[:name]
         if @name.present?
-          @organization = Organization.where('name LIKE ?', "%#{@name}%")
+          @organizations = Organization.where('name LIKE ?', "%#{@name}%")
         else
-          @organization = Organization.all.reverse()
+          @organizations = Organization.all.reverse()
         end
+
+        # Locations
+        @locations = get_locations_by_params(get_url_params_into_array(params[:locations]))
+        if @locations.count > 0
+            _location_ids = @locations.map{|loc| loc[:id]}
+        else
+            _location_ids = location_region_options.map{|loc| loc[:id]}
+        end
+
+        # get organizations
+        @organizations = Organization.where(
+            region: _location_ids
+        ).reverse()
+
+
+
+
 
         @tags = Tag.find([3, 7, 1, 20])
         

@@ -32,3 +32,23 @@
         }
     }
 }
+
+
+
+// Interaction
+.tag.selectable{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    cursor: pointer;
+    .close-icon{
+        width: 0.75rem;
+    }
+
+    &:hover{
+        background-color: #eee;
+    }
+    &.selected{
+
+    }
+}

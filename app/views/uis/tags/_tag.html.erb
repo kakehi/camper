@@ -1,27 +1,32 @@
 
 
 <% if defined?(tg)
-        @text = tg.name
-        @icon = tg.icon
+        _text = tg[:name]
+        _icon = tg[:icon]
     else
-        @text = defined?(text) ? text  : nil 
-        @icon = defined?(icon) ? icon  : nil 
+        _text = defined?(text) ? text  : nil 
+        _icon = defined?(icon) ? icon  : nil 
     end
+
+    _type = defined?(type) ? type : ""
+
 %>
 
 
 <% if defined?(href) %>
-    <a class="tag <% defined?(type) ? type : "" %> <%= size %>" href=<%= href %>>
-        <% if defined? @icon %>
-            <%= image_tag(@icon) if @icon.present? %>
+    <a class="tag <%= type %> <%= size %>" href=<%= href %>>
+        <% if defined? _icon %>
+            <%= image_tag(_icon) if _icon.present? %>
         <% end %>
-        <%= @text %>
+        <%= _text %>
+        <%= image_tag("/images/icons/cross-black.svg", class: "close-icon") if (_type == "selectable" && selected) %>
     </a>
 <% else %>
-    <div class="tag <% defined?(type) ? type : "" %> <%= size %>">
-        <% if defined? @icon %>
-            <%= image_tag(@icon) if @icon.present? %>
+    <div class="tag <%= _type %> <%= size %>">
+        <% if defined? _icon %>
+            <%= image_tag(_icon) if _icon.present? %>
         <% end %>
-        <%= @text %>
+        <%= _text %>
+        <%= image_tag("/images/icons/cross-black.svg", class: "close-icon") if (_type == "selectable" && selected) %>
     </div>
 <% end %>

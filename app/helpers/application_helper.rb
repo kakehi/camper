@@ -120,5 +120,25 @@ module ApplicationHelper
         ]
     end
 
+    def get_locations_by_params (params) 
+        if params.count > 0
+            params.map{|param|
+                location_region_options.select{|l| l[:name].downcase == param}.first
+            }
+        else
+            []
+        end
+    end
 
+    def get_url_params_into_array (params) 
+        if params.present?
+            params.split(',')
+        else
+            []
+        end
+    end
+
+
+
+    
 end
