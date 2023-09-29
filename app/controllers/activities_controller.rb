@@ -84,28 +84,28 @@ class ActivitiesController < ApplicationController
         redirect_to index_camp_activities_path(@organization, @camp), notice: 'Deleted'
     end
 
-    private
-        def activity_params
-            params
-                .require(:activity)
-                .permit(
-                    :name,
-                    :description,
-                    :hero_image,
-                    :age_group_min,
-                    :age_group_max,
-                    :start_at,
-                    :end_at,
-                    :start_year,
-                    :start_month,
-                    :start_date,
-                    :end_year,
-                    :end_month,
-                    :end_date,
-                    :base_price,
-                    :discount_price,
-                    tag_ids: []
-                )
-                .merge(camp_id: params[:camp_id])
-        end
+    
+    def activity_params
+        params
+            .require(:activity)
+            .permit(
+                :name,
+                :description,
+                :hero_image,
+                :age_group_min,
+                :age_group_max,
+                :start_at,
+                :end_at,
+                :start_year,
+                :start_month,
+                :start_date,
+                :end_year,
+                :end_month,
+                :end_date,
+                :base_price,
+                :discount_price,
+                tag_ids: []
+            )
+            .merge(camp_id: params[:camp_id])
+    end
 end

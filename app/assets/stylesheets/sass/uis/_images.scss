@@ -50,10 +50,21 @@
         
     }
     &.medium{
+        width: 15rem;
+        &.circular{
+            height: 15rem;
+        } 
+    }
+    &.regular{
         width: 10rem;
         &.circular{
             height: 10rem;
-        }
-        
+        } 
+    }
+    &.small{
+        width: 7.5rem;
+        &.circular{
+            height: 7.5rem;
+        } 
     }
 }

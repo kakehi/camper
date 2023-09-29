@@ -9,6 +9,24 @@
         padding: 1rem 0.5rem
     }
 
+
+
+    .index-section.metros{
+        
+        text-align: center;
+        padding: 2rem 0;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        
+        .title{
+            margin-bottom: 1rem;
+        }
+
+        .flex-container{
+            align-items: flex-start;
+        }
+        
+    }
 }
 
 

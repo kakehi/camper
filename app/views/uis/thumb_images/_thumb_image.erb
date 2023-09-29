@@ -1,5 +1,5 @@
 
 
 <div class="thumbnail-image <%= defined?(type) ? type : "" %> <%= defined?(size) ? size : "" %>">
-    <%= image_tag(image) if image.attached? %>
+    <%= image_tag(image) if image.present? %>
 </div>

@@ -24,70 +24,17 @@
           <% end %> </ul>
       <% end %>
 
-      <%# Overview %>
-      <%= render "components/forms/overview", 
-        f: f,
-        form_target: @camp
-      %>
-      
-      <%# Templates %>
-      <%= render "components/forms/camp-format", 
-          f: f,
-          form_target: @camp
-      %>
-
-      <div class="form-group image-upload">
-        <%= f.label "Hero image", class: 'form-label' %>
-        <div class="image-preview" id="imagePreview">
-          <img src="<%= @camp.hero_image.attached? ? url_for(@camp.hero_image) : "" %>" alt="Image Preview" class="image-preview__image <%= @camp.hero_image.attached? ? "-block" : "" %>">
-          <span class="image-preview__default-text <%= @camp.hero_image.attached? ? "-none" : "" %>">No image uploaded</span>
-        </div>
-        <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
-      </div>
-
-      <%# LOCATION %>
-      <%= render "components/forms/location", 
+      <%= render "camps/components/camp_form", 
           f: f,
           form_target: @camp,
           form_parent: @organization
       %>
-
-      <%# CONTACTS %>
-      <%= render "components/forms/contacts", 
-          f: f,
-          form_target: @camp,
-          form_parent: @organization
-      %>
-
-      <%# AGE GROUPS %>
-      <%= render "components/forms/age-group", 
-        f: f,
-        form_target: @camp,
-        form_parent: @organization
-      %>
-
-      <%# PRICE %>
-      <%= render "components/forms/price", 
-        f: f,
-        page: "camp",
-        form_target: @camp,
-        form_parent: @organization,
-        base_price: @base_price,
-        discount_price: @discount_price
-      %>
       
-      <%# THEMES %>
-      <% if @camp_type != 1 %>
-        <%= render "components/forms/themes", 
-          f: f,
-          form_target: @camp
-        %>
-      <% end %>
+      <%= render "camps/components/camp_form_button", 
+          type: "update",
+          f: f
+      %>
 
-      <div class="button-group">
-        <%= link_to 'Delete', destroy_camp_path(@organization, @camp), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: "btn btn-danger" %>
-        <%= f.submit 'Update', class: 'btn btn-primary' %>
-      </div>
     <% end %>
   </div>
 </div>

@@ -1,0 +1,16 @@
+
+
+
+
+.circular-thumbnail-unit{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    width: 12rem;
+
+    *{
+        margin: auto;
+    }
+}

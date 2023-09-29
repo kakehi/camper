@@ -1,0 +1,36 @@
+
+
+
+
+<div class="button-group">
+    
+    <% if @page != "1" %>
+        <%= f.button "Save and back to overview edit page", type: "submit", class: "button secondary medium full-width", name: "next", value: "1" %>
+    <% end %>
+    
+    <% if @page == "1" %>
+        <div class="optional-button">
+        <div class="subtext">
+            Only required if camp takes place at different location.
+            <% if (@camp.country.nil? || @camp.zip_code.nil? || @camp.state.nil? || @camp.city.nil?) %>
+            <%= render "uis/grammar/location", location: @organization %>
+            <% else %>
+            <%= render "uis/grammar/location", location: @camp %>
+            <% end %>
+        </div>
+        <%= f.button "Customize location", type: "submit", class: "text-link regular", name: "next", value: "2" %>
+        </div>
+        <div class="optional-button">
+        <div class="subtext">
+            Only required if camp contact is dofferent from organization's contact. <ul><li>Website: <%= @organization.website %></li><li>Phone: <%= @organization.phone %></li><li>Email: <%= @organization.email %></li></ul>
+        </div>
+        <%= f.button "Customize contact", type: "submit", class: "text-link regular", name: "next", value: "3" %>
+        </div>
+    <% end %>
+    
+    <%= f.button "Done", type: "submit", class: "button primary medium full-width", name: "next", value: "0" %>
+    
+    <% if type == "update" %>
+        <%= link_to 'Delete camp', destroy_camp_path(@organization, @camp.id.nil? ? 0 : @camp), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: "text-link danger small center" %>
+    <% end %>
+</div>

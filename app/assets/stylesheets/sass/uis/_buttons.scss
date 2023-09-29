@@ -1,3 +1,7 @@
+button{
+    background-color: transparent;
+    border: none;
+}
 
 .button{
  
@@ -14,6 +18,10 @@
     text-decoration: underline;
     color: #777;
     gap: 0.25rem;
+    &.center{
+        text-align: center;
+        justify-content: center;
+    }
 }
 
 .button, .text-link{
@@ -68,6 +76,13 @@
     }
 }
 
+.text-link{
+    &.danger{
+        color: red;
+    }
+}
+
+
 // Size
 .button{
 
@@ -94,6 +109,10 @@
     }
 
    
+
+    &.full-width{
+        width: 100%;
+    }
 }
 
 .button, .text-link{

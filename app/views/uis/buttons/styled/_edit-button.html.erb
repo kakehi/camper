@@ -10,7 +10,7 @@ end %>
     @text = "Edit organization"
 elsif defined?(camp)
     @organization = Organization.find_by(id: camp.organization_id)
-    @href = edit_camp_path(@organization, camp)
+    @href = camp_edit_path(@organization, camp, 1)
     @text = "Edit camp"  
 elsif defined?(activity)
     @camp = Camp.find_by(id: activity.camp_id)

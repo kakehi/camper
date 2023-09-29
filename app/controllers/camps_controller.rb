@@ -37,6 +37,8 @@ class CampsController < ApplicationController
 
     def new
         @organization = Organization.find(params[:organization_id])
+        @page = params[:page_id]
+
         if params[:default_camp].present? 
             @camp = Camp.find(params[:default_camp]).dup
             if @camp.name.present? 
@@ -51,13 +53,18 @@ class CampsController < ApplicationController
     def create
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.new(camp_params)
+        @next = params[:next]
 
         if params[:camp][:hero_image]
             @camp.hero_image.attach(params[:camp][:hero_image])
         end
 
         if @camp.save
-            redirect_to index_camp_activities_path(@organization, @camp), notice: 'Camp was added'
+            if @next == "0"
+                redirect_to index_camp_activities_path(@organization, @camp), notice: 'Camp was created'
+            else
+                redirect_to camp_edit_path(@organization, @camp, @next), notice: 'New camp was created'
+            end
         else
             @camps = Camp.where(organization_id: params[:organization_id])
             render :new, status: :unprocessable_entity
@@ -69,20 +76,29 @@ class CampsController < ApplicationController
     def edit
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:id])
+        @page = params[:page_id]
+
         render :edit
     end
     
+
+
+
     def update
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:id])
+        @next = params[:next]
+
         if params[:camp][:hero_image]
             @camp.hero_image.attach(params[:camp][:hero_image])
         end
 
-        logger.debug @camp
-
         if @camp.update(camp_params)
-            redirect_to index_camp_activities_path(@organization, @camp), notice: 'Updated'
+            if @next == "0"
+                redirect_to index_camp_activities_path(@organization, @camp), notice: 'Camp information was updated'
+            else
+                redirect_to camp_edit_path(@organization, @camp, @next), notice: 'Camp information was updated'
+            end
         else
             render :edit, status: :unprocessable_entity
         end
@@ -94,7 +110,6 @@ class CampsController < ApplicationController
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:id])
 
-        # キャンプを複製する
         dup_c = @camp.dup
         dup_c.name += " [Duplicated]"
         dup_c.save
@@ -109,7 +124,27 @@ class CampsController < ApplicationController
             end
         end
 
-        redirect_to edit_camp_path(@organization, dup_c), notice: 'Camp was duplicated'
+        redirect_to camp_edit_path(@organization, dup_c, 1), notice: 'Camp was duplicated'
+    end
+
+
+    def override_children
+        @organization = Organization.find(params[:organization_id])
+        @camp = Camp.find(params[:camp_id])
+        @activities = Activity.where(camp_id: @camp.id)
+
+        if params[:id] == 'age-group'
+            if @activities.count > 0 
+                @activities.each do |a|
+                    a.age_group_min = @camp.age_group_min
+                    a.age_group_max = @camp.age_group_max
+                    a.update(activity_params)
+                end
+            end
+            
+        end
+
+        redirect_to camp_edit_path(@organization, @camp, 1), notice: 'Associated sessions were all updated'
     end
 
 

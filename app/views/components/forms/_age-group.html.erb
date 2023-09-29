@@ -34,6 +34,14 @@
                 :selected => @age_group_max), 
             {class: 'form-drop-box'} %>
     </div>
-    
+    <% if(defined? page && page == "camp") %>
+        <%= render "uis/buttons/text-link",
+            text: "Update all",
+            size: @size,
+            href: "camp_override_children_path(@organization, @camp, 'age-group')"
+        %>  sessions associated with this camp
+    <% end %>
 </div>
+
+
 

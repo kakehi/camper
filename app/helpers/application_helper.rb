@@ -90,17 +90,20 @@ module ApplicationHelper
             {
                 id: 1,
                 name: "New York-Newark",
-                zip_codes: [7624]
+                zip_codes: [07624, 11542],
+                hero_image: "/images/cities/new-york.jpeg"
             },
             {
                 id: 2,
                 name: "Washington-Baltimore-Arlington",
-                zip_codes: [20016, 21210, 21234, 21244, 22303]
+                zip_codes: [20016, 21210, 21234, 21244, 22303],
+                hero_image: "/images/cities/washington-dc.jpeg"
             },
             {
                 id: 3,
                 name: "Philadelphia",
-                zip_codes: [19102, 19144]
+                zip_codes: [19102, 19144],
+                hero_image: "/images/cities/philadephia.jpeg"
             },
             {
                 id: 31,

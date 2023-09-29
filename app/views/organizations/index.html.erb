@@ -32,6 +32,25 @@
 
     </div>
     
+
+    <% if @locations.count == 0 %>
+      <div class="index-section metros">
+        <h5 class="title">Featured metros</h5>
+        <div class="flex-container center">
+          <% location_region_options.select{|loc| [1, 2, 3].select{|f_loc| f_loc == loc[:id]}.count>0}.each do |f_loc| %>
+            <%= link_to index_organization_path(locations: f_loc[:name].downcase), class:"circular-thumbnail-unit" do %>
+              <% if f_loc[:hero_image].present? %>
+                  <%= render "uis/thumb_images/thumb_image",
+                      type: "circular",
+                      size: "regular",
+                      image: f_loc[:hero_image] %>
+              <% end %>
+              <div class="h6-reg"><%= f_loc[:name] %></div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
     
     <div class="grid-container">
         <% @organizations.each do |organization| %>
