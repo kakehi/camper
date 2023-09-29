@@ -40,6 +40,7 @@
         <% if tags.count > 0 %>
             <div class="flex-wrap-container">
                 <% tags.each do |t| %>
+                    
                     <%= render "uis/tags/tag",
                         tg: t,
                         size: "small" %>

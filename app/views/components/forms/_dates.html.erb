@@ -2,17 +2,16 @@
 
 
 <div class="form-group">
-    <h4>Dates</h4>
-    <div class="form-dates-group">
-    <h6>Starting from</h6>
-    <div class="form-field">
-        <%= f.date_select :start_at, start_year: 2023, end_year: 2026 %>
-    </div>
-    </div>
-    <div class="form-dates-group">
-    <h6>Ending at</h6>
-    <div class="form-field">
-        <%= f.date_select :end_at, start_year: 2023, end_year: 2026 %>
-    </div>
+    <%= render "components/titles/segment-title",
+        title: "Dates" %>
+    <div class="form-fields-group dates">
+        <div class="form-field">
+            <%= f.label "Startes on", class: 'form-label' %>
+            <div class="form-dates-fields"><%= f.date_select :start_at, start_year: 2023, end_year: 2026 %></div>
+        </div>
+        <div class="form-field">
+            <%= f.label "Ends on", class: 'form-label' %>
+            <div class="form-dates-fields"><%= f.date_select :end_at, start_year: 2023, end_year: 2026 %></div>
+        </div>
     </div>
 </div>

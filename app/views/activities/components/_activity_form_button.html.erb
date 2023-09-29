@@ -10,8 +10,11 @@
     <% if @page == "1" %>
         <% if @camp_type != 1 %>
             <div class="optional-button">
-                <div class="subtext">
-                    Only required if activity has a different theme.
+                <div class='left-container'>
+                    <h6>Edit themes</h6>
+                    <div class="subtext">
+                        Edit only if this session has a different theme from the camp's theme.
+                    </div>
                 </div>
                 <%= f.button "Customize theme", type: "submit", class: "text-link regular", name: "next", value: "2" %>
             </div>

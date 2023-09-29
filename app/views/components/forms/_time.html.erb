@@ -20,20 +20,19 @@
 
 
 <div class="form-group">
-    <h4>Time</h4>
+    <%= render "components/titles/segment-title",
+        title: "Time" %>
     <% if defined?(page) && page == "camp" %>
         <div class="subtext">Set a default time. Time for each session can be edited.</div>
     <% end %>
-    <div class="form-dates-group">
-    <h6>Starting at</h6>
-    <div class="form-field">
-        <%= f.time_field :start_time, value: _start_time.strftime("%H:%M") %>
-    </div>
-    </div>
-    <div class="form-dates-group">
-    <h6>Ending at</h6>
-    <div class="form-field">
-        <%= f.time_field :end_time, value: _end_time.strftime("%H:%M") %>
-    </div>
+    <div class="form-fields-group times">
+        <div class="form-field">
+            <%= f.label "Starts at", class: 'form-label' %>
+            <%= f.time_field :start_time, value: _start_time.strftime("%H:%M") %>
+        </div>
+        <div class="form-field">
+            <%= f.label "Ends at", class: 'form-label' %>
+            <%= f.time_field :end_time, value: _end_time.strftime("%H:%M") %>
+        </div>
     </div>
 </div>

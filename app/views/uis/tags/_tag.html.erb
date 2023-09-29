@@ -2,7 +2,12 @@
 
 <% if defined?(tg)
         _text = tg[:name]
-        _icon = tg[:icon]
+        
+        if defined?(tg.icon)
+            _icon = tg.icon
+        else
+            _icon = tg[:icon]
+        end
     else
         _text = defined?(text) ? text  : nil 
         _icon = defined?(icon) ? icon  : nil 

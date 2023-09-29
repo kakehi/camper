@@ -44,8 +44,8 @@ Rails.application.routes.draw do
   get 'orgs/:organization_id/camps/duplicate/:id', to: 'camps#duplicate', as: 'duplicate_camp'
   get 'orgs/:organization_id/camps/:camp_id/override/:id', to: 'camps#override_children', as: 'camp_override_children'
 
-  get 'orgs/:organization_id/camps/destroy/:id', to: 'camps#destroy'
-  delete 'orgs/:organization_id/camps/destroy/:id', to: 'camps#destroy', as: 'destroy_camp'
+  get 'camps/destroy/:id', to: 'camps#destroy'
+  delete 'camps/destroy/:id', to: 'camps#destroy', as: 'camp_destroy'
 
   get 'orgs/:organization_id/camps/:camp_id/overview', to: 'camps#overview', as: 'camp_profile_detail'
 

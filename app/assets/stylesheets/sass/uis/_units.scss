@@ -6,11 +6,22 @@
     display: grid;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1rem;
 
     width: 12rem;
 
+    padding: 1.5rem 0.5rem;
+    border-radius: 1rem;
+
     *{
         margin: auto;
+    }
+
+
+    transition: all 0.25s;
+    
+    &:hover{
+        text-decoration: none;
+        box-shadow: 0.5rem 0.5rem 2rem rgba(0,0,0,0.1);
     }
 }

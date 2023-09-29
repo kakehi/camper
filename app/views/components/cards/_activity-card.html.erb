@@ -21,9 +21,9 @@
                     <% else %>
                         <h4 class="title"><%= activity.name %></h4>
                         <div class="flex-wrap-container">
-                            <% activity.tags.each do |tag| %>
+                            <% activity.tags.each do |t| %>
                                 <%= render "uis/tags/tag",
-                                    text: tag.name,
+                                    tg: t,
                                     size: "small" %>
                             <% end %>
                         </div>

@@ -17,22 +17,26 @@
 %>
 
 <div class="form-group">
-    <h4>Age groups</h4>
-    <div class="form-field">
-        <%= f.label "Minimum age group (Please select this only, if the target age group is one)", class: 'form-label' %>
-        <%= f.select :age_group_min, 
-            options_for_select(
-                age_group_options.map{|c|[c[:name], c[:id]]},
-                :selected => @age_group_min), 
-            {class: 'form-drop-box'} %>
-    </div>
-    <div class="form-field">
-        <%= f.label "Max age group (optional)", class: 'form-label' %>
-        <%= f.select :age_group_max, 
-            options_for_select(
-                age_group_options.map{|c|[c[:name], c[:id]]},
-                :selected => @age_group_max), 
-            {class: 'form-drop-box'} %>
+    <%= render "components/titles/segment-title",
+        title: "Age groups" %>
+    <div class="form-fields-group age-groups">
+        <div class="form-field">
+            <%= f.label "Minimum age group", class: 'form-label' %>
+            <%= f.select :age_group_min, 
+                options_for_select(
+                    age_group_options.map{|c|[c[:name], c[:id]]},
+                    :selected => @age_group_min), 
+                {class: 'form-drop-box'} %>
+        </div>
+        <div class="form-field">
+            <%= f.label "Max age group", class: 'form-label' %>
+            <%= f.select :age_group_max, 
+                options_for_select(
+                    age_group_options.map{|c|[c[:name], c[:id]]},
+                    :selected => @age_group_max), 
+                {class: 'form-drop-box'} %>
+            <div class="subtext">Optional: keep it "unselected" if this session is for only one age group.</div>
+        </div>
     </div>
     <% if(defined? page && page == "camp") %>
         <%= render "uis/buttons/text-link",
