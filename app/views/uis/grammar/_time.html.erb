@@ -1,0 +1,22 @@
+<%
+    if !start_time.nil?
+        _start_time = start_time.strftime("%I:%M%p")
+    end
+
+    if !end_time.nil?
+        _end_time = end_time.strftime("%I:%M%p")
+    end
+    
+    _type = defined?(type) ? type : "primary"
+    _size = defined?(size) ? size : "regular"
+
+%>
+
+<% if !start_time.nil? && !end_time.nil? %>
+
+    <div class="grammar grammar-time  <%= _type %> <%= _size %> ">
+        <img class="location icon" src="/images/icons/clock-black.svg"/>
+        <%= _start_time %> - <%= _end_time %>
+    </div>
+
+<% end %>

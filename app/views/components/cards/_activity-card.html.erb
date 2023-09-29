@@ -57,8 +57,13 @@
                 </div>
                 <div class="footer-child stats">
                     <%= render "uis/grammar/age-group",
+                        type: 'secondary',
                         age_group_min: activity.age_group_min,
                         age_group_max: activity.age_group_max %>
+                    <%= render "uis/grammar/time",
+                        type: 'secondary',
+                        start_time: activity.start_time,
+                        end_time: activity.end_time %>
                 </div>
                 <div class="footer-child price">
                     <%= render "uis/grammar/price", price: activity.base_price, size: "medium" %>

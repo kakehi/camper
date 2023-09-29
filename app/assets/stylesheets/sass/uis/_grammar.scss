@@ -52,6 +52,29 @@
 
 /*
 
+    Type
+
+*/
+.grammar{
+
+    &.primary{
+        color: #333;
+    }
+
+    &.secondary{
+        color: #999;
+        .icon{
+            opacity: 0.5;
+        }
+    }
+
+}
+
+
+
+
+/*
+
     Custom
     
 */
@@ -60,7 +83,7 @@
 // Price
 .grammar-price{
     align-items: baseline;
-    color: #666;
+    
     .figure{
         font-weight: 700;
     }

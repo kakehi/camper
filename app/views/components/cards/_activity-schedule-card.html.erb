@@ -33,9 +33,14 @@
             <div class="footer">
                 <div class="footer-child date">
                     <%= render "uis/grammar/week",
+                        type: 'secondary',
                         start_at: activity.start_at,
                         end_at: activity.end_at,
                         icon: true %>
+                    <%= render "uis/grammar/time",
+                        type: 'secondary',
+                        start_time: activity.start_time,
+                        end_time: activity.end_time %>
                 </div>
                 <div class="footer-child location">
                     <%= render "uis/buttons/text-link",

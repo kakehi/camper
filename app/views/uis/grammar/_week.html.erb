@@ -1,33 +1,34 @@
 
 <% 
-    font_size = ""
+
+    _type = defined?(type) ? type : "primary"
+
+    _font_size = ""
     if defined?(size)
-        @size = size
+        _size = size
         if size == "large"
-            font_size = "h3"
+            _font_size = "h3"
         elsif size == "medium"
-            font_size = "h4"
+            _font_size = "h4"
         end
     else
-        @size = "regular"
+        _size = "regular"
     end 
-%>
 
 
-<% 
     if(start_at.month == end_at.month) 
-        text = "#{start_at.strftime("%b")} #{start_at.strftime("%d")} - #{end_at.strftime("%d")}"
+        _text = "#{start_at.strftime("%b")} #{start_at.strftime("%d")} - #{end_at.strftime("%d")}"
     else
-        text = "#{start_at.strftime("%b")} #{start_at.strftime("%d")} - #{end_at.strftime("%b")} #{end_at.strftime("%d")}"
+        _text = "#{start_at.strftime("%b")} #{start_at.strftime("%d")} - #{end_at.strftime("%b")} #{end_at.strftime("%d")}"
     end
 %>
 
 
 <% if start_at.present? && end_at.present? %>
-    <div class="grammar grammar-date <%= @size %> <%= font_size %> ">
+    <div class="grammar grammar-date <%= _type %> <%= _size %> <%= _font_size %> ">
         <% if defined?(icon) && icon %>
             <img class="calendar icon" src="/images/icons/calendar-black.svg"/>
         <% end %>
-        <%= text %>
+        <%= _text %>
     </div>
 <% end %>

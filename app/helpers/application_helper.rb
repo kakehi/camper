@@ -102,12 +102,13 @@ module ApplicationHelper
             {
                 id: 3,
                 name: "Philadelphia",
-                zip_codes: [19102, 19144],
-                hero_image: "/images/cities/philadephia.jpeg"
+                hero_image: "/images/cities/philadephia.jpeg",
+                zip_codes: [19102, 19144]
             },
             {
                 id: 25,
                 name: "Pittsburgh-New Castle-Weirton",
+                hero_image: "/images/cities/pittsburgh.jpeg",
                 zip_codes: [15212]
             },
             {

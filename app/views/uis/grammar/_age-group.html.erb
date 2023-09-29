@@ -1,25 +1,26 @@
 <%
-    @age_group_min_arr = age_group_options.select{|obj| obj[:id] == age_group_min};
-    if @age_group_min_arr.count > 0
-        @age_group_min = @age_group_min_arr[0]
+    _age_group_min_arr = age_group_options.select{|obj| obj[:id] == age_group_min};
+    if _age_group_min_arr.count > 0
+        _age_group_min = _age_group_min_arr[0]
     end
     
-    @age_group_max_arr = age_group_options.select{|obj| obj[:id] == age_group_max};
-    if @age_group_max_arr.count > 0
-        @age_group_max = @age_group_max_arr[0]
+    _age_group_max_arr = age_group_options.select{|obj| obj[:id] == age_group_max};
+    if _age_group_max_arr.count > 0
+        _age_group_max = _age_group_max_arr[0]
     end
 
-    @size = defined?(size) ? size : "regular"
+    _type = defined?(type) ? type : "primary"
+    _size = defined?(size) ? size : "regular"
 
 %>
 
-<div class="grammar grammar-age-group <%= @size %> ">
+<div class="grammar grammar-age-group <%= _type %> <%= _size %> ">
     <img class="location icon" src="/images/icons/birthday-black.svg"/>
-    <% if age_group_min.present? && @age_group_min != nil %>
-        <%= @age_group_min[:name] %>
+    <% if age_group_min.present? && _age_group_min != nil %>
+        <%= _age_group_min[:name] %>
     <% end %>
-    <% if age_group_max.present? && @age_group_max != nil && age_group_min != age_group_max %>
+    <% if age_group_max.present? && _age_group_max != nil && age_group_min != age_group_max %>
         to
-        <%= @age_group_max[:name] %>
+        <%= _age_group_max[:name] %>
     <% end %>
 </div>

@@ -115,7 +115,7 @@ module OrganizationsHelper
         camps = Camp.where(organization_id: o.id)
         age_group_min = nil
         camps.each do |c|
-            c_age_group_min = camp_get_age_group_max_from_activities(c)
+            c_age_group_min = camp_get_age_group_min_from_activities(c)
             if (defined? c_age_group_min) && (c_age_group_min.is_a? Integer)
                 if (age_group_min == nil) || ((age_group_min.is_a? Integer) && (age_group_min > c_age_group_min))
                     age_group_min = c_age_group_min
