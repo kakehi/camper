@@ -1,0 +1,46 @@
+<%
+    if !form_target.start_time.nil?
+        _start_time = form_target.start_time
+    elsif defined?(form_parent) && !form_parent.start_time.nil?
+        _start_time = form_parent.start_time
+    else
+        _start_time = "08:30".to_time
+    end
+
+    if !form_target.end_time.nil?
+        _end_time = form_target.end_time
+    elsif defined?(form_parent) && !form_parent.end_time.nil?
+        _end_time = form_parent.end_time
+    else
+        _end_time = "16:00".to_time
+    end
+
+%>
+
+<br/><br/>
+<%= form_parent.attributes %>
+<br/><br/>
+<%= _start_time %>
+<br/><br/>
+<%= form_target.attributes %>
+<br/><br/>
+<%= _end_time %>
+
+<div class="form-group">
+    <h4>Time</h4>
+    <% if defined?(page) && page == "camp" %>
+        <div class="subtext">Set a default time. Time for each session can be edited.</div>
+    <% end %>
+    <div class="form-dates-group">
+    <h6>Starting at</h6>
+    <div class="form-field">
+        <%= f.time_field :start_time, value: _start_time.strftime("%H:%M") %>
+    </div>
+    </div>
+    <div class="form-dates-group">
+    <h6>Ending at</h6>
+    <div class="form-field">
+        <%= f.time_field :end_time, value: _end_time.strftime("%H:%M") %>
+    </div>
+    </div>
+</div>

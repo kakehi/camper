@@ -24,14 +24,22 @@
 
     <%# AGE GROUPS %>
     <%= render "components/forms/age-group", 
-    f: f,
-    form_target: @activity,
-    form_parent: @camp
+        f: f,
+        form_target: @activity,
+        form_parent: @camp
     %>
 
     <%# DATES %>
     <%= render "components/forms/dates", 
-    f: f
+        f: f
+    %>
+
+    <%# TIME %>
+    <%= render "components/forms/time", 
+        f: f,
+        page: "activity",
+        form_target: @activity,
+        form_parent: @camp
     %>
 
     <%# PRICE %>

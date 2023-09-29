@@ -30,6 +30,13 @@
     form_parent: @organization
     %>
 
+    <%# TIME %>
+    <%= render "components/forms/time", 
+        f: f,
+        page: "camp",
+        form_target: @camp
+    %>
+
     <%# PRICE %>
     <%= render "components/forms/price", 
     f: f,

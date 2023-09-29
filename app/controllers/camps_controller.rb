@@ -179,6 +179,8 @@ class CampsController < ApplicationController
                     :email,
                     :age_group_min,
                     :age_group_max,
+                    :start_time,
+                    :end_time,
                     :base_price,
                     :discount_price,
                     :minimum_discount_week,
