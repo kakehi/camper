@@ -152,8 +152,9 @@ class CampsController < ApplicationController
     def destroy
         @organization = Organization.find(params[:organization_id])
         @camp = Camp.find(params[:id])
+        _camp_name = @camp.name;
         @camp.destroy
-        redirect_to index_organization_camp_path(@organization), notice: 'Deleted'
+        redirect_to index_organization_camp_path(@organization), alert: "Camp #{_camp_name} eleted"
     end
 
 

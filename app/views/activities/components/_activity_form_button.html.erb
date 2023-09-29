@@ -1,0 +1,26 @@
+
+
+
+<div class="button-group">
+    
+    <% if @page != "1" %>
+        <%= f.button "Save and back to the overview edit page", type: "submit", class: "button secondary medium full-width", name: "next", value: "1" %>
+    <% end %>
+    
+    <% if @page == "1" %>
+        <% if @camp_type != 1 %>
+            <div class="optional-button">
+                <div class="subtext">
+                    Only required if activity has a different theme.
+                </div>
+                <%= f.button "Customize theme", type: "submit", class: "text-link regular", name: "next", value: "2" %>
+            </div>
+        <% end %>
+    <% end %>
+    
+    <%= f.button "Done", type: "submit", class: "button primary medium full-width", name: "next", value: "0" %>
+    
+    <% if type == "update" %>
+        <%= link_to 'Delete activity', activity_destroy_path(@activity), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: "text-link danger small center" %>
+    <% end %>
+</div>

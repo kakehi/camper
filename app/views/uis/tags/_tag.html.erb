@@ -14,7 +14,7 @@
 
 
 <% if defined?(href) %>
-    <a class="tag <%= type %> <%= size %>" href=<%= href %>>
+    <a class="tag <%= _type %> <%= size %>" href=<%= href %>>
         <% if defined? _icon %>
             <%= image_tag(_icon) if _icon.present? %>
         <% end %>

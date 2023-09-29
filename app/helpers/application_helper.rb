@@ -106,6 +106,11 @@ module ApplicationHelper
                 hero_image: "/images/cities/philadephia.jpeg"
             },
             {
+                id: 25,
+                name: "Pittsburgh-New Castle-Weirton",
+                zip_codes: [15212]
+            },
+            {
                 id: 31,
                 name: "Raleigh-Durham-Cary",
                 zip_codes: [27601]
@@ -116,7 +121,7 @@ module ApplicationHelper
                 zip_codes: [23220]
             },
             {
-                id: 33,
+                id: 34,
                 name: "Virginia Beach-Norfolk",
                 zip_codes: []
             }

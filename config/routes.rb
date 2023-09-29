@@ -54,16 +54,16 @@ Rails.application.routes.draw do
 
   get 'orgs/:organization_id/camps/:camp_id/sessions', to: 'activities#index', as: 'index_camp_activities'
 
-  get 'orgs/:organization_id/camps/:camp_id/sessions/new', to: 'activities#new', as: 'new_activity'
+  get 'orgs/:organization_id/camps/:camp_id/sessions/new/page/:page_id', to: 'activities#new', as: 'activity_new'
   post 'orgs/:organization_id/camps/:camp_id/sessions/new', to: 'activities#create', as: 'create_activity'
 
-  get 'orgs/:organization_id/camps/:camp_id/sessions/edit/:id', to: 'activities#edit', as: 'edit_activity'
+  get 'orgs/:organization_id/camps/:camp_id/sessions/edit/:id/page/:page_id', to: 'activities#edit', as: 'activity_edit'
   post 'orgs/:organization_id/camps/:camp_id/sessions/edit/:id', to: 'activities#update', as: 'update_activity'
 
   get 'orgs/:organization_id/camps/:camp_id/sessions/duplicate/:id', to: 'activities#duplicate', as: 'duplicate_activity'
 
-  get 'orgs/:organization_id/camps/:camp_id/sessions/destroy/:id', to: 'activities#destroy'
-  delete 'orgs/:organization_id/camps/:camp_id/sessions/destroy/:id', to: 'activities#destroy', as: 'destroy_activity'
+  get 'sessions/destroy/:id', to: 'activities#destroy'
+  delete 'sessions/destroy/:id', to: 'activities#destroy', as: 'activity_destroy'
   
 
   ## Tags

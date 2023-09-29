@@ -18,56 +18,17 @@
     </div>
     <%= form_with(url: update_activity_path, model: @activity, local: true, method: :post, html: { class: 'form-container' } ) do |f| %>
 
-      <%# Overview %>
-      <% if @camp_type != 1 %>
-        <%= render "components/forms/overview", 
-          f: f,
-          form_target: @activity
-        %>
-
-        <div class="form-group image-upload">
-          <%= f.label "Hero image", class: 'form-label' %>
-          <div class="image-preview" id="imagePreview">
-            <img src="" alt="Image Preview" class="image-preview__image">
-            <span class="image-preview__default-text">Image will be displayed here</span>
-          </div>
-          <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
-        </div>
-      <% end %>
-
-      <%# AGE GROUPS %>
-      <%= render "components/forms/age-group", 
-        f: f,
-        form_target: @activity,
-        form_parent: @camp
-      %>
-
-      <%# DATES %>
-      <%= render "components/forms/dates", 
-        f: f
-      %>
-
-      <%# PRICE %>
-      <%= render "components/forms/price", 
-        f: f,
-        page: "activity",
-        form_target: @activity,
-        form_parent: @camp
-      %>
-
-      <%# THEMES %>
-      <% if @camp_type != 1 %>
-        <%= render "components/forms/themes", 
+      <%= render "activities/components/activity_form", 
           f: f,
           form_target: @activity,
           form_parent: @camp
-        %>
-      <% end %>
+      %>
 
-      <div class="button-group">
-        <%= link_to 'Delete', destroy_activity_path(@organization.id, @camp.id, @activity.id), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: "btn btn-danger" %>
-        <%= f.submit 'Update', class: 'btn btn-primary' %>
-      </div>
+      <%= render "activities/components/activity_form_button", 
+          type: "update",
+          f: f
+      %>
+
     <% end %>
 
   </div>

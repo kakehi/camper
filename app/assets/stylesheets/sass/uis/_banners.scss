@@ -1,0 +1,21 @@
+
+
+
+.alert{
+
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 0.75rem;
+
+    &.alert-success{
+        background-color: rgb(220, 227, 243);
+        border-color: rgb(185, 197, 225);
+        color: rgb(90, 106, 148);
+    }
+
+    &.alert-danger{
+        background-color:rgb(251 233 237);
+        border-color: rgb(225, 185, 196);
+        color: rgb(194 72 93);
+    }
+}

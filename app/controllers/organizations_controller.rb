@@ -43,18 +43,20 @@ class OrganizationsController < ApplicationController
 
     def new
         @organization = Organization.new
+        @page = params[:page_id]
         render :new
     end
 
     def create
         @organization = Organization.new(organization_params)
+        @next = params[:next]
 
         if params[:organization][:hero_image]
             @organization.hero_image.attach(params[:organization][:hero_image])
         end
 
         if @organization.save
-            redirect_to index_organization_path, notice: 'Created'
+            redirect_to index_organization_path, notice: 'New organization wss created'
         else
             render :new, status: :unprocessable_entity
         end

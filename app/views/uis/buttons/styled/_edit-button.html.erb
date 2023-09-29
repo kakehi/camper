@@ -15,7 +15,7 @@ elsif defined?(camp)
 elsif defined?(activity)
     @camp = Camp.find_by(id: activity.camp_id)
     @organization = Organization.find_by(id: @camp.organization_id)
-    @href = edit_activity_path(@organization, @camp, activity)
+    @href = activity_edit_path(@organization, @camp, activity, 1)
     @text = "Edit session"  
 elsif defined?(profile)
     @href = profile_edit_path(profile)

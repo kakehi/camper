@@ -1,0 +1,56 @@
+
+
+
+<% if @page == "1" %>
+
+    <%# Overview %>
+    <% if @camp_type != 1 %>
+        <%= render "components/forms/overview", 
+            f: f,
+            form_target: @activity
+        %>
+
+        <div class="form-group image-upload">
+            <%= f.label "Hero image", class: 'form-label' %>
+            <div class="image-preview" id="imagePreview">
+            <img src="" alt="Image Preview" class="image-preview__image">
+            <span class="image-preview__default-text">Image will be displayed here</span>
+            </div>
+            <%= f.file_field :hero_image, class: 'form-control-file', id: 'imageUpload' %>
+        </div>
+    <% end %>
+
+
+
+    <%# AGE GROUPS %>
+    <%= render "components/forms/age-group", 
+    f: f,
+    form_target: @activity,
+    form_parent: @camp
+    %>
+
+    <%# DATES %>
+    <%= render "components/forms/dates", 
+    f: f
+    %>
+
+    <%# PRICE %>
+    <%= render "components/forms/price", 
+    f: f,
+    page: "activity",
+    form_target: @activity,
+    form_parent: @camp
+    %>
+
+<% end %>
+
+<%# THEMES %>
+<% if @camp_type != 1 && @page == "2" %>
+    <%= render "components/forms/themes", 
+        f: f,
+        form_target: @activity,
+        form_parent: @camp
+    %>
+<% end %>
+
+
