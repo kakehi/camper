@@ -6,6 +6,10 @@ module OrganizationsHelper
                 id: 1
             },
             {
+                name: "Public school",
+                id: 2
+            },
+            {
                 name: "Museum",
                 id: 10
             },

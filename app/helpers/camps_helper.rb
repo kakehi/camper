@@ -6,6 +6,9 @@ module CampsHelper
         ]        
     end
 
+    def camp_group_default
+        2017
+    end
     def camp_group_options
         [
             {

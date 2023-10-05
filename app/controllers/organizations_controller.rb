@@ -24,10 +24,6 @@ class OrganizationsController < ApplicationController
             region: _location_ids
         ).reverse()
 
-
-
-
-
         @tags = Tag.find([3, 7, 1, 20])
         
         @categories = params[:categories].present? ? 
@@ -37,6 +33,23 @@ class OrganizationsController < ApplicationController
 
         render :index
 
+    end
+
+
+    def profile
+        @organization = Organization.find(params[:id])
+        @page_tab = params[:tab_id]
+
+        render :profile
+
+    end
+
+    def dashboard
+        @organization = Organization.find(params[:id])
+        @page_tab = params[:tab_id]
+
+        render :dashboard
+        
     end
 
     before_action :authenticate_user!

@@ -89,25 +89,36 @@ module ApplicationHelper
             },
             {
                 id: 1,
-                name: "New York-Newark",
+                name: "New York",
+                description: "New York, Newark",
                 zip_codes: [07624, 11542],
                 hero_image: "/images/cities/new-york.jpeg"
             },
             {
                 id: 2,
-                name: "Washington-Baltimore-Arlington",
+                name: "Washington DC",
+                description: "Washington, Baltimore, Arlington",
                 zip_codes: [20016, 21210, 21234, 21244, 22303],
                 hero_image: "/images/cities/washington-dc.jpeg"
             },
             {
                 id: 3,
                 name: "Philadelphia",
+                description: "Philadelphia, Reading, Camden, Wilmington",
                 hero_image: "/images/cities/philadephia.jpeg",
                 zip_codes: [19102, 19144]
             },
             {
+                id: 7,
+                name: "Boston",
+                description: "Boston, Worcester, Providence",
+                hero_image: "/images/cities/boston.jpeg",
+                zip_codes: [3855]
+            },
+            {
                 id: 25,
-                name: "Pittsburgh-New Castle-Weirton",
+                name: "Pittsburgh",
+                description: "Pittsburgh, New Castle, Weirton",
                 hero_image: "/images/cities/pittsburgh.jpeg",
                 zip_codes: [15212]
             },
@@ -145,6 +156,39 @@ module ApplicationHelper
         else
             []
         end
+    end
+
+    def update_url_params (params) 
+        uri = URI.parse(request.fullpath)
+        query = Rack::Utils.parse_nested_query(uri.query)
+
+        # Locaiton
+        if params["locations"].is_a? String
+            if query["locations"].is_a? String
+                # Delete since the params are exactly same
+                if(params["locations"] == query["locations"])
+                    query.delete("locations")
+                elsif( (query["locations"].split(",") && params["locations"].split(",")).size > 0 )
+                    _new_loc = query["locations"].split(",")
+                    _new_loc.delete(params["locations"])
+                    query["locations"] = _new_loc.join(",")
+                end
+
+            else
+                
+                _new_loc = []
+                _new_loc.append(params["locations"])
+                query["locations"] = _new_loc.join(",")
+
+            end
+        end
+
+        query
+
+        # query.delete('fuga')
+        # uri.query = query.to_param
+        # uri.to_s
+        
     end
 
 

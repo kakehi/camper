@@ -1,3 +1,4 @@
+
 <div class="view-outer-container organizations-index-container">
 
     <div class="tabs page-tabs icon">
@@ -22,22 +23,27 @@
       <% if @locations.count > 0 %>
         <span class="subtext">Metros:</span>
         <% @locations.each do |loc| %>
+          <% _loc_link = update_url_params({"locations" => loc[:name].downcase})%>
           <%= render "uis/tags/tag",
               type: "selectable",
               selected: true,
               tg: loc,
-              size: "small" %>
+              size: "small",
+              href: index_organization_path(_loc_link)%>
         <% end %>
       <% end %>
 
     </div>
     
 
+    
+
     <% if @locations.count == 0 %>
       <div class="index-section metros">
         <h5 class="title">Featured metros</h5>
         <div class="flex-container center">
-          <% location_region_options.select{|loc| [1, 2, 3, 25].select{|f_loc| f_loc == loc[:id]}.count>0}.each do |f_loc| %>
+          <% location_region_options.select{|loc| [1, 2, 7, 3, 25].select{|f_loc| f_loc == loc[:id]}.count>0}.each do |f_loc| %>
+            <% _loc_link = update_url_params({"locations" => f_loc[:name].downcase})%>
             <%= link_to index_organization_path(locations: f_loc[:name].downcase), class:"circular-thumbnail-unit" do %>
               <% if f_loc[:hero_image].present? %>
                   <%= render "uis/thumb_images/thumb_image",
@@ -45,7 +51,10 @@
                       size: "regular",
                       image: f_loc[:hero_image] %>
               <% end %>
-              <div class="h7-reg"><%= f_loc[:name] %></div>
+              <div>
+                <div class="h6"><%= f_loc[:name] %></div>
+                <div class="subtext"><%= f_loc[:description] %></div>
+              </div>
             <% end %>
           <% end %>
         </div>

@@ -1,0 +1,20 @@
+<% if defined?(size)
+    @size = size
+else
+    @size = "regular"    
+end %>
+
+
+<% if defined?(organization)
+    @href = org_dashboard_path(organization, camp_group_options.select{|e| e[:id] == camp_group_default}[0][:id], "camps")
+    @text = "Dashbaord"
+end %>
+
+
+<%= render "uis/buttons/text-link",
+    text: @text,
+    size: @size,
+    href: @href,
+    icon: {
+        src: "/images/icons/pen-black.svg"
+    } %>

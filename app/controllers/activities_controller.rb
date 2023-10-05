@@ -81,10 +81,10 @@ class ActivitiesController < ApplicationController
 
 
     def duplicate
-        @organization = Organization.find(params[:organization_id])
-        @camp = Camp.find(params[:camp_id])
-        @activity = Activity.find(params[:id])
-        redirect_to activity_new_path(@organization, @camp, 1, default_activity: @activity), notice: 'Please save the duplicated session.'
+        _activity = Activity.find(params[:id])
+        _camp = Camp.find_by(id: _activity.camp_id)
+        _organization = Organization.find_by(id: _camp.organization_id)
+        redirect_to activity_new_path(_organization, _camp, 1, default_activity: _activity), notice: 'Please save the duplicated session.'
     end
 
 

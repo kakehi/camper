@@ -24,6 +24,6 @@
     <%= f.button "Done", type: "submit", class: "button primary medium full-width", name: "next", value: "0" %>
     
     <% if type == "update" %>
-        <%= link_to 'Delete activity', activity_destroy_path(@activity), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: "text-link danger small center" %>
+        <%= link_to 'Delete activity', session_destroy_path(@activity), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: "text-link danger small center" %>
     <% end %>
 </div>

@@ -119,3 +119,46 @@
 
 
 
+
+
+
+
+
+
+
+.dropdown-menu-container{
+    border: 1px #ccc solid;
+    list-style: none;
+
+    li {
+        
+        z-index: 2; 
+        
+        &:not(.init) { float: left; width: 130px; display: none; background: #ddd; }
+        &:not(.init):hover, ul li.selected:not(.init) { background: #09f; }
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .icon{
+
+        } 
+    }
+}
+
+
+// Size
+
+.dropdown-menu-container{
+    height: 30px;
+    width: 20rem;
+    padding: 0.5rem 0.25rem;
+    border-radius: 0.5rem;
+
+    li {
+        padding: 0.2rem 0.5rem;
+        .icon{
+            width: 1.25rem;
+        } 
+    }
+}

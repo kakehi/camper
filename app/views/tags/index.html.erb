@@ -6,14 +6,24 @@
 </div>
 
 <div class="view-outer-container organizations-index-container">
-    <div class="flex-wrap-container">
-        <% @tag.each do |t| %>
+  <% tag_get_tags_by_group().each do |t| %>
+    <div class="tag-group">
+      <%= render "uis/tags/tag",
+        href: edit_tag_path(t[:record].id),
+        text: "#{t[:record].name}, id=#{t[:record].id}",
+        icon: t[:record].icon,
+        size: "small" %>
+      <% if !t[:children].nil? %>
+        <div class="children-group flex-wrap-container">
+          <% t[:children].each do |ct| %>
             <%= render "uis/tags/tag",
-              href: edit_tag_path(t.id),
-              text: "#{t[:name]}, id=#{t[:id]}",
-              icon: t.icon,
+              href: edit_tag_path(ct[:record].id),
+              text: "#{ct[:record].name}, id=#{ct[:record].id}",
+              icon: ct[:record].icon,
               size: "small" %>
-        <% end %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-
+  <% end %>
 </div>

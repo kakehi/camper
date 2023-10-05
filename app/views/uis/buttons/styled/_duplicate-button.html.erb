@@ -7,19 +7,14 @@ end %>
 
 <% if defined?(organization)
     @href = edit_organization_path(organization)
-    @text = "Edit organization"
+    @text = "Duplicate organization"
 elsif defined?(camp)
     @organization = Organization.find_by(id: camp.organization_id)
     @href = camp_edit_path(@organization, camp, 1)
-    @text = "Edit camp"  
-elsif defined?(activity)
-    @camp = Camp.find_by(id: activity.camp_id)
-    @organization = Organization.find_by(id: @camp.organization_id)
-    @href = activity_edit_path(@organization, @camp, activity, 1)
-    @text = "Edit"  
-elsif defined?(profile)
-    @href = profile_edit_path(profile)
-    @text = "Edit profile"  
+    @text = "Duplicate camp"  
+elsif defined?(s)
+    @href = session_duplicate_path(s)
+    @text = "Duplicate" 
 end %>
 
 

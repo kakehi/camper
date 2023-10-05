@@ -107,14 +107,14 @@ class CampsController < ApplicationController
     
     
     def duplicate
-        @organization = Organization.find(params[:organization_id])
-        @camp = Camp.find(params[:id])
+        _camp = Camp.find(params[:id])
+        _organization = Organization.find_by(id: _camp.organization_id)
 
-        dup_c = @camp.dup
+        dup_c = _camp.dup
         dup_c.name += " [Duplicated]"
         dup_c.save
 
-        @activities = Activity.where(camp_id: @camp.id)
+        @activities = Activity.where(camp_id: _camp.id)
 
         if @activities.count > 0 
             @activities.each do |a|
@@ -124,7 +124,7 @@ class CampsController < ApplicationController
             end
         end
 
-        redirect_to camp_edit_path(@organization, dup_c, 1), notice: 'Camp was duplicated'
+        redirect_to camp_edit_path(_organization, dup_c, 1), notice: 'Camp was duplicated'
     end
 
 

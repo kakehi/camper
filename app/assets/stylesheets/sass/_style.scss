@@ -35,6 +35,17 @@ a{
         max-width: 1200px;
         margin: auto;
     }
+    &.full-screen{
+        
+    }
+
+
+
+
+    .page-header{
+        display: grid;
+        gap: 1rem;
+    }
 }
 
 
@@ -70,6 +81,10 @@ a{
     align-items: center;
     gap: 0.5rem;
     flex-wrap: wrap;
+
+    &.small{
+        gap: 0.25rem;
+    }
 }
 
 

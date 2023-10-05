@@ -89,6 +89,11 @@ button{
     padding: 0.25rem 1rem;
     border-radius: 0.5rem;
 
+    &.small{
+        padding: 0.7rem 1rem;
+        border-radius: 0.75rem;
+    }
+
     &.regular{
         padding: 0.7rem 1rem;
         border-radius: 0.75rem;
@@ -118,6 +123,13 @@ button{
 .button, .text-link{
 
     font-size: 1rem;
+
+    &.small{
+        font-size: 0.8rem;
+        .icon{
+            width: 0.8rem;
+        }
+    }
 
     &.regular{
         font-size: 1rem;

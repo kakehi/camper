@@ -31,9 +31,12 @@
                     
                 </div>
 
-                <%= render "uis/buttons/styled/edit-button",
-                    activity: activity %>
-                
+                <div class="button-group">
+                    <%= render "uis/buttons/styled/edit-button",
+                        activity: activity %>
+                    <%= render "uis/buttons/styled/duplicate-button",
+                        s: activity %>
+                </div>
             </div>
 
             <% if defined?(activity.description) %>

@@ -1,0 +1,31 @@
+
+
+<div class="view-outer-container full-screen">
+    <div class="page-header">
+        <div class="flex-container">
+            <div class="flex-left">
+                <div class="subtext">Dashboard</div>
+                <h4><%= @organization.name %></h4>
+                <%= render "uis/buttons/styled/edit-button",
+                    organization: @organization, 
+                    size: "small"%>
+            </div>
+            <div class="flex-right flex-container">
+                <ul class="dropdown-menu-container">
+                    <% _selected = camp_group_options.select{|option| option[:id] == params[:camp_group_id].to_i}[0] %>
+                    <li class="init"><%= _selected[:name] %><img class="icon" src="/images/icons/arrow-down.svg"/></li>
+                    <% camp_group_options.map do |option| %>
+                        <li selected=<%= option[:id] == params[:camp_group_id] ? "selected" : ""%> value=<%=org_dashboard_path(@organization, option[:id], "camps")%>><%= link_to option[:name], org_dashboard_path(@organization, option[:id], "camps") %></li>
+                    <% end %>
+                </ul>
+                
+            </div>
+        </div>
+        
+
+        <%= render "organizations/components/organization_dashboard_tabs",
+            selected: params[:tab_id]
+        %>
+       
+    </div>
+</div>

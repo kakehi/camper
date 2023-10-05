@@ -38,12 +38,15 @@
         <% end %>
 
         <% if tags.count > 0 %>
-            <div class="flex-wrap-container">
-                <% tags.each do |t| %>
+            <div class="flex-wrap-container small">
+                <% tags.first(5).each do |t| %>
                     
                     <%= render "uis/tags/tag",
                         tg: t,
                         size: "small" %>
+                <% end %>
+                <% if tags.count > 5 %>
+                    <div class="subtext-mini"><%= "+#{tags.count-5}" %></div>
                 <% end %>
             </div>
         <% end %>

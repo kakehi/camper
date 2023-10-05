@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   delete 'profile/destroy/:id', to: 'profiles#destroy', as: 'profile_destroy'
 
   ## Organizations
+  get 'orgs/:id/profile', to: 'organizations#profile', as: 'org_profile'
+  get 'orgs/:id/dashboard/camps/:camp_group_id/:tab_id', to: 'organizations#dashboard', as: 'org_dashboard'
   get 'orgs/new', to: 'organizations#new', as: 'new_organization'
   post 'orgs/new', to: 'organizations#create', as: 'create_organization'
   get 'orgs/edit/:id', to: 'organizations#edit', as: 'edit_organization'
@@ -41,7 +43,7 @@ Rails.application.routes.draw do
   post 'orgs/:organization_id/camps/edit/:id', to: 'camps#update', as: 'update_camp'
 
 
-  get 'orgs/:organization_id/camps/duplicate/:id', to: 'camps#duplicate', as: 'duplicate_camp'
+  get 'camps/duplicate/:id', to: 'camps#duplicate', as: 'camp_duplicate'
   get 'orgs/:organization_id/camps/:camp_id/override/:id', to: 'camps#override_children', as: 'camp_override_children'
 
   get 'camps/destroy/:id', to: 'camps#destroy'
@@ -60,10 +62,10 @@ Rails.application.routes.draw do
   get 'orgs/:organization_id/camps/:camp_id/sessions/edit/:id/page/:page_id', to: 'activities#edit', as: 'activity_edit'
   post 'orgs/:organization_id/camps/:camp_id/sessions/edit/:id', to: 'activities#update', as: 'update_activity'
 
-  get 'orgs/:organization_id/camps/:camp_id/sessions/duplicate/:id', to: 'activities#duplicate', as: 'duplicate_activity'
+  get 'sessions/duplicate/:id', to: 'activities#duplicate', as: 'session_duplicate'
 
   get 'sessions/destroy/:id', to: 'activities#destroy'
-  delete 'sessions/destroy/:id', to: 'activities#destroy', as: 'activity_destroy'
+  delete 'sessions/destroy/:id', to: 'activities#destroy', as: 'session_destroy'
   
 
   ## Tags
