@@ -1,49 +1,13 @@
 
 <div class="view-outer-container organizations-index-container">
 
-    <div class="tabs page-tabs icon">
-      <% @tags.each do |t| %>
-
-          <% 
-            _selected = @categories.select{|c|
-             c.name.downcase == t.name.downcase
-            }.count > 0
-          %>
-
-          <%= link_to index_organization_path(categories: t.name.downcase), :class => "tab #{t[:id]} #{_selected ? 'selected' : 'unselected'}" do %>
-              <% if defined?(t.icon) %>
-                  <%= image_tag(t.icon) if t.icon.present? %>
-              <% end %>
-              <%= t[:name] %>
-          <% end %>
-      <% end %>
-    </div>
-
-    <div class="filter-quick-access-container">
-      <% if @locations.count > 0 %>
-        <span class="subtext">Metros:</span>
-        <% @locations.each do |loc| %>
-          <% _loc_link = update_url_params({"locations" => loc[:name].downcase})%>
-          <%= render "uis/tags/tag",
-              type: "selectable",
-              selected: true,
-              tg: loc,
-              size: "small",
-              href: index_organization_path(_loc_link)%>
-        <% end %>
-      <% end %>
-
-    </div>
-    
-
-    
 
     <% if @locations.count == 0 %>
       <div class="index-section metros">
         <h5 class="title">Featured metros</h5>
         <div class="flex-container center">
           <% location_region_options.select{|loc| [1, 2, 7, 3, 25].select{|f_loc| f_loc == loc[:id]}.count>0}.each do |f_loc| %>
-            <% _loc_link = update_url_params({"locations" => f_loc[:name].downcase})%>
+            <% _loc_link = insert_url_params({"locations" => f_loc[:name].downcase})%>
             <%= link_to index_organization_path(locations: f_loc[:name].downcase), class:"circular-thumbnail-unit" do %>
               <% if f_loc[:hero_image].present? %>
                   <%= render "uis/thumb_images/thumb_image",
@@ -60,6 +24,47 @@
         </div>
       </div>
     <% end %>
+
+    
+    <div class="tabs page-tabs icon">
+      <% @tags.each do |t| %>
+
+          <% 
+            _selected = @categories.select{|c|
+             c.name.downcase == t.name.downcase
+            }.count > 0
+          %>
+          
+          <% _new_cat_link = overide_url_params({"categories" => t.name.downcase})%>
+          <%= link_to index_organization_path(_new_cat_link), :class => "tab #{t[:id]} #{_selected ? 'selected' : 'unselected'}" do %>
+              <% if defined?(t.icon) %>
+                  <%= image_tag(t.icon) if t.icon.present? %>
+              <% end %>
+              <%= t[:name] %>
+          <% end %>
+      <% end %>
+    </div>
+
+    <div class="filter-quick-access-container">
+      <% if @locations.count > 0 %>
+        <span class="subtext">Metros:</span>
+        <% @locations.each do |loc| %>
+          <% _new_loc_link = insert_url_params({"locations" => loc[:name].downcase})%>
+          <%= render "uis/tags/tag",
+              type: "selectable",
+              selected: true,
+              tg: loc,
+              size: "small",
+              href: index_organization_path(_new_loc_link)%>
+        <% end %>
+      <% end %>
+
+    </div>
+    
+
+    
+
+    
     
     <div class="grid-container">
         <% @organizations.each do |organization| %>

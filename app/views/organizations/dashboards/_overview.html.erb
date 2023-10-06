@@ -1,0 +1,34 @@
+
+
+
+<div>
+    <div class="dashboard-tab-header">
+        <div class="stats">
+            <div class="dashboard-stats-tile">
+                <div class="title">Total schedules:</div>
+                <h6 class="stat"><%= @schedule_activities.count%></h6>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="dashboard-stats-tile">
+                <div class="title">Total sessions:</div>
+                <h6 class="stat"><%= @activities.count%></h6>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h6>Sign up rate by tags</h6>
+        <div>
+            <% @tags.map do |tag| %>
+                <% _tag_activity = @activities.where(tags: {id: tag}) %>
+                <%= @activities[:tags] %>
+                <div>
+                    <%= tag[:name] %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    
+</div>

@@ -28,4 +28,13 @@
         %>
        
     </div>
+
+    <% if @page_tab == "overview" %>
+        <%= render "organizations/dashboards/overview" %>
+    <% end %>
+
+    <% if @page_tab == "camps" %>
+        <%= render "organizations/dashboards/camps" %>
+    <% end %>
+
 </div>

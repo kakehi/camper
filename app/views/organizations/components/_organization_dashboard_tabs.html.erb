@@ -2,9 +2,14 @@
 <%= render "uis/tabs/page_tabs",
     tabs: [
         {
+            "id": "overview",
+            "name": "Overview",
+            "href": org_dashboard_path(@organization, params[:camp_group_id], "overview")
+        },
+        {
             "id": "camps",
             "name": "Camps",
-            "href": org_dashboard_path()
+            "href": org_dashboard_path(@organization, params[:camp_group_id], "camps")
         }
     ],
     selected: selected

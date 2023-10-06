@@ -158,7 +158,7 @@ module ApplicationHelper
         end
     end
 
-    def update_url_params (params) 
+    def insert_url_params (params, override = false) 
         uri = URI.parse(request.fullpath)
         query = Rack::Utils.parse_nested_query(uri.query)
 
@@ -183,6 +183,34 @@ module ApplicationHelper
             end
         end
 
+        # Categories
+        if params["categories"].is_a? String
+
+            if query["categories"].is_a? String
+                
+                # Delete since the params are exactly same
+                if(params["categories"] == query["categories"])
+                    query.delete("categories")
+
+                elsif( (query["categories"].split(",") & params["categories"].split(",")).size > 0 )
+                    _new_cat = query["categories"].split(",")
+                    _new_cat.delete(params["categories"])
+                    query["categories"] = _new_cat.join(",")
+                else
+                    _new_cat = query["categories"].split(",")
+                    _new_cat.append(params["categories"])
+                    query["categories"] = _new_cat.join(",")
+                end
+
+            else
+                
+                _new_cat = []
+                _new_cat.append(params["categories"])
+                query["categories"] = _new_cat.join(",")
+            end
+
+        end
+
         query
 
         # query.delete('fuga')
@@ -191,7 +219,43 @@ module ApplicationHelper
         
     end
 
+    def overide_url_params (params) 
+        uri = URI.parse(request.fullpath)
+        query = Rack::Utils.parse_nested_query(uri.query)
 
+        # Locaiton
+        if params["locations"].is_a? String
+            # Delete since the params are exactly same
+            if((query["locations"].is_a? String) && params["locations"] == query["locations"])
+                query.delete("locations")
+            else
+                _new_loc = []
+                _new_loc.append(params["locations"])
+                query["locations"] = _new_loc.join(",")
+            end
+        end
+
+        # Categories
+        if params["categories"].is_a? String
+
+            # Delete since the params are exactly same
+            if((query["categories"].is_a? String) && params["categories"] == query["categories"])
+                query.delete("categories")
+            else
+                _new_cat = []
+                _new_cat.append(params["categories"])
+                query["categories"] = _new_cat.join(",")
+            end
+            
+        end
+
+        query
+
+        # query.delete('fuga')
+        # uri.query = query.to_param
+        # uri.to_s
+        
+    end
 
     
 end
