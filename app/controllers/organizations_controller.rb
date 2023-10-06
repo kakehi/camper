@@ -19,12 +19,45 @@ class OrganizationsController < ApplicationController
             _location_ids = location_region_options.map{|loc| loc[:id]}
         end
 
-        # get organizations
+        # categoties
+        @tags = get_tags_by_params(get_url_params_into_array(params[:categories]))
+
+
+        # get organizations by regions
         @organizations = Organization.where(
             region: _location_ids
-        ).reverse()
+        )
+        # get organizations by categories
+        if @tags.count > 0
+            _tag_ids = @tags.map{|tg| tg[:id]}
+            @organizations = @organizations.select{|o|
+                #camp
+                o.camps.select{|c|
+                    rtn = false
+                    if defined?c.tags
+                        rtn = (c.tags.map{|t| t.id} & _tag_ids ).count > 0
+                    end
 
-        @tags = Tag.find([3, 7, 1, 20])
+                    if !rtn 
+                        rtn = c.activities.select{|a|
+                            if defined?a.tags
+                                (a.tags.map{|t| t.id} & _tag_ids ).count > 0
+                            else
+                                false
+                            end
+                        }.count > 0
+                    end
+
+                    rtn
+
+                }.count > 0
+            }
+        end
+        
+        @organizations = @organizations.reverse()
+
+        # featured tags
+        @featured_tags = Tag.find([3, 7, 1, 20])
         
         @categories = params[:categories].present? ? 
             params[:categories].split(',').map{|c| 
@@ -48,7 +81,7 @@ class OrganizationsController < ApplicationController
         @organization = Organization.find(params[:id])
         @page_tab = params[:tab_id]
         @camps = Camp.where(organization_id: @organization)
-        @activities = Activity.joins(:categories).where(categories: {activity_id: activity}).where(camp_id: @camps)
+        @activities = Activity.where(camp_id: @camps)
         @schedule_activities = ScheduleActivity.where(activity_id: @activities)
         
         @cats = Category.where(activity_id: @activities)

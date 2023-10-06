@@ -37,4 +37,8 @@
         <%= render "organizations/dashboards/camps" %>
     <% end %>
 
+    <% if @page_tab == "tags" %>
+        <%= render "organizations/dashboards/tags", tags: @tags.includes(activities:).order("activities.sessions.count desc") %>
+    <% end %>
+
 </div>

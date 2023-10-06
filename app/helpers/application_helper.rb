@@ -150,6 +150,19 @@ module ApplicationHelper
         end
     end
 
+
+    def get_tags_by_params (params) 
+        if params.count > 0
+            params.map{|param|
+                Tag.select{|t| t[:name].downcase == param}.first
+            }
+        else
+            []
+        end
+    end
+
+
+
     def get_url_params_into_array (params) 
         if params.present?
             params.split(',')
@@ -158,7 +171,7 @@ module ApplicationHelper
         end
     end
 
-    def insert_url_params (params, override = false) 
+    def insert_url_params (params) 
         uri = URI.parse(request.fullpath)
         query = Rack::Utils.parse_nested_query(uri.query)
 
@@ -168,9 +181,13 @@ module ApplicationHelper
                 # Delete since the params are exactly same
                 if(params["locations"] == query["locations"])
                     query.delete("locations")
-                elsif( (query["locations"].split(",") && params["locations"].split(",")).size > 0 )
+                elsif( (query["locations"].split(",") & params["locations"].split(",")).size > 0 )
                     _new_loc = query["locations"].split(",")
                     _new_loc.delete(params["locations"])
+                    query["locations"] = _new_loc.join(",")
+                else
+                    _new_loc = query["locations"].split(",")
+                    _new_loc.append(params["locations"])
                     query["locations"] = _new_loc.join(",")
                 end
 
@@ -213,10 +230,6 @@ module ApplicationHelper
 
         query
 
-        # query.delete('fuga')
-        # uri.query = query.to_param
-        # uri.to_s
-        
     end
 
     def overide_url_params (params) 
@@ -251,10 +264,6 @@ module ApplicationHelper
 
         query
 
-        # query.delete('fuga')
-        # uri.query = query.to_param
-        # uri.to_s
-        
     end
 
     

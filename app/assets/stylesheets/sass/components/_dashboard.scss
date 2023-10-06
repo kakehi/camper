@@ -16,7 +16,6 @@
     border-bottom: 1px solid #ddd;
 
     display: grid;
-    grid-template-columns: 2fr 6fr 3fr 1fr 1fr 10fr 1fr;
 
     &.header{
         *{
@@ -24,7 +23,34 @@
         }
         
     }
+
+    &.camps{
+        grid-template-columns: 2fr 6fr 3fr 1fr 1fr 10fr 1fr;
+    }
+   
+    &.tags{
+        grid-template-columns: 2fr 4fr;
+    }
+    
 }
+
+
+// Specialized
+
+.dashboard-list-line.tags{
+    .counts{
+        display: flex;
+        gap: 0.5rem;
+        align-items:baseline;
+        
+        .unit{
+            color: #666;
+        }
+    }
+}
+
+
+
 
 
 

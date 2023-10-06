@@ -8,7 +8,7 @@
         <div class="flex-container center">
           <% location_region_options.select{|loc| [1, 2, 7, 3, 25].select{|f_loc| f_loc == loc[:id]}.count>0}.each do |f_loc| %>
             <% _loc_link = insert_url_params({"locations" => f_loc[:name].downcase})%>
-            <%= link_to index_organization_path(locations: f_loc[:name].downcase), class:"circular-thumbnail-unit" do %>
+            <%= link_to index_organization_path(_loc_link), class:"circular-thumbnail-unit" do %>
               <% if f_loc[:hero_image].present? %>
                   <%= render "uis/thumb_images/thumb_image",
                       type: "circular",
@@ -25,9 +25,8 @@
       </div>
     <% end %>
 
-    
     <div class="tabs page-tabs icon">
-      <% @tags.each do |t| %>
+      <% @featured_tags.each do |t| %>
 
           <% 
             _selected = @categories.select{|c|

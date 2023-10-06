@@ -1,0 +1,19 @@
+<div>
+    <h6>Sign up rate by tags</h6>
+    <div>
+        <% tags.map do |tag| %>
+            <% _tag_activities = tag.activities %>
+            
+            <div class="dashboard-list-line tags">
+                <div class="title">
+                    <%= image_tag(tag[:icon]) if tag[:icon].present? %>
+                    <%= tag[:name] %>
+                </div>
+                <div class="counts">
+                    <div class="count"><%= ScheduleActivity.where(activity_id: _tag_activities).count %> Waitlisted</div>
+                    <div class="unit"><%= _tag_activities.count %> session</div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
