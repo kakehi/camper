@@ -13,7 +13,7 @@
 
 
 
-    <div class="dashboard-list-line header">
+    <div class="dashboard-list-line camp header">
         <div class="dates">Dates</div>
         <div class="title">Title</div>
         <div class="time">Time</div>
@@ -27,7 +27,7 @@
 
     <% @activities.map do |a| %>
         <% _sa = ScheduleActivity.where(activity_id: a.id)%>
-        <div class="dashboard-list-line">
+        <div class="dashboard-list-line camp">
             <div class="dates">
                 <%= render "uis/grammar/week",
                         type: 'secondary',

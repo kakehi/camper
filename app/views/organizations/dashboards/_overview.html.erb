@@ -24,7 +24,7 @@
             <% @tags.map do |tag| %>
                 <% _tag_activities = tag.activities %>
                 
-                <div class="dashboard-list-line tags">
+                <div class="dashboard-list-line dashboard-tag">
                     <div class="title">
                         <%= image_tag(tag[:icon]) if tag[:icon].present? %>
                         <%= tag[:name] %>

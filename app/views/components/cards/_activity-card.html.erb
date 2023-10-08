@@ -1,94 +1,100 @@
 <%
-    @camp_type = defined?(camp.camp_type) ? camp.camp_type : 0
-    @camp_type_class = "camp-type-"+camp.camp_type.to_s
+    _camp = Camp.find_by(id: activity.camp_id)
+    _organization = Organization.find_by(id: _camp.organization_id)
+    _camp_type = defined?(_camp.camp_type) ? _camp.camp_type : 0
+    _camp_type_class = "camp-type-"+_camp.camp_type.to_s
     @hero_image = activity.hero_image.present? ? "hero-image" : "no-image"
 %>
 
 
-<div class="card list-card activity-card <%= @camp_type_class %> <%= @hero_image %>">
-    <div class="content">
-        <div class="left-body">
-            <div class="header">
-                <div class="main-content">
-                    
-                    
 
-                    <% if @camp_type == 1 %>
-                        <h4 class="title"><%= render "uis/grammar/week",
-                            start_at: activity.start_at,
-                            end_at: activity.end_at,
-                            size: "large" %></h4>
-                    <% else %>
-                        <h4 class="title"><%= activity.name %></h4>
-                        <div class="flex-wrap-container">
-                            <% activity.tags.each do |t| %>
-                                <%= render "uis/tags/tag",
-                                    tg: t,
-                                    size: "small" %>
-                            <% end %>
-                        </div>
-                    <% end %>
-                    
+    <div class="card list-card activity-card <%= _camp_type_class %> <%= @hero_image %>">
+        <div class="content">
+            <div class="left-body">
+                <div class="header">
+                    <div class="main-content">
+                        
+                        
+
+                        <% if _camp_type == 1 %>
+                            <h5 class="title"><%= render "uis/grammar/week",
+                                start_at: activity.start_at,
+                                end_at: activity.end_at,
+                                size: "large" %></h5>
+                        <% else %>
+                            <h5 class="title"><%= activity.name %></h5>
+                            <div class="flex-wrap-container">
+                                <% activity.tags.each do |t| %>
+                                    <%= render "uis/tags/tag",
+                                        tg: t,
+                                        size: "small" %>
+                                <% end %>
+                            </div>
+                        <% end %>
+                        
+                    </div>
+
+                    <div class="flex-container">
+                        <%= render "uis/buttons/styled/edit-button",
+                            activity: activity,
+                            size: "small" %>
+                        <%= render "uis/buttons/styled/duplicate-button",
+                            s: activity,
+                            size: "small" %>
+                    </div>
                 </div>
 
-                <div class="button-group">
-                    <%= render "uis/buttons/styled/edit-button",
-                        activity: activity %>
-                    <%= render "uis/buttons/styled/duplicate-button",
-                        s: activity %>
+                <% if defined?(activity.description) %>
+                    <div class="body description">
+                        <%= activity.description %>
+                    </div>
+                <% end %>
+
+                <div class="footer">
+                    <div class="footer-child date">
+                        <% if _camp_type == 1 %>
+                            <%= "Session #{index+1}" %>
+                        <% else %>
+                            <%= render "uis/grammar/week",
+                                start_at: activity.start_at,
+                                end_at: activity.end_at,
+                                icon: true
+                            %>
+                        <% end %>
+                            
+                    </div>
+                    <div class="footer-child stats">
+                        <%= render "uis/grammar/age-group",
+                            type: 'secondary',
+                            age_group_min: activity.age_group_min,
+                            age_group_max: activity.age_group_max %>
+                        <%= render "uis/grammar/time",
+                            type: 'secondary',
+                            start_time: activity.start_time,
+                            end_time: activity.end_time %>
+                    </div>
+                    <div class="footer-child price">
+                        <%= render "uis/grammar/price", price: activity.base_price, size: "medium" %>
+                        <%= render "uis/buttons/styled/schedule-activity-button",
+                                type: "cta",
+                                activity: activity %>
+                        <%= render "uis/buttons/styled/order-activity-button",
+                                type: "cta",
+                                activity: activity %>
+                    </div>
                 </div>
+            
             </div>
 
-            <% if defined?(activity.description) %>
-                <div class="body description">
-                    <%= activity.description %>
+            <% if activity.hero_image.present? %>
+                <div class="right-image">
+                    <%= render "uis/thumb_images/thumb_image",
+                        size: "fill",
+                        image: activity.hero_image %>
                 </div>
             <% end %>
 
-            <div class="footer">
-                <div class="footer-child date">
-                    <% if @camp_type == 1 %>
-                        <%= "Session #{index+1}" %>
-                    <% else %>
-                        <%= render "uis/grammar/week",
-                            start_at: activity.start_at,
-                            end_at: activity.end_at,
-                            icon: true
-                        %>
-                    <% end %>
-                        
-                </div>
-                <div class="footer-child stats">
-                    <%= render "uis/grammar/age-group",
-                        type: 'secondary',
-                        age_group_min: activity.age_group_min,
-                        age_group_max: activity.age_group_max %>
-                    <%= render "uis/grammar/time",
-                        type: 'secondary',
-                        start_time: activity.start_time,
-                        end_time: activity.end_time %>
-                </div>
-                <div class="footer-child price">
-                    <%= render "uis/grammar/price", price: activity.base_price, size: "medium" %>
-                    <%= render "uis/buttons/styled/schedule-activity-button",
-                            type: "cta",
-                            activity: activity %>
-                    <%= render "uis/buttons/styled/order-activity-button",
-                            type: "cta",
-                            activity: activity %>
-                </div>
-            </div>
-        
         </div>
-
-        <% if activity.hero_image.present? %>
-            <div class="right-image">
-                <%= render "uis/thumb_images/thumb_image",
-                    size: "fill",
-                    image: activity.hero_image %>
-            </div>
-        <% end %>
 
     </div>
 
-</div>

@@ -24,11 +24,11 @@
         
     }
 
-    &.camps{
+    &.camp{
         grid-template-columns: 2fr 6fr 3fr 1fr 1fr 10fr 1fr;
     }
    
-    &.tags{
+    &.dashboard-tag{
         grid-template-columns: 2fr 4fr;
     }
     
@@ -37,7 +37,7 @@
 
 // Specialized
 
-.dashboard-list-line.tags{
+.dashboard-list-line.dashboard-tag{
     .counts{
         display: flex;
         gap: 0.5rem;
@@ -45,6 +45,11 @@
         
         .unit{
             color: #666;
+        }
+
+        *{
+            width: 8rem;
+            text-align: right;
         }
     }
 }

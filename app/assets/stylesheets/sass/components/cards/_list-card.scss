@@ -134,9 +134,12 @@
 */
 .list-card.activity-schedule-card{
 
+
     .content{
+        padding: 0rem!important;
         grid-template-columns: 4fr 1fr;
         .left-body{
+            
 
             .header{
 
@@ -161,5 +164,7 @@
     }
 
 }
+
+
 
 

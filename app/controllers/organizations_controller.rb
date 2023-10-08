@@ -27,21 +27,41 @@ class OrganizationsController < ApplicationController
         @organizations = Organization.where(
             region: _location_ids
         )
+
         # get organizations by categories
         if @tags.count > 0
+            
+            # All selected tags
             _tag_ids = @tags.map{|tg| tg[:id]}
+            
+            # Focus tags, so users can find narrower results. For example, when the user selected VR after science tab was selected, they should be able to see VR results only
+            _focust_tag_ids = _tag_ids.select do |tg|
+               
+                _tg_group = helpers.tag_groups.select{|tg_g| tg_g[:id] == tg }
+                if _tg_group.count > 0
+                    # Tag groups with children
+                    Rails.logger.debug _tg_group[0][:children]
+                    Rails.logger.debug _tag_ids
+                    (_tg_group[0][:children] & _tag_ids).count == 0
+                else
+                    # Tag groups without children
+                    true
+                end
+            end
+            @focus_tags = Tag.where(id: _focust_tag_ids)
+
             @organizations = @organizations.select{|o|
                 #camp
                 o.camps.select{|c|
                     rtn = false
                     if defined?c.tags
-                        rtn = (c.tags.map{|t| t.id} & _tag_ids ).count > 0
+                        rtn = (c.tags.map{|t| t.id} & _focust_tag_ids ).count > 0
                     end
 
                     if !rtn 
                         rtn = c.activities.select{|a|
                             if defined?a.tags
-                                (a.tags.map{|t| t.id} & _tag_ids ).count > 0
+                                (a.tags.map{|t| t.id} & _focust_tag_ids ).count > 0
                             else
                                 false
                             end
@@ -57,7 +77,7 @@ class OrganizationsController < ApplicationController
         @organizations = @organizations.reverse()
 
         # featured tags
-        @featured_tags = Tag.find([3, 7, 1, 20])
+        @featured_tags = Tag.find([3, 7, 1, 20, 46, 23, 6, 12])
         
         @categories = params[:categories].present? ? 
             params[:categories].split(',').map{|c| 

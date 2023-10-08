@@ -39,10 +39,19 @@
         display: grid;
         gap: 0.25rem;
         text-align: center;
-
+        align-items: flex-start;
+        width: 8rem;
         img{
             margin: auto;
             width: 2rem;
+            height: 2rem;
+        }
+        
+
+        .text{
+            height: 50%;
+            font-size: 75%;
+            line-height: 100%;
         }
     }
 }

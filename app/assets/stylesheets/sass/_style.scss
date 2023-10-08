@@ -54,8 +54,17 @@ a{
 .grid-container{
     box-sizing: content-box;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1rem;
+
+    &.small{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    &.medium{
+        grid-template-columns: 1fr 1fr;
+    }
+    &.single{
+        grid-template-columns: 1fr;
+    }
 }
 
 

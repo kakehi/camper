@@ -4,6 +4,22 @@
     @camps = Camp.where(organization_id: organization.id)
     @camp = @camps.first
 
+    if !@camp.nil?
+        _activities = @camp.activities
+
+        if(@focus_tags.count > 0)
+            _target_activities = _activities.select{|a|
+                if defined? a.tags
+                    ( a.tags.map{|t| t[:id]} & @focus_tags.map{|t| t[:id]} ).count > 0
+                else
+                    false
+                end
+            }
+        else 
+            _target_activities = _activities
+        end
+    end
+
     href = get_organization_href(organization)
     weekly_price = organization_get_minimum_weekly_cost(organization)
     tags = organization_get_camp_tags(organization)
@@ -18,48 +34,149 @@
 %>
 
 
-<%= %>
+<% if @tags.count > 0 %>
 
-<a class="card grid-card" href="<%= href %>">
-    <div class="image">
-        <%= image_tag(@hero_image) if @hero_image.attached? %>
-    </div>
-    <div class="content">
 
-        <div class="title">
-            <%= render "uis/grammar/location_metro",
-                size: "small",
-                location: organization %>
-            <h6><%= organization.name %></h6>
+    <div class="card grid-card organization-detail">
+        <div class="profile">
+            <div class="header">
+                 <div class="title">
+                    <%= render "uis/grammar/location_metro",
+                        size: "small",
+                        location: organization %>
+                </div>
+            </div>
+            <div class="body">
+                <div class="image">
+                    <%= image_tag(@hero_image) if @hero_image.attached? %>
+                </div>
+                <div class="content">
+                    <h6><%= organization.name %></h6>
+                    <% if defined?(weekly_price) %>
+                        <%= render "uis/grammar/price", weekly_price: weekly_price %>
+                    <% end %>
+
+                    <% if tags.count > 0 %>
+                        <div class="flex-wrap-container small">
+                            <% tags.first(5).each do |t| %>
+                                
+                                <%= render "uis/tags/tag",
+                                    tg: t,
+                                    selected: @tags.select{|st| st.id == t.id}.count > 0,
+                                    size: "small" %>
+                            <% end %>
+                            <% if tags.count > 5 %>
+                                <div class="subtext-mini"><%= "+#{tags.count-5}" %></div>
+                            <% end %>
+                        </div>
+                    <% end %>
+
+                    <% if defined?(age_group_min) %>
+                        <%= render "uis/grammar/age-group",
+                            size: "small",
+                            age_group_min: age_group_min,
+                            age_group_max: age_group_max
+                        %>
+                    <% end %>
+                    <%= render "uis/buttons/button",
+                        type: "text",
+                        text: "View detail",
+                        size: "small",
+                        href: href %>
+
+                </div>
+            </div>
         </div>
 
-        <% if defined?(weekly_price) %>
-            <%= render "uis/grammar/price", weekly_price: weekly_price %>
-        <% end %>
+        
+        <% if !_target_activities.nil? && _target_activities.count > 0 %>
+            <div class="activities-container">
+                <div class="h7">Sessions with activities</div>
+                <%  _target_activities.each do |a| %>
+                    <div class="list-item">
+                        <div class="left-container">
+                            <%= render "uis/grammar/week",
+                                type: 'secondary',
+                                start_at: a.start_at,
+                                end_at: a.end_at,
+                                size: "small" %>
+                            <%= render "uis/grammar/time",
+                                type: 'secondary',
+                                start_time: a.start_time,
+                                end_time: a.end_time,
+                                size: "small" %>
+                            <div class="subtext-mini title"><%= a[:name] %></div>
+                            <div class="flex-wrap-container">
+                                <% a.tags.each do |t| %>
+                                    <%= render "uis/tags/tag",
+                                        tg: t,
+                                        selected: @tags.select{|st| st.id == t.id}.count > 0,
+                                        size: "mini" %>
+                                <% end %>
+                            </div>
+                        </div>
+                        <div class="right-container">
+                            <%= render "uis/grammar/price",
+                                price: a.base_price,
+                                size: "small" %>
+                        </div>
+                    </div>
+                <%  end %>
 
-        <% if tags.count > 0 %>
-            <div class="flex-wrap-container small">
-                <% tags.first(5).each do |t| %>
-                    
-                    <%= render "uis/tags/tag",
-                        tg: t,
-                        size: "small" %>
-                <% end %>
-                <% if tags.count > 5 %>
-                    <div class="subtext-mini"><%= "+#{tags.count-5}" %></div>
-                <% end %>
+                <%= render "uis/buttons/button",
+                        type: "secondary",
+                        text: "View all sessions",
+                        size: "small",
+                        href: href %>
             </div>
         <% end %>
 
-        <% if defined?(age_group_min) %>
-            <%= render "uis/grammar/age-group",
-                size: "small",
-                age_group_min: age_group_min,
-                age_group_max: age_group_max
-            %>
-        <% end %>
-
-        
+            
 
     </div>
-</a>
+
+<% else %>
+
+    <a class="card grid-card" href="<%= href %>">
+        <div class="image">
+            <%= image_tag(@hero_image) if @hero_image.attached? %>
+        </div>
+        <div class="content">
+
+            <div class="title">
+                <%= render "uis/grammar/location_metro",
+                    size: "small",
+                    location: organization %>
+                <h6><%= organization.name %></h6>
+            </div>
+
+            <% if defined?(weekly_price) %>
+                <%= render "uis/grammar/price", weekly_price: weekly_price %>
+            <% end %>
+
+            <% if tags.count > 0 %>
+                
+                <div class="flex-wrap-container small">
+                    <% tags.first(5).each do |t| %>
+                        <%= render "uis/tags/tag",
+                            tg: t,
+                            size: "small" %>
+                    <% end %>
+                    <% if tags.count > 5 %>
+                        <div class="subtext-mini"><%= "+#{tags.count-5}" %></div>
+                    <% end %>
+                </div>
+            <% end %>
+
+            <% if defined?(age_group_min) %>
+                <%= render "uis/grammar/age-group",
+                    size: "small",
+                    age_group_min: age_group_min,
+                    age_group_max: age_group_max
+                %>
+            <% end %>
+
+        </div>
+    </a>
+
+<% end %>

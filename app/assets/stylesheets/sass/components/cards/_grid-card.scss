@@ -76,3 +76,66 @@
 
 
 
+
+/*
+
+    Specialized
+
+*/
+
+// Organization Detail
+.grid-card.organization-detail{
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+
+    &:hover{
+        text-decoration: none;
+        box-shadow: none;
+    }
+
+    .profile{
+        .body{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1rem;
+            align-items: flex-start;
+
+            .image{
+                height: 8rem;
+            }
+        }
+    }
+
+    .activities-container{
+        .h7{
+            padding-bottom: 0.5rem;
+        }
+        .list-item{
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.25rem 0;
+
+            
+            .left-container, .right-container{
+                display: flex;
+                gap: 1rem;
+            }
+            .left-container{
+                .grammar-date{
+                    width: 6rem;
+                }
+                .grammar-time{
+                    width: 10rem;
+                }
+                .title{
+                    width: 24rem;
+                }
+            }
+        }
+    }
+}
+
+

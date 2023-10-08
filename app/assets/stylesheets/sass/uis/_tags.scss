@@ -13,6 +13,16 @@
     padding: 1rem;
     border-radius: 0.5rem;
     
+    &.mini{
+        padding: 0rem 0.25rem;
+        border-radius: 0.5rem;
+        font-size: 0.7rem;
+        gap: 0.15rem;
+        img{
+            width: 1rem;
+        }
+    }
+
     &.small{
         padding: 0.15rem 0.5rem;
         border-radius: 0.5rem;
@@ -36,19 +46,25 @@
 
 
 // Interaction
-.tag.selectable{
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 1rem;
-    cursor: pointer;
-    .close-icon{
-        width: 0.75rem;
-    }
+.tag{
 
-    &:hover{
-        background-color: #eee;
+    &.selectable{
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 1rem;
+        cursor: pointer;
+        .close-icon{
+            width: 0.75rem;
+        }
+
+        &:hover{
+            background-color: #eee;
+        }
     }
+    
+
     &.selected{
-
+        background-color: rgb(166, 232, 237);
+        border-color: transparent;
     }
 }

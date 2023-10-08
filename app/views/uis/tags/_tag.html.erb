@@ -15,11 +15,13 @@
 
     _type = defined?(type) ? type : ""
 
+    _selected = defined?(selected) && selected ? "selected" : ""
+
 %>
 
 
 <% if defined?(href) %>
-    <a class="tag <%= _type %> <%= size %>" href=<%= href %>>
+    <a class="tag <%= _type %> <%= size %> <%= _selected %>" href=<%= href %>>
         <% if defined? _icon %>
             <%= image_tag(_icon) if _icon.present? %>
         <% end %>
@@ -27,7 +29,7 @@
         <%= image_tag("/images/icons/cross-black.svg", class: "close-icon") if (_type == "selectable" && selected) %>
     </a>
 <% else %>
-    <div class="tag <%= _type %> <%= size %>">
+    <div class="tag <%= _type %> <%= size %> <%= _selected %>">
         <% if defined? _icon %>
             <%= image_tag(_icon) if _icon.present? %>
         <% end %>

@@ -56,8 +56,6 @@
                   <% @activity.each do |a| %>
                       <% if dates_overlap?(a, w)%>
                         <%= render "components/cards/activity-card",
-                            organization: @organization,
-                            camp: @camp,
                             activity: a
                         %>
                       <% end %>
@@ -70,8 +68,6 @@
 
           <% @activity.each_with_index do |a, i| %>
             <%= render "components/cards/activity-card",
-                organization: @organization,
-                camp: @camp,
                 activity: a,
                 index: i
             %>

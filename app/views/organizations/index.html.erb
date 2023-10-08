@@ -39,25 +39,49 @@
               <% if defined?(t.icon) %>
                   <%= image_tag(t.icon) if t.icon.present? %>
               <% end %>
-              <%= t[:name] %>
+              <div class="text"><%= t[:name] %></div>
           <% end %>
       <% end %>
     </div>
 
     <div class="filter-quick-access-container">
+
       <% if @locations.count > 0 %>
-        <span class="subtext">Metros:</span>
-        <% @locations.each do |loc| %>
-          <% _new_loc_link = insert_url_params({"locations" => loc[:name].downcase})%>
-          <%= render "uis/tags/tag",
-              type: "selectable",
-              selected: true,
-              tg: loc,
-              size: "small",
-              href: index_organization_path(_new_loc_link)%>
-        <% end %>
+        <div class="quick-access-container">
+          <span class="subtext">Metros:</span>
+          <% @locations.each do |loc| %>
+            <% _new_loc_link = insert_url_params({"locations" => loc[:name].downcase})%>
+            <%= render "uis/tags/tag",
+                type: "selectable",
+                selected: true,
+                tg: loc,
+                size: "small",
+                href: index_organization_path(_new_loc_link)%>
+          <% end %>
+        </div>
       <% end %>
 
+
+      <% if @tags.count > 0 %>
+        <div class="quick-access-container">
+          <% @tags.each do |tg| %>
+            <% _tg_group = tag_groups.select{|e| e[:id] == tg[:id]} %>
+            <% if _tg_group.count > 0 %>
+              <span class="subtext"><%= tg.name %>:</span>
+              <% _tg_group.first[:children].each do |child| %>
+                <% _child_tag = Tag.find_by(id: child) %>
+                <% _new_loc_link = insert_url_params({"categories" => _child_tag.name.downcase})%>
+                <%= render "uis/tags/tag",
+                  type: "selectable",
+                  selected: (@tags & [_child_tag]).count > 0,
+                  tg: _child_tag,
+                  size: "small",
+                  href: index_organization_path(_new_loc_link) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
     
 
@@ -65,7 +89,7 @@
 
     
     
-    <div class="grid-container">
+    <div class="grid-container <%= @tags.count > 0 ? "single" : "small" %>">
         <% @organizations.each do |organization| %>
             <%= render "components/cards/organization-grid-card",
                 organization: organization
