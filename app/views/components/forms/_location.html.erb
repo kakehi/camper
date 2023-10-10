@@ -46,7 +46,8 @@
 
 
 <div class="form-group">
-    <h4>Locations</h4>
+    <%= render "components/titles/segment-title",
+        title: "Locations" %>
     <div class="location overall">
         <div class="form-field country">
             <%= f.label "Country", class: 'form-label' %>
@@ -75,7 +76,7 @@
         
         <div class="form-field state">
             <%= f.label "State", class: 'form-label' %>
-            <%= f.select :region, 
+            <%= f.select :state, 
                 options_for_select(
                     location_options
                         .select{|s| s[:id] == country}.first[:children]

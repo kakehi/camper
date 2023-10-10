@@ -24,8 +24,11 @@ Rails.application.routes.draw do
   ## Organizations
   get 'orgs/:id/profile', to: 'organizations#profile', as: 'org_profile'
   get 'orgs/:id/dashboard/camps/:camp_group_id/:tab_id', to: 'organizations#dashboard', as: 'org_dashboard'
-  get 'orgs/new', to: 'organizations#new', as: 'new_organization'
-  post 'orgs/new', to: 'organizations#create', as: 'create_organization'
+ 
+  get 'orgs/new', to: 'organizations#new', as: 'org_new'
+  post 'orgs/new', to: 'organizations#create', as: 'org_create'
+  get 'orgs/signup', to: 'organizations#signup', as: 'org_signup'
+
   get 'orgs/edit/:id', to: 'organizations#edit', as: 'edit_organization'
   post 'orgs/edit/:id', to: 'organizations#update', as: 'update_organization'
   get 'orgs/destroy/:id', to: 'organizations#destroy'

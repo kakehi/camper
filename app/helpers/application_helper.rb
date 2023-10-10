@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+    def service_title 
+        "[The service title]"
+    end
+
     def age_group_options
         [
             {

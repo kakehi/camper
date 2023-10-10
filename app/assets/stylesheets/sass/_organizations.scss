@@ -2,7 +2,7 @@
 
 
 
-
+// Index page
 .organizations-index-container{
 
     .filter-quick-access-container{
@@ -39,3 +39,57 @@
 }
 
 
+
+
+
+
+
+
+// Sign up page
+.organization-signup-outer-container{
+
+    position:relative;
+
+    .bg{
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        height: 100vh;
+        
+        background-color: #CFE8DD;
+
+        z-index: 0;
+
+        .content{
+            max-width: 600px;
+            margin: auto;
+            
+            .hero-image{
+                width: 100%;
+                margin: auto;
+            }
+        }
+        
+    }
+
+    .contents{
+        max-width: 1200px;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 2fr 2fr;
+        margin: auto;
+        z-index: 1;
+        
+        .right-container{
+            padding: 4rem;
+
+            .content{
+                display: grid;
+                gap: 1rem;
+            }
+            
+        }
+    }
+}

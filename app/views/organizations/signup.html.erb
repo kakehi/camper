@@ -1,0 +1,47 @@
+<div class="organization-signup-outer-container">
+    
+    <div class="bg">
+        <div class="content">
+            <img alt="" class="hero-image" src="/images/marketing/kids.png"/>
+        </div>
+    </div>
+
+    <div class="contents">
+        <div class="left-container hero">
+            
+        </div>
+        <div class="right-container">
+            <div class="content">
+                <%= render "components/titles/page-title",
+                    title: "Post your camp, let us help you organized and promote!" %>
+                <%= %>
+                <div class="p"><%= service_title %> is a website meant for parents to easily find suitable camp for their childnrens' summer.</div>
+                <%= form_with(url: org_create_path, model: @organization, local: true, method: :post, html: { class: 'form-container' }) do |f| %>
+                    <div class="form-group">
+                        <div class="form-field">
+                            <%= f.label "Your organization name", class: 'form-label' %>
+                            <%= f.text_field :name, placeholder: "i.e. California Children Museum, John Street School", class: 'form-control' %>
+                        </div>
+
+                        <div class="form-field">
+                            <%= f.label "Your organization or camp website", class: 'form-label' %>
+                            <%= f.text_field :website, placeholder: "i.e. example.edu/summer-camp", class: 'form-control' %>
+                        </div>
+
+                        <div class="form-field">
+                            <%= f.label "Email", class: 'form-label' %>
+                            <%= f.text_field :email, placeholder: "Email for the contact person", class: 'form-control' %>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <%= f.submit 'Sign up', class: 'button primary medium full-width' %>
+                    </div>
+                <% end %>
+            </div>
+        
+        </div>
+    </div>
+
+    
+
+</div>

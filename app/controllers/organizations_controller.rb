@@ -8,25 +8,24 @@ class OrganizationsController < ApplicationController
         if @name.present?
           @organizations = Organization.where('name LIKE ?', "%#{@name}%")
         else
-          @organizations = Organization.all.reverse()
+          @organizations = Organization.all
         end
+
+        Rails.logger.debug "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        Rails.logger.debug @organizations
 
         # Locations
         @locations = get_locations_by_params(get_url_params_into_array(params[:locations]))
         if @locations.count > 0
-            _location_ids = @locations.map{|loc| loc[:id]}
-        else
-            _location_ids = location_region_options.map{|loc| loc[:id]}
+            # get organizations by regions
+            @organizations = Organization.where(
+                region: @locations.map{|loc| loc[:id]}
+            )
         end
 
         # categoties
         @tags = get_tags_by_params(get_url_params_into_array(params[:categories]))
         @focus_tags = []
-
-        # get organizations by regions
-        @organizations = Organization.where(
-            region: _location_ids
-        )
 
         # get organizations by categories
         if @tags.count > 0
@@ -114,13 +113,22 @@ class OrganizationsController < ApplicationController
         
     end
 
+    def signup
+        @organization = Organization.new
+        @page = params[:page_id]
+        render :signup
+    end
+
     before_action :authenticate_user!
+
 
     def new
         @organization = Organization.new
         @page = params[:page_id]
         render :new
     end
+
+    
 
     def create
         @organization = Organization.new(organization_params)
