@@ -140,10 +140,10 @@ module ApplicationHelper
         ]
     end
 
-    def location_states
+    def location_options
         [
             {
-                id: 1,
+                id: "usa",
                 name: "United states",
                 children: [
                     {
