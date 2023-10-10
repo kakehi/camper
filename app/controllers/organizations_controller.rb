@@ -21,7 +21,7 @@ class OrganizationsController < ApplicationController
 
         # categoties
         @tags = get_tags_by_params(get_url_params_into_array(params[:categories]))
-
+        @focus_tags = []
 
         # get organizations by regions
         @organizations = Organization.where(
@@ -77,7 +77,7 @@ class OrganizationsController < ApplicationController
         @organizations = @organizations.reverse()
 
         # featured tags
-        @featured_tags = Tag.find([3, 7, 1, 20, 46, 23, 6, 12])
+        @featured_tags = Tag.find([3, 7, 1, 20, 46, 23, 61, 6, 12])
         
         @categories = params[:categories].present? ? 
             params[:categories].split(',').map{|c| 

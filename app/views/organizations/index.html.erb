@@ -26,8 +26,11 @@
     <% end %>
 
     <div class="tabs page-tabs icon">
+      <%= link_to index_organization_path(), :class => "tab #{@categories.count == 0 ? 'selected' : 'unselected'}" do %>
+          <%= image_tag("/images/icons/star-black.svg") %>
+          <div class="text">Featured</div>
+      <% end %>
       <% @featured_tags.each do |t| %>
-
           <% 
             _selected = @categories.select{|c|
              c.name.downcase == t.name.downcase
@@ -48,7 +51,7 @@
 
       <% if @locations.count > 0 %>
         <div class="quick-access-container">
-          <span class="subtext">Metros:</span>
+          <span class="subtext title">Metros:</span>
           <% @locations.each do |loc| %>
             <% _new_loc_link = insert_url_params({"locations" => loc[:name].downcase})%>
             <%= render "uis/tags/tag",
@@ -67,7 +70,7 @@
           <% @tags.each do |tg| %>
             <% _tg_group = tag_groups.select{|e| e[:id] == tg[:id]} %>
             <% if _tg_group.count > 0 %>
-              <span class="subtext"><%= tg.name %>:</span>
+              <span class="subtex title"><%= tg.name %>:</span>
               <% _tg_group.first[:children].each do |child| %>
                 <% _child_tag = Tag.find_by(id: child) %>
                 <% _new_loc_link = insert_url_params({"categories" => _child_tag.name.downcase})%>
@@ -80,8 +83,8 @@
               <% end %>
             <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
     
 

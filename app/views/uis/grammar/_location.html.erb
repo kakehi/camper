@@ -1,13 +1,50 @@
 
 <% 
-    @size = defined?(size) ? size : "regular"
+    _size = defined?(size) ? size : "regular"
+
+
+    if defined?camp
+        _org = Organization.find_by(id: camp.organization_id)
+        if camp.city != nil
+            _city = camp.city
+        elsif _org.city != nil
+            _city = _org.city
+        end
+        if camp.state != nil
+            _state = camp.state
+        elsif _org.state != nil
+            _state = _org.state
+        end
+        if camp.zip_code != nil
+            _zip_code = camp.zip_code
+        elsif _org.zip_code != nil
+            _zip_code = _org.zip_code
+        end
+        if camp.country != nil
+            _country = camp.country
+        elsif _org.country != nil
+            _country = _org.country
+        end
+    elsif defined?organization
+        if organization.city != nil
+            _city = organization.city
+        end
+        if organization.state != nil
+            _state = organization.state
+        end
+        if organization.zip_code != nil
+            _zip_code = organization.zip_code
+        end
+        if organization.country != nil
+            _country = organization.country
+        end
+    end
 %>
 
-
-
-<div class="grammar grammar-location <%= @size %>">
+<div class="grammar grammar-location <%= _size %>">
     <img class="location icon" src="/images/icons/location-black.svg"/>
-    <%= location.city %>,
-    <%= location.state %>,
-    <%= location.country %>
+    <%= "#{_city}," if defined?_city %>
+    <%= "#{_state}," if defined?_state %>
+    <%= "#{_zip_code}," if defined?_zip_code %>
+    <%= "#{_country}" if defined?_country %>
 </div>

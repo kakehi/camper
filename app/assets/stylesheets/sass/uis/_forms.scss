@@ -35,6 +35,13 @@
                 display: flex;
                 gap: 0.5rem;
             }
+
+            // dropdown
+            select{
+                box-sizing: border-box;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+            }
     
         }
 
@@ -160,5 +167,42 @@
         .icon{
             width: 1.25rem;
         } 
+    }
+}
+
+
+
+
+
+// Specialized
+
+.form-group{
+    .location.overall, .location.detail{
+        display: flex;
+        gap: 1rem;
+    }
+
+    .location.overall{
+        .form-field{
+
+            &.country{
+                width: 40%;
+            }
+            &.zip-code{
+                width: 20%;
+            }
+        }
+    }
+
+    .location.detail{
+        .form-field{
+
+            &.metro{
+                width: 40%;
+            }
+            &.state{
+                width: 20%;
+            }
+        }
     }
 }

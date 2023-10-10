@@ -14,11 +14,7 @@
                 <h6>Edit location</h6>
                 <div class="subtext">
                     Edit only if camp takes place at a different location from your organization location.
-                    <% if (@camp.country.nil? || @camp.zip_code.nil? || @camp.state.nil? || @camp.city.nil?) %>
-                    <%= render "uis/grammar/location", location: @organization %>
-                    <% else %>
-                    <%= render "uis/grammar/location", location: @camp %>
-                    <% end %>
+                    <%= render "uis/grammar/location", organization: @organization, camp: @camp %>
                 </div>
             </div>
             <%= f.button "Edit", type: "submit", class: "text-link regular", name: "next", value: "2" %>

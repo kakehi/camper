@@ -7,7 +7,7 @@
     if !@camp.nil?
         _activities = @camp.activities
 
-        if(@focus_tags.count > 0)
+        if @focus_tags.count > 0
             _target_activities = _activities.select{|a|
                 if defined? a.tags
                     ( a.tags.map{|t| t[:id]} & @focus_tags.map{|t| t[:id]} ).count > 0

@@ -9,6 +9,14 @@
         padding: 1rem 0.5rem;
         display: grid;
         gap: 0.5rem;
+        .quick-access-container{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            .title{
+                margin-right: 0.5rem;
+            }
+        }
     }
 
 
