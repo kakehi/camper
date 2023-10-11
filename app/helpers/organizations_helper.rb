@@ -20,6 +20,16 @@ module OrganizationsHelper
         ]        
     end
 
+    # Camps
+    def organization_get_latest_camps(o)
+        Camp.where(organization_id: o).select{|c| c.camp_group == camp_group_default}
+    end
+
+    # Activities
+    def organization_get_latest_activities(o)
+        _camps = organization_get_latest_camps(o)
+        Activity.where(camp_id: _camps)
+    end
 
     def get_organization_target_group(o)
         if defined?(group)
@@ -112,6 +122,10 @@ module OrganizationsHelper
     end
 
 
+    # Metro
+    def organization_get_metro(o)
+        location_region_options.select{|r| o.region == r[:id]}.first
+    end
 
 
     # Age group

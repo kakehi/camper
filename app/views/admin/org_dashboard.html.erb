@@ -4,7 +4,9 @@
     <div class="page-header">
         <div class="flex-container">
             <div class="flex-left">
-                <div class="subtext">Dashboard</div>
+                <%= render "uis/breadcrumbs/breadcrumbs", links: [
+                    ['Admin'], ['Organizations', admin_orgs_path], [@organization.name, admin_org_dashboard_path(@organization, params[:camp_group_id], "overview")]
+                ] %>
                 <h4><%= @organization.name %></h4>
                 <%= render "uis/buttons/styled/edit-button",
                     organization: @organization, 
@@ -15,7 +17,7 @@
                     <% _selected = camp_group_options.select{|option| option[:id] == params[:camp_group_id].to_i}[0] %>
                     <li class="init"><%= _selected[:name] %><img class="icon" src="/images/icons/arrow-down.svg"/></li>
                     <% camp_group_options.map do |option| %>
-                        <li selected=<%= option[:id] == params[:camp_group_id] ? "selected" : ""%> value=<%=org_dashboard_path(@organization, option[:id], "camps")%>><%= link_to option[:name], org_dashboard_path(@organization, option[:id], "camps") %></li>
+                        <li selected=<%= option[:id] == params[:camp_group_id] ? "selected" : ""%> value=<%= admin_org_dashboard_path(@organization, option[:id], "camps")%>><%= link_to option[:name], admin_org_dashboard_path(@organization, option[:id], "camps") %></li>
                     <% end %>
                 </ul>
                 
@@ -23,22 +25,22 @@
         </div>
         
 
-        <%= render "organizations/components/organization_dashboard_tabs",
+        <%= render "admin/org_dashboards/organization_dashboard_tabs",
             selected: params[:tab_id]
         %>
        
     </div>
 
     <% if @page_tab == "overview" %>
-        <%= render "organizations/dashboards/overview" %>
+        <%= render "admin/org_dashboards/overview" %>
     <% end %>
 
     <% if @page_tab == "camps" %>
-        <%= render "organizations/dashboards/camps" %>
+        <%= render "admin/org_dashboards/camps" %>
     <% end %>
 
     <% if @page_tab == "tags" %>
-        <%= render "organizations/dashboards/tags", tags: @tags %>
+        <%= render "admin/org_dashboards/tags", tags: @tags %>
     <% end %>
 
 </div>

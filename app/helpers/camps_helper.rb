@@ -7,17 +7,17 @@ module CampsHelper
     end
 
     def camp_group_default
-        2017
+        2023
     end
     def camp_group_options
         [
             {
-                id: 2018,
-                name: "2018 Summer camp"
+                id: 2024,
+                name: "2024 Summer camp"
             },
             {
-                id: 2017,
-                name: "2017 Summer camp"
+                id: 2023,
+                name: "2023 Summer camp"
             }
         ]        
     end
@@ -91,16 +91,14 @@ module CampsHelper
 
 
 
-    # Age group
+    # Metro
     def camp_get_metro(c)
-        _region=nil
         if c.region != nil
-            _region=c.region
+            location_region_options.select{|r| c.region == r[:id]}.first
         else
-            o = Organization.find_by(id: c.organization_id)
-            _region=o.region
+            organization_get_metro(Organization.find_by(id: c.organization_id))
         end
-        location_region_options.select{|r| _region == r[:id]}.first
+        
     end
 
 

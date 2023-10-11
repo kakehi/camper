@@ -1,0 +1,16 @@
+
+
+
+
+
+.admin-orgs-container{
+    .list-item{
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: 6fr 3fr 3fr 3fr 1fr 1fr 1fr 1fr 1fr;
+
+        .icon{
+            width: 1rem;
+        }
+    }
+}

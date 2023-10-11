@@ -19,6 +19,11 @@
 </ul>
 <% end %>
 
+<%# Approved %>
+ <div class="custom-control custom-switch">
+    <%= f.check_box :approved, class: "custom-control-input" %>
+  <label class="custom-control-label" for="customSwitch1">Approved: </label>
+ </div>
 
 <%# Overview %>
 <%= render "components/forms/overview", 

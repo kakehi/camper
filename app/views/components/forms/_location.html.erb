@@ -17,7 +17,7 @@
         @zip_code = ""
     end
 
-    if form_target.region.present?
+    if defined?(form_target.region) && form_target.region.present?
         @region = form_target.region
     elsif defined?(form_parent) && form_parent.region.present?
         @region = form_parent.region

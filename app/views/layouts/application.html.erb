@@ -21,21 +21,14 @@
       <%# Top Navigation %>
       <nav class="top-nav flex-container">
         <div class="flex-left">
-          <div class="hamburger-menu"><div></div><div></div><div></div></div>
-          <a href="<%= index_organization_path() %>">Top</a>
+          <%# <div class="hamburger-menu"><div></div><div></div><div></div></div> %>
+          <%= link_to "Top", index_organization_path, class: "nav-tabs" %>
         </div>
         <div class="flex-right">
           <div class="profile-container">
             <% if user_signed_in? %>
-              <div>
-                <%= link_to "Add new organization", org_new_path, class: "nav-link" %>
-              </div>
-              <div>
-                <%= link_to "Profile", profile_detail_path(Profile.find_by(user_id: current_user.id)), class: "nav-link" %>
-              </div>
-              <div>
-                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-              </div>
+              <%= link_to "Post our camp", org_signup_path, class: "nav-tabs" %>
+              <%= link_to "Profile", profile_schedule_path(Profile.find_by(user_id: current_user.id)), class: "nav-tabs" %>
             <% else %>
             <% end %>
           </div>

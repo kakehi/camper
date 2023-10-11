@@ -6,7 +6,7 @@ end %>
 
 
 <% if defined?(organization)
-    @href = org_dashboard_path(organization, camp_group_options.select{|e| e[:id] == camp_group_default}[0][:id], "camps")
+    @href = admin_org_dashboard_path(organization, camp_group_options.select{|e| e[:id] == camp_group_default}[0][:id], "camps")
     @text = "Dashbaord"
 end %>
 

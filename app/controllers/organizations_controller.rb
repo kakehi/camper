@@ -11,8 +11,12 @@ class OrganizationsController < ApplicationController
           @organizations = Organization.all
         end
 
-        Rails.logger.debug "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        Rails.logger.debug @organizations
+        # USER_TYPE: Admin can see everthing
+        if true #TODO: make it admin only
+            @organizations = @organizations.select{|o| o.approved} #TODO: show everything
+        else
+            @organizations = @organizations.select{|o| o.approved}
+        end
 
         # Locations
         @locations = get_locations_by_params(get_url_params_into_array(params[:locations]))
@@ -96,22 +100,6 @@ class OrganizationsController < ApplicationController
 
     end
 
-    def dashboard
-        @organization = Organization.find(params[:id])
-        @page_tab = params[:tab_id]
-        @camps = Camp.where(organization_id: @organization)
-        @activities = Activity.where(camp_id: @camps)
-        @schedule_activities = ScheduleActivity.where(activity_id: @activities)
-        
-        @cats = Category.where(activity_id: @activities)
-        @tags = Tag.select{|t| @cats.select{|cat| cat.tag_id === t.id }.count > 0 }
-
-
-        Rails.logger.debug @activities
-
-        render :dashboard
-        
-    end
 
     def signup
         @organization = Organization.new
@@ -177,6 +165,7 @@ class OrganizationsController < ApplicationController
                 :name,
                 :description,
                 :organization_type,
+                :approved,
                 :hero_image,
                 :zip_code,
                 :region,

@@ -6,7 +6,7 @@ end %>
 
 
 <% if defined?(organization)
-    @href = edit_organization_path(organization)
+    @href = org_edit_path(organization)
     @text = "Edit organization"
 elsif defined?(camp)
     @organization = Organization.find_by(id: camp.organization_id)

@@ -1,0 +1,37 @@
+<div class="view-outer-container full-screen">
+    <div class="page-header">
+        <div class="flex-container">
+            <div class="flex-left">
+                <%= render "uis/breadcrumbs/breadcrumbs", links: [
+                    ['Admin'], ['Organizations', admin_orgs_path]
+                ] %>
+                <h4>Organizations</h4>
+            </div>
+            <div class="flex-right flex-container">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="simple-list-container admin-orgs-container">
+        <% @organization.map do |o| %>
+            <div class="list-item">
+                <div class=""><%= o.name %></div>
+                <div class=""><%= organization_get_metro(o)[:name] %></div>
+                <%= link_to o.website, o.website, target: "_blank", class: "subtext-mini medium-gray-text"%>
+                <%= link_to o.email, "emailto:#{o.email}", target: "_blank", class: "subtext-mini medium-gray-text"%>
+                <div class=""><%= organization_get_latest_camps(o).count %></div>
+                <div class=""><%= organization_get_latest_activities(o).count %></div>
+                <%= link_to "View", index_organization_camp_path(o), class: "subtext-mini"%>
+                <%= link_to "Edit", org_edit_path(o), class: "subtext-mini"%>
+                
+                <% if o.approved %>
+                   <div class=""><img class="icon" src="/images/icons/check-icon.png"/></div>
+                <% else %>
+                    <div class=""></div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+</div>
+

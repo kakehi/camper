@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_29_103849) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_212936) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -133,6 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_103849) do
     t.integer "age_group_max"
     t.integer "region"
     t.integer "organization_type"
+    t.boolean "approved", default: false, null: false
   end
 
   create_table "profiles", charset: "utf8mb4", collation: "utf8mb4_0900_bin", force: :cascade do |t|

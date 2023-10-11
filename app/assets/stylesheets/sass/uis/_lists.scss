@@ -1,8 +1,35 @@
 
 
 
+// Simple lists (Apple settings)
+.simple-list-container{
+    display: grid;
 
-// List item
+    .title{
+        color: #666;
+    }
+
+    .list-item{
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+
+        &:hover{
+            text-decoration: none;
+            background-color: #eee;
+        }
+        &.sub{
+            color: #666;
+        }
+        &.danger{
+            color: red;
+        }
+    }
+}
+
+
+
+
+// List item (Datasets)
 .list-item-container{
     display: grid;
     grid-template-columns: 1fr 4fr;
@@ -11,3 +38,6 @@
         color: #666;
     }
 }
+
+
+

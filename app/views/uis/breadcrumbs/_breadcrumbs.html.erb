@@ -1,0 +1,14 @@
+
+
+<div class="bread-crumbs-container">
+    <% links.map.with_index do |link, i| %>
+        <% if link.count > 1%>
+            <%= link_to link[0], link[1], class: "gray-text" %>
+        <% else %>
+            <div class="gray-text"><%= link[0] %></div>
+        <% end %>
+        <% if i < links.count - 1%>
+            <div class="light-gray-text">></div>
+        <% end %>
+    <% end %>
+</div>

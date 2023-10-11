@@ -8,9 +8,9 @@ class ProfilesController < ApplicationController
         render :schedule
     end
 
-    def detail
+    def settings
         @profile = Profile.find(params[:id])
-        render :detail
+        render :settings
     end
 
     def favorite_organizations
@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
     def create
         @profile = Profile.new(profile_params)
         if @profile.save
-            redirect_to profile_detail_path(current_user.id, @profile.id), notice: 'Profile was created'
+            redirect_to profile_settings_path(current_user.id, @profile.id), notice: 'Profile was created'
         else
             render :new, status: :unprocessable_entity
         end
@@ -55,7 +55,7 @@ class ProfilesController < ApplicationController
         end
 
         if @profile.update(profile_params)
-            redirect_to profile_detail_path(@profile), notice: 'Profile was updated'
+            redirect_to profile_settings_path(@profile), notice: 'Profile was updated'
         else
             render :edit, status: :unprocessable_entity
         end

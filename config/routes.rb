@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   ## Profile
   get 'profile/:id/schedule', to: 'profiles#schedule', as: 'profile_schedule'
-  get 'profile/:id/detail', to: 'profiles#detail', as: 'profile_detail'
+  get 'profile/:id/settings', to: 'profiles#settings', as: 'profile_settings'
   get 'profile/:id/favorite-organizations', to: 'profiles#favorite_organizations', as: 'profile_favorite_organizations'
 
   get 'profile/z8opKTG2XA/:user_id/new', to: 'profiles#new', as: 'profile_new'
@@ -23,14 +23,14 @@ Rails.application.routes.draw do
 
   ## Organizations
   get 'orgs/:id/profile', to: 'organizations#profile', as: 'org_profile'
-  get 'orgs/:id/dashboard/camps/:camp_group_id/:tab_id', to: 'organizations#dashboard', as: 'org_dashboard'
  
   get 'orgs/new', to: 'organizations#new', as: 'org_new'
   post 'orgs/new', to: 'organizations#create', as: 'org_create'
   get 'orgs/signup', to: 'organizations#signup', as: 'org_signup'
+  get 'orgs/signup-thank-you', to: 'organizations#signuped', as: 'org_signuped'
 
-  get 'orgs/edit/:id', to: 'organizations#edit', as: 'edit_organization'
-  post 'orgs/edit/:id', to: 'organizations#update', as: 'update_organization'
+  get 'orgs/edit/:id', to: 'organizations#edit', as: 'org_edit'
+  post 'orgs/edit/:id', to: 'organizations#update', as: 'org_update'
   get 'orgs/destroy/:id', to: 'organizations#destroy'
   delete 'orgs/destroy/:id', to: 'organizations#destroy', as: 'destroy_organization'
 
@@ -70,6 +70,12 @@ Rails.application.routes.draw do
   get 'sessions/destroy/:id', to: 'activities#destroy'
   delete 'sessions/destroy/:id', to: 'activities#destroy', as: 'session_destroy'
   
+
+
+  ## Admin
+  get 'admin/:id', to: 'admin#orgs', as: 'admin_orgs'
+  get 'admin/orgs/:id/camps/:camp_group_id/:tab_id', to: 'admin#org_dashboard', as: 'admin_org_dashboard'
+
 
   ## Tags
   get 'tags', to: 'tags#index', as: 'index_tag'
